@@ -1,0 +1,32 @@
+# Node
+node_modules/
+.env
+.env.*
+
+# React
+client/build/
+client/dist/
+client/node_modules/
+
+# Firebase
+.firebase/
+.firebaserc
+firebase.json
+functions/node_modules/
+functions/lib/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+*.log
+*.local
+
+# VSCode
+.vscode/
