@@ -1,79 +1,157 @@
-import { useEffect, useRef } from 'react';
+
+import { useEffect, useRef, useState } from 'react';
 import { useVisitor } from '../contexts/VisitorContext';
 import { useTheme } from '../contexts/ThemeContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const visitorTypes = [
-  { key: 'recruiter', label: 'Recruiter' },
-  { key: 'client', label: 'Client' },
-  { key: 'developer', label: 'Developer' },
-  { key: 'poet', label: 'Creative Soul' },
+  {
+    key: 'recruiter',
+    label: 'Recruiter',
+    desc: 'Looking to hire or connect? See my work and skills.',
+    bg: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    key: 'client',
+    label: 'Client',
+    desc: 'Interested in collaboration or services? Let’s build together.',
+    bg: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    key: 'developer',
+    label: 'Developer',
+    desc: 'Explore my code, projects, and dev journey.',
+    bg: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    key: 'poet',
+    label: 'Creative Soul',
+    desc: 'Dive into my poetry, writing, and creative work.',
+    bg: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+  },
 ];
+
+
 
 export default function VisitorSelector({ open, onClose }) {
   const { setVisitorType } = useVisitor();
   const { setTheme } = useTheme();
-  const modalRef = useRef(null);
+  const [hovered, setHovered] = useState(null);
+  const [focused, setFocused] = useState(null);
 
-  // Focus management for accessibility
-  useEffect(() => {
-    if (open && modalRef.current) {
-      modalRef.current.focus();
-    }
-  }, [open]);
-
-  const handleSelect = (type) => {
-    setVisitorType(type);
-    setTheme(type, false); // sync theme to visitor type
-    if (onClose) onClose();
-  };
-
-  // Keyboard accessibility: close on Escape
+  // Keyboard navigation for accessibility
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (e) => {
       if (e.key === 'Escape') onClose && onClose();
+      if (['ArrowLeft', 'ArrowRight'].includes(e.key)) {
+        setFocused((prev) => {
+          let idx = prev ?? 0;
+          if (e.key === 'ArrowLeft') idx = (idx - 1 + visitorTypes.length) % visitorTypes.length;
+          if (e.key === 'ArrowRight') idx = (idx + 1) % visitorTypes.length;
+          return idx;
+        });
+      }
+      if ((e.key === 'Enter' || e.key === ' ') && focused !== null) {
+        handleSelect(visitorTypes[focused].key);
+      }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [open, onClose]);
+  }, [open, focused, onClose]);
 
+  const handleSelect = (type) => {
+    setVisitorType(type);
+    setTheme(type, false);
+    if (onClose) onClose();
+  };
+
+  if (!open) return null;
+
+  // Responsive: stack vertically on mobile
   return (
     <AnimatePresence>
-      {open && (
-        <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          aria-modal="true"
-          role="dialog"
-        >
-          <motion.div
-            ref={modalRef}
-            tabIndex={-1}
-            className="bg-white dark:bg-gray-900 rounded-xl shadow-xl p-8 w-full max-w-md outline-none"
-            initial={{ scale: 0.9, y: 40, opacity: 0 }}
-            animate={{ scale: 1, y: 0, opacity: 1 }}
-            exit={{ scale: 0.9, y: 40, opacity: 0 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-          >
-            <h2 className="text-2xl font-bold mb-4 text-center">Who are you?</h2>
-            <div className="flex flex-col gap-4">
-              {visitorTypes.map((v) => (
-                <button
-                  key={v.key}
-                  onClick={() => handleSelect(v.key)}
-                  className="py-3 px-6 rounded-lg font-semibold border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 hover:bg-primary/10 focus:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
-                  aria-label={`Select ${v.label}`}
+      <motion.div
+        className="fixed inset-0 z-50 flex flex-row md:flex-row flex-col md:h-screen h-full w-full bg-black"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        aria-modal="true"
+        role="dialog"
+      >
+        {visitorTypes.map((v, idx) => {
+          const isActive = hovered === idx || focused === idx;
+          return (
+            <motion.button
+              key={v.key}
+              type="button"
+              className="group relative flex-1 flex flex-col items-center justify-end overflow-hidden outline-none focus:z-20"
+              style={{ minWidth: 0, minHeight: 0 }}
+              onMouseEnter={() => setHovered(idx)}
+              onMouseLeave={() => setHovered(null)}
+              onFocus={() => setFocused(idx)}
+              onBlur={() => setFocused(null)}
+              tabIndex={0}
+              onClick={() => handleSelect(v.key)}
+              initial={false}
+              animate={{
+                flex: isActive ? 2 : 1,
+                filter: isActive ? 'brightness(1.1) blur(0px)' : 'brightness(0.7) blur(0px)',
+              }}
+              transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+            >
+              <span
+                className="absolute inset-0 w-full h-full"
+                style={{
+                  backgroundImage: `url(${v.bg})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  zIndex: 0,
+                  transition: 'filter 0.3s',
+                }}
+                aria-hidden="true"
+              />
+              <span className="absolute inset-0 bg-black/60 group-hover:bg-black/40 group-focus:bg-black/40 transition-colors z-10" />
+              <span className="relative z-20 flex flex-col items-center justify-center w-full h-full p-6 md:p-10">
+                <motion.h2
+                  className="text-2xl md:text-3xl font-bold text-white drop-shadow mb-2 transition-all"
+                  initial={false}
+                  animate={{
+                    opacity: isActive ? 1 : 0.7,
+                    scale: isActive ? 1.1 : 1,
+                  }}
+                  transition={{ type: 'spring', stiffness: 200, damping: 30 }}
                 >
                   {v.label}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
+                </motion.h2>
+                {isActive && (
+                  <motion.p
+                    className="text-white/90 mb-4 text-base md:text-lg drop-shadow transition-all"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {v.desc}
+                  </motion.p>
+                )}
+                {isActive && (
+                  <motion.span
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                  >
+                    <span className="inline-block px-6 py-2 rounded-lg bg-primary-600 text-white font-semibold text-lg shadow hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-400 transition">
+                      Enter
+                    </span>
+                  </motion.span>
+                )}
+              </span>
+            </motion.button>
+          );
+        })}
+      </motion.div>
     </AnimatePresence>
   );
 }

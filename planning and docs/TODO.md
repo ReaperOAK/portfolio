@@ -59,7 +59,7 @@
 - [x] Create global ThemeContext and VisitorContext
   - [x] Add logic for theme switching based on visitor type
   - [x] Persist visitor type in localStorage/session
-  - [x] Build Visitor Selector component (landing prompt/modal)
+  - [x] Build immersive full-page Visitor Selector component (replaces old card/modal approach)
   - [x] Add animation for entry/exit
   - [x] Add accessibility (keyboard, ARIA)
   - [x] Implement dynamic theming (color palette, layout, CTA text)

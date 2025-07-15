@@ -4,14 +4,21 @@
 A full-stack MERN portfolio deployed on Firebase, featuring a React frontend, Express backend (Firebase Functions), and modern UI/UX with Tailwind, Framer Motion, and interactive 3D elements.
 
 ## Recent Highlights
+- Immersive full-page visitor selector: horizontally split, animated segments for Recruiter, Client, Developer, Creative Soul
+- Each segment expands on hover/focus, with animated background, label, and CTA
+- Fully accessible: keyboard navigation, ARIA, and focus management
 - Animated 3D wireframe background on Home page (React Three Fiber)
 - Clean hero section with animated headline and tagline
-- Interactive visitor type cards (Recruiter, Client, Developer, Creative Soul) below hero
 - User can interact with 3D background (rotate wireframe)
-- Home page flow is now smooth and non-intrusive—no modal prompt
 
 ## Vision
 Showcase technical, creative, and professional skills to attract freelance work, collaborators, and opportunities.
+
+---
+
+**New in 2025:**
+- Visitor segmentation is now a full-page, immersive selector (no modal/cards)
+- Improved accessibility and animation polish
 
 ## Tech Stack
 - React (Vite)

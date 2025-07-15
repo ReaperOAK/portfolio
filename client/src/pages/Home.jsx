@@ -1,15 +1,13 @@
 
 
 import { useTheme } from '../contexts/ThemeContext';
-import { motion, AnimatePresence } from 'framer-motion';
-import React, { Suspense, useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import React, { useEffect } from 'react';
 
 import WireframeIcosahedronBg from '../components/WireframeIcosahedron';
-import VisitorTypeCards from '../components/VisitorTypeCards';
 
 export default function Home() {
   const { themeVars } = useTheme();
-  const [showCards, setShowCards] = useState(false);
 
   useEffect(() => {
     // Delay cards until after hero/wireframe anim (e.g. 1.6s)
@@ -40,22 +38,6 @@ export default function Home() {
             Welcome to my portfolio!
           </motion.p>
         </div>
-      </section>
-
-      {/* Visitor type selection cards below hero */}
-      <section className="flex flex-col items-center justify-center w-full py-12 bg-transparent">
-        <AnimatePresence>
-          {showCards && (
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 40 }}
-              transition={{ duration: 0.6, delay: 0 }}
-            >
-              <VisitorTypeCards />
-            </motion.div>
-          )}
-        </AnimatePresence>
       </section>
     </>
   );

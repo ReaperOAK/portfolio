@@ -1,7 +1,7 @@
 # Portfolio Website Features (Detailed)
 
 ## 1. Visitor Segmentation & Personalization
-- Interactive landing prompt: "Who are you?" (Recruiter, Client, Developer, Creative Soul)
+- Immersive full-page landing selector: "Who are you?" (Recruiter, Client, Developer, Creative Soul) with animated, horizontally split segments (2025 update)
 - Dynamic theme switching (color palette, layout, CTAs) based on visitor type
 - Personalized homepage modules (e.g., recruiter sees Projects first, dev sees Blog)
 - Visitor type persistence (localStorage/session)

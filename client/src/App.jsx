@@ -1,7 +1,9 @@
 import { Suspense, lazy, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import VisitorSelector from './components/VisitorSelector';
 import { useVisitor } from './contexts/VisitorContext';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -20,21 +22,27 @@ function App() {
 
   return (
     <>
+      <VisitorSelector open={showSelector} onClose={() => setShowSelector(false)} />
       <Router>
-      <Navbar />
-      <div className="pt-20 min-h-screen flex flex-col">
-        <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-        <Footer />
-      </div>
-    </Router>
+        {/* Hide main content when selector is open */}
+        {!showSelector && (
+          <>
+            <Navbar />
+            <div className="pt-20 min-h-screen flex flex-col">
+              <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/projects" element={<Projects />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+              <Footer />
+            </div>
+          </>
+        )}
+      </Router>
     </>
   );
 }
