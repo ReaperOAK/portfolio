@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useTheme } from "../../../contexts/ThemeContext";
 
 
-export default function PersonaCard({ icon, title, description }) {
+export default function PersonaCard({ icon, title, description, bg }) {
   const { themeVars } = useTheme();
   const [flipped, setFlipped] = useState(false);
   const handleFlip = () => setFlipped((f) => !f);
@@ -34,13 +34,23 @@ export default function PersonaCard({ icon, title, description }) {
           className="absolute inset-0 flex flex-col items-center justify-center rounded-xl border p-4 bg-gradient-to-br from-gray-900 to-slate-800"
           style={{
             color: themeVars?.foreground,
-            background: themeVars?.subtle,
+            background: bg ? `url(${bg}) center/cover no-repeat` : themeVars?.subtle,
             borderColor: themeVars?.border,
             backfaceVisibility: 'hidden',
             zIndex: 2,
           }}
         >
-          <h3 className="text-xl mt-2 font-semibold">{title}</h3>
+          <h3
+            className="text-xl mt-2 font-semibold relative"
+            style={{
+              textShadow:
+                "0 2px 8px rgba(0,0,0,0.6), 0 0 2px #fff, 0 0 8px rgba(0,0,0,0.3)",
+              WebkitTextStroke: "1px rgba(255,255,255,0.7)",
+              filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.5))",
+            }}
+          >
+            {title}
+          </h3>
         </div>
         {/* Back */}
         <div
@@ -54,8 +64,24 @@ export default function PersonaCard({ icon, title, description }) {
             zIndex: 1,
           }}
         >
-          <img src={icon} alt={title} className="w-16 h-16 mb-2" />
-          <p>{description}</p>
+          <div className="relative mb-2 flex items-center justify-center">
+            {/* White glow behind logo */}
+            <div
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              aria-hidden="true"
+              style={{
+                width: '72px',
+                height: '72px',
+                background: 'white',
+                opacity: 0.85,
+                filter: 'blur(10px)',
+                zIndex: 0,
+              }}
+            />
+            <img src={icon} alt={title} className="w-16 h-16 relative z-10" />
+          </div>
+          <h3 className="text-xl mt-2 font-semibold">{title}</h3>
+          <p className="text-center">{description}</p>
         </div>
       </motion.div>
     </motion.div>

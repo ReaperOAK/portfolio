@@ -1,36 +1,94 @@
+
+
 import SectionWrapper from "./SectionWrapper";
 import PersonaCard from "./persona/PersonaCard";
 import { personas } from "../../data/personaData";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import { UserCog } from "lucide-react";
+
 
 export default function PersonaSection() {
-  // Carousel logic
-  const [index, setIndex] = useState(0);
-  // Responsive: 1 on mobile, 2 on sm, 3 on md, 4 on lg+
-  let visibleCount = 1;
-  if (typeof window !== 'undefined') {
+  // Responsive visibleCount
+  const getVisibleCount = () => {
+    if (typeof window === 'undefined') return 1;
     const w = window.innerWidth;
-    if (w >= 1024) visibleCount = 4;
-    else if (w >= 768) visibleCount = 3;
-    else if (w >= 640) visibleCount = 2;
-  }
-  // Clamp index
-  const maxIndex = Math.max(0, personas.length - visibleCount);
-  const goLeft = () => setIndex(i => (i - 1 + (maxIndex + 1)) % (maxIndex + 1));
-  const goRight = () => setIndex(i => (i + 1) % (maxIndex + 1));
+    if (w >= 1024) return 4;
+    if (w >= 768) return 3;
+    if (w >= 640) return 2;
+    return 1;
+  };
+  const [visibleCount, setVisibleCount] = useState(getVisibleCount());
+  useEffect(() => {
+    const onResize = () => setVisibleCount(getVisibleCount());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
-  // Listen for resize to update visibleCount
-  // (simple, not perfect, but works for most cases)
-  // Could use a custom hook for better SSR/CSR
-  const [_, setRerender] = useState(0);
-  if (typeof window !== 'undefined') {
-    window.onresize = () => setRerender(r => r + 1);
-  }
+  // Infinite carousel logic
+  const total = personas.length;
+  const [index, setIndex] = useState(visibleCount); // Start at first real slide
+  const [isAnimating, setIsAnimating] = useState(false);
+  const trackRef = useRef();
+
+  // Clone slides for infinite effect
+  const slides = [
+    ...personas.slice(-visibleCount),
+    ...personas,
+    ...personas.slice(0, visibleCount),
+  ];
+  const slideCount = slides.length;
+  const realStart = visibleCount;
+  const realEnd = realStart + total - 1;
+
+  // When visibleCount changes, reset index
+  useEffect(() => {
+    setIndex(visibleCount);
+  }, [visibleCount, total]);
+
+  // Handle transition end for seamless loop
+  useEffect(() => {
+    if (!isAnimating) return;
+    const handle = () => {
+      setIsAnimating(false);
+      if (index < realStart) {
+        setIndex(realEnd);
+      } else if (index > realEnd) {
+        setIndex(realStart);
+      }
+    };
+    const node = trackRef.current;
+    if (node) {
+      node.addEventListener('transitionend', handle, { once: true });
+      return () => node.removeEventListener('transitionend', handle);
+    }
+  }, [index, isAnimating, realStart, realEnd]);
+
+  const goLeft = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setIndex(i => i - 1);
+  };
+  const goRight = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setIndex(i => i + 1);
+  };
+
+  // For indicators
+  const getActive = () => {
+    let i = index - realStart;
+    if (i < 0) i += total;
+    if (i >= total) i -= total;
+    return i;
+  };
 
   return (
     <SectionWrapper>
-      <h2 className="text-2xl font-bold mb-6 text-center">🎭 Who I Am Beyond Code</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center flex items-center justify-center gap-2">
+        <UserCog className="inline-block w-7 h-7 text-primary align-middle" aria-hidden="true" />
+        <span>Who I Am Beyond Code</span>
+      </h2>
       <div className="relative flex items-center">
         <button
           className="absolute left-0 z-10 bg-slate-800/80 hover:bg-slate-700 text-white rounded-full p-2 shadow-md"
@@ -41,18 +99,21 @@ export default function PersonaSection() {
           <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
         <div className="overflow-hidden w-full">
-          <motion.div
-            className="flex gap-6"
-            animate={{ x: `-${index * (100 / visibleCount)}%` }}
-            transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-            style={{ width: `${(personas.length / visibleCount) * 100}%` }}
+          <div
+            ref={trackRef}
+            className="flex gap-6 transition-transform duration-500"
+            style={{
+              width: `${(slideCount / visibleCount) * 100}%`,
+              transform: `translateX(-${index * (100 / slideCount)}%)`,
+              transition: isAnimating ? 'transform 0.5s cubic-bezier(.4,2,.3,1)' : 'none',
+            }}
           >
-            {personas.map((p, i) => (
-              <div key={i} style={{ width: `${100 / personas.length}%` }}>
+            {slides.map((p, i) => (
+              <div key={i} style={{ width: `${100 / slideCount}%` }}>
                 <PersonaCard {...p} />
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
         <button
           className="absolute right-0 z-10 bg-slate-800/80 hover:bg-slate-700 text-white rounded-full p-2 shadow-md"
@@ -64,11 +125,14 @@ export default function PersonaSection() {
         </button>
       </div>
       <div className="flex justify-center gap-2 mt-4">
-        {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+        {Array.from({ length: total }).map((_, i) => (
           <button
             key={i}
-            className={`w-2.5 h-2.5 rounded-full ${i === index ? 'bg-primary scale-125' : 'bg-slate-400 opacity-60'}`}
-            onClick={() => setIndex(i)}
+            className={`w-2.5 h-2.5 rounded-full ${i === getActive() ? 'bg-primary scale-125' : 'bg-slate-400 opacity-60'}`}
+            onClick={() => {
+              if (isAnimating) return;
+              setIndex(i + realStart);
+            }}
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}

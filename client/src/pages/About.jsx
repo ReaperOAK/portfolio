@@ -1,11 +1,9 @@
 import HeroSection from "../components/about/HeroSection";
 import StorySection from "../components/about/StorySection";
-import SkillsSection from "../components/about/SkillsSection";
 import PhilosophyQuotes from "../components/about/PhilosophyQuotes";
 import PersonaSection from "../components/about/PersonaSection";
 import FunFactsSection from "../components/about/FunFactsSection";
 import CallToAction from "../components/about/CallToAction";
-import { SkillCanvas } from "../components/about/skills3d/SkillCanvas";
 import SkillsConstellation from "../components/about/SkillsConstellation";
 
 export default function About() {
@@ -16,10 +14,10 @@ export default function About() {
       {/* <StorySection /> */}
       {/* <SkillsConstellation /> */}
       {/* <PhilosophyQuotes /> */}
-      <PersonaSection />
-      {/* <FunFactsSection /> */}
+      {/* <PersonaSection /> */}
+      <FunFactsSection />
       {/* <CallToAction /> */}
-    {/* </main> */}
+     {/* </main> */}
     </>
   );
 }
