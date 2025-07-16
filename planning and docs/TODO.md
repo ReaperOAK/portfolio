@@ -69,13 +69,13 @@
 - [ ] Home Page
   - [x] Animated hero section (Framer Motion)
   - [x] 3D element (Three.js/R3F, lazy loaded)
-  - [ ] Typing animation for roles
-  - [ ] CTA buttons (View Projects, Hire Me, etc.)
-  - [ ] Scroll-down indicator
+  - [x] Typing animation for roles
+  - [x] CTA buttons (View Projects, Hire Me, etc.)
+  - [x] Scroll-down indicator
 - [ ] About Page
-  - [ ] Bio, journey, philosophy
-  - [ ] Stack/skills with icons
-  - [ ] Fun facts, stylized photo/avatar
+  - [x] Bio, journey, philosophy
+  - [x] Stack/skills with icons
+  - [x] Fun facts, stylized photo/avatar
 - [ ] Projects Page
   - [ ] Featured projects (case study cards)
   - [ ] Other projects grid

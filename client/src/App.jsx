@@ -28,7 +28,7 @@ function App() {
         {!showSelector && (
           <>
             <Navbar />
-            <div className="pt-20 min-h-screen flex flex-col">
+            <div className="min-h-screen flex flex-col">
               <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
                 <Routes>
                   <Route path="/" element={<Home />} />
