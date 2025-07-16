@@ -72,10 +72,17 @@
   - [x] Typing animation for roles
   - [x] CTA buttons (View Projects, Hire Me, etc.)
   - [x] Scroll-down indicator
-- [ ] About Page
-  - [x] Bio, journey, philosophy
-  - [x] Stack/skills with icons
-  - [x] Fun facts, stylized photo/avatar
+## About Page
+- [x] Modular, theme-aware, animated About page
+  - [x] HeroSection: animated, theme-aware, responsive
+  - [x] StorySection: timeline, theme-aware, responsive, side-by-side with Hero
+  - [x] SkillsConstellation: 3D, theme-aware, Lucide icon, full width
+  - [x] PersonaSection: flip cards, carousel, theme-aware
+  - [x] FunFactsSection: animated, theme-aware, robust icon mapping
+  - [x] EpiphanyCTA: cinematic, animated, theme-aware, delayed CTA button
+  - [x] Accessibility, mobile, and visual polish throughout
+  - [x] All sections use themeVars for color and support theme switching
+  - [x] Docs and color tokens updated
 - [ ] Projects Page
   - [ ] Featured projects (case study cards)
   - [ ] Other projects grid

@@ -1,11 +1,23 @@
+
 import { SkillCanvas } from "./skills3d/SkillCanvas";
+import { useTheme } from "../../contexts/ThemeContext";
+import { BrainCircuit } from "lucide-react";
 
 export default function SkillsConstellation() {
+  const { themeVars } = useTheme();
   return (
-    <section className="bg-black text-white py-20">
+    <section
+      className="w-full py-20"
+      style={{ background: themeVars.background, color: themeVars.foreground }}
+    >
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold">🧠 My Skills</h2>
-        <p className="text-gray-400 mt-2">Explore the stack I orbit around</p>
+        <h2 className="text-4xl font-bold flex items-center justify-center gap-2">
+          <BrainCircuit size={36} style={{ color: themeVars.primary, flexShrink: 0 }} aria-label="Skills" />
+          <span>My Skills</span>
+        </h2>
+        <p className="mt-2" style={{ color: themeVars.secondary }}>
+          Explore the stack I orbit around
+        </p>
       </div>
       <SkillCanvas />
     </section>

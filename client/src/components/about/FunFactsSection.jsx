@@ -107,10 +107,6 @@ export default function FunFactsSection() {
 
   return (
     <SectionWrapper>
-      <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <Sparkles className="inline-block w-7 h-7 text-primary align-middle" aria-hidden="true" />
-        <span>Fun Facts</span>
-      </h2>
       <AnimatePresence>
         {rockets.map(r => (
           <RocketFact key={r.id} fact={r.fact} angle={r.angle} speed={r.speed} onDone={() => handleDone(r.id)} />

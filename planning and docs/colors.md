@@ -36,6 +36,7 @@ We'll structure it around:
 | `bg`        | `#F8FAFC`                             | `bg-slate-50`      | Background                    |
 | `fg`        | `#0F172A`                             | `text-slate-900`   | Primary text                  |
 | `primary`   | `#3B82F6`                             | `text-blue-500`    | Buttons, CTAs, links          |
+| `secondary` | `#6366F1`                             | `text-indigo-500`  | Secondary accents, UI         |
 | `accent`    | `#10B981`                             | `text-emerald-500` | Icons, hover states           |
 | `border`    | `#CBD5E1`                             | `border-slate-300` | Cards, outlines               |
 | `subtle`    | `#E2E8F0`                             | `bg-slate-200`     | Background tint, alt sections |
@@ -53,6 +54,7 @@ We'll structure it around:
 | `bg`        | `#0F172A`                           | `bg-slate-900`     | Background              |
 | `fg`        | `#E2E8F0`                           | `text-slate-200`   | Primary text            |
 | `primary`   | `#22D3EE`                           | `text-cyan-400`    | Buttons, links          |
+| `secondary` | `#818CF8`                           | `text-indigo-400`  | Secondary accents, UI   |
 | `accent`    | `#F59E0B`                           | `text-amber-500`   | Icons, hover states     |
 | `border`    | `#334155`                           | `border-slate-700` | Card outlines           |
 | `subtle`    | `#1E293B`                           | `bg-slate-800`     | Alt background sections |
@@ -70,6 +72,7 @@ We'll structure it around:
 | `bg`        | `#020617`                           | `bg-gray-950`     | Background                |
 | `fg`        | `#F8FAFC`                           | `text-slate-100`  | Primary text              |
 | `primary`   | `#7C3AED`                           | `text-purple-500` | CTAs, borders             |
+| `secondary` | `#38BDF8`                           | `text-sky-400`    | Secondary accents, UI     |
 | `accent`    | `#0EA5E9`                           | `text-sky-500`    | Hover, links              |
 | `border`    | `#1E293B`                           | `border-gray-800` | Cards, buttons            |
 | `subtle`    | `#111827`                           | `bg-gray-900`     | Tint sections             |
@@ -87,6 +90,7 @@ We'll structure it around:
 | `bg`        | `#1C0C2E`                            | `bg-[#1C0C2E]`      | Background    |
 | `fg`        | `#F3E8FF`                            | `text-purple-100`   | Text          |
 | `primary`   | `#C084FC`                            | `text-purple-400`   | Titles, links |
+| `secondary` | `#F472B6`                            | `text-pink-400`     | Secondary accents, UI |
 | `accent`    | `#FB7185`                            | `text-rose-400`     | CTA, hover    |
 | `border`    | `#6B21A8`                            | `border-purple-700` | Outlines      |
 | `subtle`    | `#2E1065`                            | `bg-purple-900`     | Alt section   |
@@ -101,12 +105,13 @@ We'll structure it around:
 
 You can define it in `/src/themes/index.js`:
 
-```js
+```
 export const themes = {
   recruiter: {
     background: "#F8FAFC",
     foreground: "#0F172A",
     primary: "#3B82F6",
+    secondary: "#6366F1", // Indigo-500
     accent: "#10B981",
     border: "#CBD5E1",
     subtle: "#E2E8F0",
@@ -117,6 +122,7 @@ export const themes = {
     background: "#0F172A",
     foreground: "#E2E8F0",
     primary: "#22D3EE",
+    secondary: "#818CF8", // Indigo-400
     accent: "#F59E0B",
     border: "#334155",
     subtle: "#1E293B",
@@ -127,6 +133,7 @@ export const themes = {
     background: "#020617",
     foreground: "#F8FAFC",
     primary: "#7C3AED",
+    secondary: "#38BDF8", // Sky-400
     accent: "#0EA5E9",
     border: "#1E293B",
     subtle: "#111827",
@@ -137,6 +144,7 @@ export const themes = {
     background: "#1C0C2E",
     foreground: "#F3E8FF",
     primary: "#C084FC",
+    secondary: "#F472B6", // Pink-400
     accent: "#FB7185",
     border: "#6B21A8",
     subtle: "#2E1065",

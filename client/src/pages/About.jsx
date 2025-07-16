@@ -1,23 +1,31 @@
+
+import { useTheme } from "../contexts/ThemeContext";
 import HeroSection from "../components/about/HeroSection";
 import StorySection from "../components/about/StorySection";
-import PhilosophyQuotes from "../components/about/PhilosophyQuotes";
 import PersonaSection from "../components/about/PersonaSection";
 import FunFactsSection from "../components/about/FunFactsSection";
-import CallToAction from "../components/about/CallToAction";
 import SkillsConstellation from "../components/about/SkillsConstellation";
+import EpiphanyCTA from "../components/about/EpiphanyCTA";
 
 export default function About() {
+  const { theme, themeVars } = useTheme();
   return (
-    <>
-    {/* <main className="mx-auto px-4 sm:px-8 lg:px-20 py-8 flex flex-col gap-8"> */}
-      {/* <HeroSection /> */}
-      {/* <StorySection /> */}
-      {/* <SkillsConstellation /> */}
-      {/* <PhilosophyQuotes /> */}
-      {/* <PersonaSection /> */}
+    <div
+      data-theme={theme}
+      style={{ background: themeVars.background, color: themeVars.foreground, minHeight: "100vh", width: "100%" }}
+    >
+      <section className="w-full max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-12 items-stretch py-12 px-4 md:px-8 min-h-screen">
+        <div className="flex-1 flex items-center justify-center">
+          <HeroSection />
+        </div>
+        <div className="flex-1 flex items-center justify-center">
+          <StorySection />
+        </div>
+      </section>
+      <SkillsConstellation />
+      <PersonaSection />
       <FunFactsSection />
-      {/* <CallToAction /> */}
-     {/* </main> */}
-    </>
+      <EpiphanyCTA />
+    </div>
   );
 }

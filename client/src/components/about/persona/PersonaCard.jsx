@@ -56,8 +56,8 @@ export default function PersonaCard({ icon, title, description, bg }) {
         <div
           className="absolute inset-0 flex flex-col items-center justify-center rounded-xl border p-4 text-sm"
           style={{
-            color: themeVars?.foreground,
-            background: themeVars?.background,
+            color: themeVars?.primary,
+            background: themeVars?.subtle,
             borderColor: themeVars?.border,
             transform: 'rotateY(180deg)',
             backfaceVisibility: 'hidden',
@@ -80,8 +80,8 @@ export default function PersonaCard({ icon, title, description, bg }) {
             />
             <img src={icon} alt={title} className="w-16 h-16 relative z-10" />
           </div>
-          <h3 className="text-xl mt-2 font-semibold">{title}</h3>
-          <p className="text-center">{description}</p>
+          <h3 className="text-xl mt-2 font-semibold" style={{ color: themeVars?.primary }}>{title}</h3>
+          <p className="text-center" style={{ color: themeVars?.secondary }}>{description}</p>
         </div>
       </motion.div>
     </motion.div>
