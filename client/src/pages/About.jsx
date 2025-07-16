@@ -14,9 +14,9 @@ export default function About() {
     {/* <main className="mx-auto px-4 sm:px-8 lg:px-20 py-8 flex flex-col gap-8"> */}
       {/* <HeroSection /> */}
       {/* <StorySection /> */}
-      <SkillsConstellation />
+      {/* <SkillsConstellation /> */}
       {/* <PhilosophyQuotes /> */}
-      {/* <PersonaSection /> */}
+      <PersonaSection />
       {/* <FunFactsSection /> */}
       {/* <CallToAction /> */}
     {/* </main> */}

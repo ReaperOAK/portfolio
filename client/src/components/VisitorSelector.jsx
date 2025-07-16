@@ -9,25 +9,25 @@ const visitorTypes = [
     key: 'recruiter',
     label: 'Recruiter',
     desc: 'Looking to hire or connect? See my work and skills.',
-    bg: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80',
+    bg: '/bg/recruiter.png',
   },
   {
     key: 'client',
     label: 'Client',
     desc: 'Interested in collaboration or services? Let’s build together.',
-    bg: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80',
+    bg: '/bg/client.png',
   },
   {
     key: 'developer',
     label: 'Developer',
     desc: 'Explore my code, projects, and dev journey.',
-    bg: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80',
+    bg: '/bg/developer.png',
   },
   {
     key: 'poet',
     label: 'Creative Soul',
     desc: 'Dive into my poetry, writing, and creative work.',
-    bg: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
+    bg: '/bg/poet.png',
   },
 ];
 

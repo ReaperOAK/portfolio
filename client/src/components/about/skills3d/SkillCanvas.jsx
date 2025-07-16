@@ -1,7 +1,7 @@
 
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Stars, Html } from '@react-three/drei';
-import { skills } from './skills';
+import { skills } from '../../../data/skills';
 import { SkillSphere } from './SkillSphere';
 import { useRef } from 'react';
 import { useTheme } from '../../../contexts/ThemeContext';
