@@ -12,10 +12,10 @@ export default function About() {
   return (
     <>
     {/* <main className="mx-auto px-4 sm:px-8 lg:px-20 py-8 flex flex-col gap-8"> */}
-      {/* <HeroSection /> */}
-      {/* <StorySection /> */}
-      {/* <SkillsConstellation /> */}
-      {/* <PhilosophyQuotes /> */}
+      <HeroSection />
+      <StorySection />
+      <SkillsConstellation />
+      <PhilosophyQuotes />
       <PersonaSection />
       {/* <FunFactsSection /> */}
       {/* <CallToAction /> */}
