@@ -66,13 +66,12 @@
   - [x] Create Navbar and Footer components
   - [x] Add animated logo, nav links, theme toggle
   - [x] Make mobile responsive with hamburger menu
-- [ ] Home Page
+- [x] Home Page
   - [x] Animated hero section (Framer Motion)
   - [x] 3D element (Three.js/R3F, lazy loaded)
   - [x] Typing animation for roles
   - [x] CTA buttons (View Projects, Hire Me, etc.)
   - [x] Scroll-down indicator
-## About Page
 - [x] Modular, theme-aware, animated About page
   - [x] HeroSection: animated, theme-aware, responsive
   - [x] StorySection: timeline, theme-aware, responsive, side-by-side with Hero
@@ -84,11 +83,21 @@
   - [x] All sections use themeVars for color and support theme switching
   - [x] Docs and color tokens updated
 - [ ] Projects Page
-  - [ ] Featured projects (case study cards)
-  - [ ] Other projects grid
-  - [ ] Filters (All, Web, Backend, Creative)
-  - [ ] Tech stack tags, GitHub/live links
-  - [ ] Optional: 3D/animated project cards
+  - [x] Featured projects (case study cards)
+  - [x] Other projects grid
+  - [x] Filters (All, Web, Backend, Creative)
+    - Components scaffolded and integrated into Projects page.
+  - [x] Tech stack tags, GitHub/live links
+    - Modular Workbench grid and ProjectTile component scaffolded and integrated.
+    - Interactive tiles show tech stack, tags, GitHub/live links, status, and details.
+  - [x] Project Filter Switch (interactive view modes)
+    - Floating toggle for Codebase-heavy, UI-intensive, R&D, Deployed views integrated.
+  - [x] SkillMap Overlay (tech connections)
+    - SkillMapOverlay component scaffolded for tech stack highlighting.
+  - [x] Dev Log Trail (project changelog)
+    - DevLogTrail component integrated in ProjectTile for narrative and growth.
+  - [x] Optional: 3D/animated project cards
+    - AnimatedProjectCard component wraps ProjectTile for 3D/animated effects (Framer Motion).
 - [ ] Blog/Thoughts Page (optional)
   - [ ] Markdown or DB-powered posts
   - [ ] Sorting/filtering (Tech, Poetic, Personal)

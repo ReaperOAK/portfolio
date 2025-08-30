@@ -11,6 +11,7 @@ const About = lazy(() => import('./pages/About'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Contact = lazy(() => import('./pages/Contact'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const ProjectDetails = lazy(() => import('./pages/ProjectDetails'));
 
 function App() {
   const { visitorType } = useVisitor();
@@ -35,6 +36,7 @@ function App() {
                   <Route path="/about" element={<About />} />
                   <Route path="/projects" element={<Projects />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="/project/:slug" element={<ProjectDetails />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>
