@@ -1,5 +1,7 @@
 # Portfolio Website Master To-Do List (Detailed)
 
+_Last updated: 2025-08-30_
+
 ## 1. Project Setup & Planning
   - [x] Write initial README.md with project vision, stack, and goals
   - [x] Add .gitignore for Node, React, Firebase, and OS files
@@ -82,7 +84,7 @@
   - [x] Accessibility, mobile, and visual polish throughout
   - [x] All sections use themeVars for color and support theme switching
   - [x] Docs and color tokens updated
-- [ ] Projects Page
+- [x] Projects Page
   - [x] Featured projects (case study cards)
   - [x] Other projects grid
   - [x] Filters (All, Web, Backend, Creative)
@@ -103,13 +105,13 @@
   - [ ] Sorting/filtering (Tech, Poetic, Personal)
   - [ ] Blog post page with code highlighting
 - [ ] Poetry/Writing Page (optional, for creative visitor type)
-- [ ] Contact Page
+- [x] Contact Page (frontend complete — backend/contact form pending)
   - [ ] Contact form (with validation, error/loading states)
-  - [ ] Social links, resume download
-  - [ ] Fun CTA text
-- [ ] 404 Page
-  - [ ] Custom illustration/meme
-  - [ ] Link back to home
+  - [x] Social links, resume download
+  - [x] Fun CTA text
+- [x] 404 Page
+  - [x] Custom illustration/meme
+  - [x] Link back to home
 - [ ] Add dark mode toggle (with persistence)
 - [ ] Add smooth scrolling (Lenis or similar)
 - [ ] Add micro-interactions (button hovers, card flips)
@@ -194,5 +196,9 @@
 - [ ] Feedback button (bug/feature request form)
 
 ---
+
+## Notes / Next steps
+- Implement backend /api/contact endpoint (functions or server) and wire to frontend contact form.
+- Run a Lighthouse audit and address top accessibility and performance issues.
 
 > Update this checklist as you progress. Treat it as your product roadmap!
