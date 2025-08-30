@@ -13,6 +13,8 @@ const projects = [
     tags: ["React", "UI", "Personal"],
     github: "https://github.com/ReaperOAK/portfolio",
     live: "https://portfolio.vercel.app",
+  // small demo screenshots (served from client/public)
+  screenshots: ["/profile.png", "/bg/client.png"],
     devLogs: [
       "Pivoted to Vite for faster builds.",
       "Designed modular grid for project UX.",

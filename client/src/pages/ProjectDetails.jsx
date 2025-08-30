@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 import projects from "../data/projects";
 import DevLogTrail from "../components/projects/DevLogTrail";
+import ProjectMediaCarousel from "../components/projects/ProjectMediaCarousel";
 
 export default function ProjectDetails() {
   const { slug } = useParams();
@@ -80,6 +81,11 @@ export default function ProjectDetails() {
           <div className="rounded-2xl p-6 md:p-8" style={{ background: themeVars.subtle, border: `1px solid ${themeVars.primary}10` }}>
             <h2 className="sr-only">Project overview</h2>
             <p className="text-base md:text-lg leading-relaxed" style={{ color: themeVars.foreground, opacity: 0.97 }}>{finalProject.desc || finalProject.description}</p>
+
+            {/* Media carousel */}
+            <div className="mt-6">
+              <ProjectMediaCarousel screenshots={finalProject.screenshots || []} />
+            </div>
 
             <div className="mt-6">
               <h3 className="text-lg font-semibold" style={{ color: themeVars.primary }}>Key decisions</h3>

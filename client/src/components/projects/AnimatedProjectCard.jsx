@@ -6,9 +6,9 @@ export default function AnimatedProjectCard({ children }) {
   const { themeVars: t } = useTheme();
   return (
     <motion.div
-      initial={{ opacity: 0.96 }}
-      whileHover={{ boxShadow: `0 12px 48px 0 ${t.primary}22`, opacity: 1 }}
-      whileTap={{ opacity: 0.98 }}
+  initial={{ opacity: 0.98, y: 0 }}
+  whileHover={{ boxShadow: `0 16px 48px 0 ${t.primary}22`, y: -6 }}
+  whileTap={{ y: -2 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       style={{
         display: 'flex',

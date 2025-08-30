@@ -67,6 +67,36 @@ export default function ProjectTile({ project = {}, allProjects = [] }) {
       transition={{ type: "spring", stiffness: 240, damping: 26 }}
   onClick={() => targetSlug && navigate(`/project/${targetSlug}`)}
     >
+      {/* Hover quick actions */}
+      <div className="absolute right-3 top-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex gap-2">
+        {project.github && (
+          <a
+            href={project.github}
+            onClick={(e) => e.stopPropagation()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2 py-1 rounded-md text-xs font-medium"
+            style={{ background: t.background, color: t.primary, border: `1px solid ${t.border}` }}
+            aria-label="View source on GitHub"
+          >
+            Code
+          </a>
+        )}
+
+        {project.live && (
+          <a
+            href={project.live}
+            onClick={(e) => e.stopPropagation()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2 py-1 rounded-md text-xs font-medium"
+            style={{ background: t.primary, color: t.background }}
+            aria-label="Open live demo"
+          >
+            Live
+          </a>
+        )}
+      </div>
       <div className="flex items-center gap-3 mb-2">
         <span className="text-2xl" style={{ color: t.primary }}>{project.icon}</span>
         <div className="flex-1">
