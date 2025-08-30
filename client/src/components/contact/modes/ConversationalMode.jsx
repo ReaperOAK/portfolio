@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../../../contexts/ThemeContext';
 
@@ -48,6 +48,12 @@ export default function ConversationalMode() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  const optionRefs = useRef([]);
+  const [focusedOption, setFocusedOption] = useState(0);
+  const messageRef = useRef(null);
+  const formEmailRef = useRef(null);
+  const [errors, setErrors] = useState({ email: '', message: '' });
+
   const primary = themeVars?.primary || '#C084FC';
   const accent = themeVars?.accent || '#FB7185';
   const subtle = themeVars?.subtle || '#2E1065';
@@ -58,45 +64,91 @@ export default function ConversationalMode() {
 
   const currentConversation = conversations[currentStep];
 
-  // Typewriter effect
+  // Typewriter effect with smart pauses
   useEffect(() => {
     if (currentConversation && !showContactForm) {
       setIsTyping(true);
       setDisplayedMessage('');
       let i = 0;
       const message = currentConversation.message;
-      
-      const timer = setInterval(() => {
+      let timer = null;
+
+      const tick = () => {
+        const nextChar = message.charAt(i);
         setDisplayedMessage(message.slice(0, i + 1));
         i++;
         if (i >= message.length) {
-          clearInterval(timer);
           setIsTyping(false);
+          return;
         }
-      }, 50);
+        const pause = /[.,!?]/.test(nextChar) ? 160 : 28;
+        timer = setTimeout(tick, pause);
+      };
 
-      return () => clearInterval(timer);
+      timer = setTimeout(tick, 200);
+      return () => clearTimeout(timer);
     }
   }, [currentStep, currentConversation, showContactForm]);
 
   const handleOptionClick = (option) => {
     const newPath = [...selectedPath, option.text];
     setSelectedPath(newPath);
-    
+
     if (option.next === 'contact') {
       setShowContactForm(true);
+      // focus the first input once form appears
+      setTimeout(() => formEmailRef.current?.focus(), 300);
     } else {
       setCurrentStep(option.next);
+      // reset focused option
+      setFocusedOption(0);
     }
   };
+
+  // keyboard navigation for options (roving tabindex)
+  const handleOptionKeyDown = useCallback((e, idx, option) => {
+    const len = (currentConversation?.options?.length || 0);
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const next = (idx + 1) % len;
+      setFocusedOption(next);
+      optionRefs.current[next]?.focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prev = (idx - 1 + len) % len;
+      setFocusedOption(prev);
+      optionRefs.current[prev]?.focus();
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleOptionClick(option);
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      resetConversation();
+    }
+  }, [currentConversation, selectedPath]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+    // basic validation
+    const nextErrors = { email: '', message: '' };
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(formData.email)) {
+      nextErrors.email = 'Please provide a valid email address.';
+    }
+    if (!formData.message || formData.message.trim().length < 6) {
+      nextErrors.message = 'Please enter a brief message (6+ characters).';
+    }
+    setErrors(nextErrors);
+    if (nextErrors.email || nextErrors.message) {
+      setIsSubmitting(false);
+      // focus first error field
+      if (nextErrors.email) formEmailRef.current?.focus();
+      return;
+    }
+
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    await new Promise(resolve => setTimeout(resolve, 1100));
+
     setIsSubmitting(false);
     setSubmitted(true);
   };
@@ -107,6 +159,10 @@ export default function ConversationalMode() {
     setShowContactForm(false);
     setFormData({ email: '', message: '' });
     setSubmitted(false);
+    setErrors({ email: '', message: '' });
+    setFocusedOption(0);
+    // restore focus to start
+    setTimeout(() => optionRefs.current[0]?.focus(), 200);
   };
 
   if (submitted) {
@@ -119,8 +175,10 @@ export default function ConversationalMode() {
       >
         <motion.div
           className="text-6xl mb-6"
-          animate={{ rotate: [0, 10, -10, 0] }}
-          transition={{ duration: 0.6, repeat: 2 }}
+          role="img"
+          aria-label="message sent"
+          animate={{ rotate: [0, 6, -6, 0], scale: [1, 1.08, 1] }}
+          transition={{ duration: 0.9, repeat: 2 }}
         >
           💌
         </motion.div>
@@ -143,7 +201,8 @@ export default function ConversationalMode() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto" id="conversational-mode">
+      <a href="#maincontent" className="sr-only" style={{ position: 'absolute', left: -9999 }}>Skip to conversation</a>
       {/* Conversation Flow */}
       <AnimatePresence mode="wait">
         {!showContactForm ? (
@@ -162,61 +221,89 @@ export default function ConversationalMode() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                {displayedMessage}
-                {isTyping && (
-                  <motion.span
-                    className="inline-block w-1 ml-1"
-                    style={{ backgroundColor: primary }}
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                  >
-                    |
-                  </motion.span>
-                )}
-              </h2>
+              <div
+                ref={messageRef}
+                id="maincontent"
+                role="region"
+                aria-live="polite"
+                aria-atomic="true"
+                className="inline-block text-left mx-auto max-w-3xl"
+              >
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  {displayedMessage}
+                  {isTyping && (
+                    <motion.span
+                      className="inline-block w-1 ml-1"
+                      style={{ backgroundColor: primary }}
+                      animate={{ opacity: [0, 1, 0] }}
+                      transition={{ duration: 1, repeat: Infinity }}
+                    >
+                      |
+                    </motion.span>
+                  )}
+                </h2>
+                <div className="mt-2 text-sm opacity-70">
+                  <strong style={{ color: accent }}>Tip:</strong> Use arrow keys to navigate options, Enter to select, Esc to reset.
+                </div>
+              </div>
             </motion.div>
 
             {/* Options */}
             {!isTyping && currentConversation && (
               <motion.div
-                className="grid gap-4 md:grid-cols-2"
+                className="grid gap-4 md:grid-cols-2 mt-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
+                role="listbox"
+                aria-label="Conversation options"
               >
                 {currentConversation.options.map((option, index) => (
                   <motion.button
                     key={option.text}
+                    ref={el => optionRefs.current[index] = el}
                     onClick={() => handleOptionClick(option)}
-                    className="p-4 rounded-xl border-2 text-left transition-all duration-300 hover:scale-105 active:scale-95"
-                    style={{ 
+                    onKeyDown={(e) => handleOptionKeyDown(e, index, option)}
+                    className="p-4 rounded-xl border-2 text-left transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none"
+                    style={{
                       borderColor: `${primary}40`,
-                      backgroundColor: `${subtle}60`
+                      backgroundColor: `${subtle}60`,
+                      boxShadow: focusedOption === index ? `0 6px 20px ${primary}20` : 'none'
                     }}
-                    whileHover={{ 
+                    whileHover={{
                       borderColor: primary,
                       backgroundColor: `${primary}20`
                     }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.7 + index * 0.1 }}
+                    transition={{ delay: 0.7 + index * 0.06 }}
+                    tabIndex={focusedOption === index ? 0 : -1}
+                    aria-selected={false}
+                    role="option"
                   >
-                    <span className="font-medium">{option.text}</span>
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium">{option.text}</span>
+                      <span className="text-sm opacity-60">→</span>
+                    </div>
                   </motion.button>
                 ))}
               </motion.div>
             )}
 
-            {/* Path breadcrumb */}
+            {/* Path breadcrumb and progress */}
             {selectedPath.length > 0 && (
               <motion.div
-                className="mt-8 text-sm opacity-60"
+                className="mt-8 text-sm opacity-80 flex items-center justify-center gap-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1 }}
               >
-                Path: {selectedPath.join(' → ')}
+                <div className="flex items-center gap-2" aria-hidden>
+                  {selectedPath.map((s, i) => (
+                    <div key={i} className="px-3 py-1 rounded-full bg-white/6 text-xs" style={{ border: `1px solid ${primary}22` }}>{s}</div>
+                  ))}
+                </div>
+                <div className="opacity-60">({selectedPath.length} step{selectedPath.length > 1 ? 's' : ''})</div>
               </motion.div>
             )}
           </motion.div>
@@ -229,49 +316,56 @@ export default function ConversationalMode() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl font-bold text-center mb-8">
+            <h2 className="text-3xl font-bold text-center mb-8" id="contact-form-heading">
               Let's make it happen! 🚀
             </h2>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
+
+            <form onSubmit={handleSubmit} className="space-y-6" aria-labelledby="contact-form-heading">
               <div>
-                <label className="block text-sm font-medium mb-2" style={{ color: primary }}>
+                <label htmlFor="email" className="block text-sm font-medium mb-2" style={{ color: primary }}>
                   Your Email
                 </label>
                 <input
+                  id="email"
+                  ref={formEmailRef}
                   type="email"
                   required
+                  aria-required
+                  aria-invalid={errors.email ? true : false}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
                   value={formData.email}
                   onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
                   className="w-full p-4 rounded-lg border-2 bg-transparent transition-all duration-300 focus:outline-none"
-                  style={{ 
+                  style={{
                     borderColor: `${primary}40`,
                     color: themeVars?.foreground
                   }}
-                  onFocus={(e) => e.target.style.borderColor = primary}
-                  onBlur={(e) => e.target.style.borderColor = `${primary}40`}
                   placeholder="your.email@example.com"
                 />
+                {errors.email && <div id="email-error" className="text-sm text-red-400 mt-2" role="alert">{errors.email}</div>}
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2" style={{ color: primary }}>
+                <label htmlFor="message" className="block text-sm font-medium mb-2" style={{ color: primary }}>
                   Your Message
                 </label>
                 <textarea
+                  id="message"
                   required
+                  aria-required
+                  aria-invalid={errors.message ? true : false}
+                  aria-describedby={errors.message ? 'message-error' : undefined}
                   rows={6}
                   value={formData.message}
                   onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
                   className="w-full p-4 rounded-lg border-2 bg-transparent transition-all duration-300 focus:outline-none resize-none"
-                  style={{ 
+                  style={{
                     borderColor: `${primary}40`,
                     color: themeVars?.foreground
                   }}
-                  onFocus={(e) => e.target.style.borderColor = primary}
-                  onBlur={(e) => e.target.style.borderColor = `${primary}40`}
                   placeholder="Tell me about your project, idea, or just say hello!"
                 />
+                {errors.message && <div id="message-error" className="text-sm text-red-400 mt-2" role="alert">{errors.message}</div>}
               </div>
 
               <div className="flex gap-4">
@@ -289,11 +383,11 @@ export default function ConversationalMode() {
                   type="submit"
                   disabled={isSubmitting}
                   className="flex-1 px-6 py-3 rounded-lg font-medium transition-all duration-300 disabled:opacity-50"
-                  style={{ 
+                  style={{
                     backgroundColor: primary,
                     color: themeVars?.background
                   }}
-                  whileHover={{ 
+                  whileHover={{
                     boxShadow: `0 0 20px ${primary}60`
                   }}
                   whileTap={{ scale: 0.98 }}
