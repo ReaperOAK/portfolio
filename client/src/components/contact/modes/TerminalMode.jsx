@@ -1,18 +1,15 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const commands = {
   help: {
     description: 'Show available commands',
-    action: () => `Available commands:
-• help     - Show this help message
-• email    - Open email client
-• linkedin - Open LinkedIn profile  
-• github   - Open GitHub profile
-• resume   - Download resume
-• poetry   - Random poem generator
-• clear    - Clear terminal
-• exit     - Return to conversational mode`
+    action: (ctx) => {
+      // Build the help string dynamically so it's always up-to-date
+      return Object.entries(ctx.commands)
+        .map(([k, v]) => `${k.padEnd(9)} - ${v.description}`)
+        .join('\n');
+    }
   },
   email: {
     description: 'Open email client',
@@ -38,7 +35,6 @@ const commands = {
   resume: {
     description: 'Download resume',
     action: () => {
-      // Simulate resume download
       const link = document.createElement('a');
       link.href = '/resume.pdf';
       link.download = 'Owais_Khan_Resume.pdf';
@@ -50,18 +46,9 @@ const commands = {
     description: 'Generate random poem',
     action: () => {
       const poems = [
-        `In lines of code, dreams take flight,
-Algorithms dance through the night,
-Bugs and features intertwine,
-In this digital world of mine.`,
-        `Variables store our deepest thoughts,
-Functions execute what time has wrought,
-In loops eternal, logic flows,
-As elegant solution grows.`,
-        `Pixels paint the user's story,
-Responsive design in all its glory,
-From server-side to client-bright,
-Code illuminates the night.`
+        `In lines of code, dreams take flight,\nAlgorithms dance through the night,\nBugs and features intertwine,\nIn this digital world of mine.`,
+        `Variables store our deepest thoughts,\nFunctions execute what time has wrought,\nIn loops eternal, logic flows,\nAs elegant solution grows.`,
+        `Pixels paint the user's story,\nResponsive design in all its glory,\nFrom server-side to client-bright,\nCode illuminates the night.`
       ];
       return poems[Math.floor(Math.random() * poems.length)];
     }
@@ -80,10 +67,21 @@ export default function TerminalMode() {
     { type: 'prompt', content: '$ ' }
   ]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [commandHistory, setCommandHistory] = useState([]);
-  const [historyIndex, setHistoryIndex] = useState(-1);
+  const [commandHistory, setCommandHistory] = useState(() => {
+    try {
+      const raw = localStorage.getItem('terminal:commandHistory');
+      return raw ? JSON.parse(raw) : [];
+    } catch { return []; }
+  });
+  const [persistenceEnabled, setPersistenceEnabled] = useState(() => {
+    try { return !!localStorage.getItem('terminal:commandHistory'); } catch { return false; }
+  });
+  const [historyIndex, setHistoryIndex] = useState(-1); // -1 => not browsing history
+  const [suggestionsOpen, setSuggestionsOpen] = useState(false);
+  const [typingOutputId, setTypingOutputId] = useState(null);
   const terminalRef = useRef(null);
   const inputRef = useRef(null);
+  const typingTimer = useRef(null);
 
   // Auto-focus input
   useEffect(() => {
@@ -109,44 +107,80 @@ export default function TerminalMode() {
     }
   }, [currentIndex]);
 
+  // Persist command history
+  useEffect(() => {
+    try {
+      if (persistenceEnabled) localStorage.setItem('terminal:commandHistory', JSON.stringify(commandHistory));
+    } catch {}
+  }, [commandHistory]);
+
   const executeCommand = (cmd) => {
-    const trimmedCmd = cmd.trim().toLowerCase();
-    
+    const trimmedCmd = (cmd || '').trim();
     if (trimmedCmd === '') return;
 
-    // Add command to history
-    setCommandHistory(prev => [...prev, cmd]);
+    const lowered = trimmedCmd.toLowerCase();
+
+    // Save to persistent command history
+  setCommandHistory(prev => [...prev, trimmedCmd]);
     setHistoryIndex(-1);
 
-    // Add command to display
-    setHistory(prev => [...prev, { type: 'command', content: `$ ${cmd}` }]);
+  // close suggestions whenever a command runs
+  setSuggestionsOpen(false);
 
-    if (trimmedCmd === 'exit') {
-      setHistory(prev => [...prev, 
+    // Add command line to display
+    setHistory(prev => [...prev, { type: 'command', content: `$ ${trimmedCmd}` }]);
+
+    // Handle special exit
+    if (lowered === 'exit') {
+      setHistory(prev => [...prev,
         { type: 'output', content: 'Exiting terminal mode...' },
         { type: 'system', content: 'Goodbye! 👋' }
       ]);
       setTimeout(() => {
         window.dispatchEvent(new CustomEvent('switchToConversational'));
-      }, 1500);
+      }, 1200);
       return;
     }
 
-    if (commands[trimmedCmd]) {
-      const result = commands[trimmedCmd].action();
+    // Known commands
+    if (commands[lowered]) {
+      // If action returns text, animate typing it into the terminal for realism
+      const result = commands[lowered].action({ commands });
       if (result === 'CLEAR') {
         setHistory([
           { type: 'system', content: 'Terminal cleared.' },
           { type: 'prompt', content: '$ ' }
         ]);
-      } else {
-        setHistory(prev => [...prev, 
-          { type: 'output', content: result },
-          { type: 'prompt', content: '$ ' }
-        ]);
+        return;
       }
+
+      // Animate output text
+      const id = Date.now().toString();
+      setTypingOutputId(id);
+      setHistory(prev => [...prev, { id, type: 'output', content: '' }, { type: 'prompt', content: '$ ' }]);
+
+      // type text slowly
+      let pos = 0;
+      const text = String(result);
+      clearInterval(typingTimer.current);
+      typingTimer.current = setInterval(() => {
+        pos += Math.max(1, Math.floor(text.length / 30));
+        const chunk = text.slice(0, pos);
+        setHistory(prev => {
+          // replace the last output with same id
+          const copy = prev.slice();
+          const idx = copy.findIndex(h => h.id === id);
+          if (idx !== -1) copy[idx] = { ...copy[idx], content: chunk };
+          return copy;
+        });
+        if (pos >= text.length) {
+          clearInterval(typingTimer.current);
+          setTypingOutputId(null);
+        }
+      }, 16);
+
     } else {
-      setHistory(prev => [...prev, 
+      setHistory(prev => [...prev,
         { type: 'error', content: `Command not found: ${trimmedCmd}. Type "help" for available commands.` },
         { type: 'prompt', content: '$ ' }
       ]);
@@ -162,24 +196,68 @@ export default function TerminalMode() {
   };
 
   const handleKeyDown = (e) => {
+    // ArrowUp / ArrowDown navigate saved commandHistory (most recent last)
     if (e.key === 'ArrowUp') {
+      if (commandHistory.length === 0) return;
       e.preventDefault();
-      if (commandHistory.length > 0 && historyIndex < commandHistory.length - 1) {
-        const newIndex = historyIndex + 1;
-        setHistoryIndex(newIndex);
-        setInput(commandHistory[commandHistory.length - 1 - newIndex]);
-      }
+      const newIdx = historyIndex === -1 ? commandHistory.length - 1 : Math.max(0, historyIndex - 1);
+      setHistoryIndex(newIdx);
+      setInput(commandHistory[newIdx]);
+      setSuggestionsOpen(false);
     } else if (e.key === 'ArrowDown') {
+      if (historyIndex === -1) return;
       e.preventDefault();
-      if (historyIndex > 0) {
-        const newIndex = historyIndex - 1;
-        setHistoryIndex(newIndex);
-        setInput(commandHistory[commandHistory.length - 1 - newIndex]);
-      } else if (historyIndex === 0) {
+      if (historyIndex === commandHistory.length - 1) {
         setHistoryIndex(-1);
         setInput('');
+        setSuggestionsOpen(false);
+      } else {
+        const newIdx = historyIndex + 1;
+        setHistoryIndex(newIdx);
+        setInput(commandHistory[newIdx]);
+      }
+    } else if (e.key === 'Tab') {
+      // Autocomplete with Tab
+      e.preventDefault();
+      const prefix = input.trim().toLowerCase();
+      if (!prefix) return;
+      const matches = Object.keys(commands).filter(c => c.startsWith(prefix));
+      if (matches.length === 1) {
+        setInput(matches[0] + ' ');
+      } else if (matches.length > 1) {
+        // show suggestions briefly
+        setSuggestionsOpen(true);
       }
     }
+  };
+
+  const clearHistory = useCallback(() => {
+    setHistory([
+      { type: 'system', content: 'Welcome to Owais Terminal v2.0.1' },
+      { type: 'system', content: 'Type "help" for available commands.' },
+      { type: 'prompt', content: '$ ' }
+    ]);
+    // show the prompt/input immediately
+    setCurrentIndex(2);
+  }, []);
+
+  const filteredSuggestions = useMemo(() => {
+    const prefix = input.trim().toLowerCase();
+    if (!prefix) return [];
+    return Object.keys(commands).filter(c => c.startsWith(prefix));
+  }, [input]);
+
+  const handleSuggestionClick = (cmd) => {
+    setInput(cmd);
+    setSuggestionsOpen(false);
+    // execute on click for faster flow
+    executeCommand(cmd);
+    setInput('');
+  };
+
+  const copyToClipboard = async (text) => {
+    try { await navigator.clipboard.writeText(text); }
+    catch { /* ignore */ }
   };
 
   return (
@@ -209,14 +287,16 @@ export default function TerminalMode() {
           ref={terminalRef}
           className="h-96 overflow-y-auto p-4 bg-black text-green-400"
           onClick={() => inputRef.current?.focus()}
+          role="log"
+          aria-live="polite"
         >
           <AnimatePresence>
-            {history.slice(0, currentIndex + 1).map((line, index) => (
+            {(currentIndex < 2 ? history.slice(0, currentIndex + 1) : history).map((line, index) => (
               <motion.div
-                key={index}
+                key={line.id ?? index}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.2 }}
                 className={`mb-1 ${
                   line.type === 'error' ? 'text-red-400' :
                   line.type === 'system' ? 'text-blue-400' :
@@ -225,64 +305,146 @@ export default function TerminalMode() {
                   'text-green-400'
                 }`}
               >
-                {line.type === 'output' && line.content.includes('\n') ? (
-                  <pre className="whitespace-pre-wrap">{line.content}</pre>
-                ) : (
-                  <span>{line.content}</span>
-                )}
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0">
+                    {line.type === 'output' && String(line.content).includes('\n') ? (
+                      <pre className="whitespace-pre-wrap break-words">{line.content}</pre>
+                    ) : (
+                      <span className="select-text">{line.content}</span>
+                    )}
+                  </div>
+                  {/* copy button for outputs */}
+                  {line.type === 'output' && line.content && (
+                    <button
+                      aria-label="Copy output"
+                      title="Copy output"
+                      onClick={() => copyToClipboard(String(line.content))}
+                      className="ml-2 text-xs px-2 py-1 bg-green-900/30 rounded text-green-200 hover:bg-green-800/60"
+                    >
+                      Copy
+                    </button>
+                  )}
+                </div>
               </motion.div>
             ))}
           </AnimatePresence>
 
           {/* Input Line */}
           {currentIndex >= 2 && (
-            <motion.form
-              onSubmit={handleSubmit}
-              className="flex items-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.5 }}
-            >
-              <span className="text-green-400 mr-2">$</span>
-              <input
-                ref={inputRef}
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="flex-1 bg-transparent text-green-400 outline-none caret-green-400"
-                style={{ fontFamily: 'inherit' }}
-                placeholder=""
-                autoComplete="off"
-                spellCheck="false"
-              />
-              <motion.span
-                className="w-2 h-5 bg-green-400 ml-1"
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              />
-            </motion.form>
+            <div className="relative mt-2">
+              <motion.form
+                onSubmit={handleSubmit}
+                className="flex items-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.18, delay: 0.15 }}
+              >
+                <span className="text-green-400 mr-2" aria-hidden>$</span>
+                <input
+                  ref={inputRef}
+                  id="terminal-input"
+                  aria-label="Terminal command input"
+                  type="text"
+                  value={input}
+                  onChange={(e) => { setInput(e.target.value); setSuggestionsOpen(true); setHistoryIndex(-1); }}
+                  onKeyDown={handleKeyDown}
+                  className="flex-1 bg-transparent text-green-400 outline-none caret-green-400 placeholder-green-500"
+                  style={{ fontFamily: 'inherit' }}
+                  placeholder="Try: help, github, poetry, resume"
+                  autoComplete="off"
+                  spellCheck="false"
+                />
+                <motion.span
+                  className="w-2 h-5 bg-green-400 ml-1 rounded"
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                  aria-hidden
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (input.trim()) { executeCommand(input); setInput(''); }
+                  }}
+                  className="ml-3 px-2 py-1 text-xs bg-green-700/40 rounded hover:bg-green-700"
+                >
+                  Run
+                </button>
+              </motion.form>
+
+              {/* Suggestions box */}
+              {suggestionsOpen && filteredSuggestions.length > 0 && (
+                <ul
+                  role="listbox"
+                  aria-label="command suggestions"
+                  className="absolute left-8 right-0 mt-2 bg-gray-900 border border-green-700 rounded shadow-sm max-h-40 overflow-y-auto z-10"
+                >
+                  {filteredSuggestions.map(s => (
+                    <li
+                      key={s}
+                      role="option"
+                      onClick={() => handleSuggestionClick(s)}
+                      onKeyDown={(e) => { if (e.key === 'Enter') handleSuggestionClick(s); }}
+                      tabIndex={0}
+                      className="px-3 py-2 text-sm text-green-200 hover:bg-green-800/40 cursor-pointer"
+                    >
+                      <strong className="text-green-100 mr-2">{s}</strong>
+                      <span className="text-xs opacity-70">{commands[s].description}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           )}
         </div>
 
         {/* Quick Commands */}
-        <div className="px-4 py-3 bg-gray-900 border-t border-green-500">
-          <div className="text-green-400 text-xs mb-2">Quick Commands:</div>
-          <div className="flex flex-wrap gap-2">
-            {Object.entries(commands).slice(0, 6).map(([cmd, info]) => (
-              <button
-                key={cmd}
-                onClick={() => {
-                  setInput(cmd);
-                  executeCommand(cmd);
-                  setInput('');
-                }}
-                className="px-2 py-1 text-xs bg-green-900 text-green-300 rounded hover:bg-green-800 transition-colors"
-                title={info.description}
-              >
-                {cmd}
-              </button>
-            ))}
+        <div className="px-4 py-3 bg-gray-900 border-t border-green-500 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <div className="text-green-400 text-xs mb-2">Quick Commands:</div>
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(commands).slice(0, 6).map(([cmd, info]) => (
+                <button
+                  key={cmd}
+                  onClick={() => { setInput(cmd); executeCommand(cmd); setInput(''); }}
+                  className="px-2 py-1 text-xs bg-green-900 text-green-300 rounded hover:bg-green-800 transition-colors"
+                  title={info.description}
+                  aria-label={`Run ${cmd}`}
+                >
+                  {cmd}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => {
+                clearHistory();
+                setCommandHistory([]);
+                setPersistenceEnabled(false);
+                try { localStorage.removeItem('terminal:commandHistory'); } catch {}
+              }}
+              className="px-2 py-1 text-xs bg-red-800 text-red-200 rounded hover:bg-red-700"
+              title="Clear terminal & history"
+            >
+              Clear All
+            </button>
+            <button
+              onClick={() => {
+                setPersistenceEnabled(prev => {
+                  const next = !prev;
+                  try {
+                    if (next) localStorage.setItem('terminal:commandHistory', JSON.stringify(commandHistory));
+                    else localStorage.removeItem('terminal:commandHistory');
+                  } catch {}
+                  return next;
+                });
+              }}
+              className="px-2 py-1 text-xs bg-yellow-800 text-yellow-200 rounded hover:bg-yellow-700"
+              title="Toggle persistent history in localStorage"
+            >
+              Toggle Persistence
+            </button>
           </div>
         </div>
       </motion.div>
