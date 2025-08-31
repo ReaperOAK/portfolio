@@ -1,15 +1,16 @@
 
-
 import { useTheme } from '../contexts/ThemeContext';
 import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
-
-
+import { useSEO, SEOHead, seoConfigs } from '../hooks/useSEO.jsx';
 import WireframeIcosahedronBg from '../components/WireframeIcosahedron';
 import TypingRoles from '../components/TypingRoles';
 
 export default function Home() {
   const { themeVars } = useTheme();
+  
+  // SEO configuration
+  const seoConfig = useSEO(seoConfigs.home);
 
   // Small helpers to apply a themed focus ring using inline styles
   const setFocusRing = (e, color) => {
@@ -35,6 +36,7 @@ export default function Home() {
 
   return (
     <>
+      <SEOHead config={seoConfig} />
       {/* Hero section with wireframe background */}
       <section className="relative flex flex-col items-center justify-center min-h-screen transition-colors duration-500 overflow-hidden" style={{ background: themeVars.background, color: themeVars.foreground }}>
         <WireframeIcosahedronBg color={themeVars.accent} />

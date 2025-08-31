@@ -146,11 +146,37 @@ export default function ConversationalMode() {
       return;
     }
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1100));
+    try {
+      // Call the actual API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Contact from ${selectedPath.join(' → ')}`,
+          website: '', // Honeypot field
+        }),
+      });
 
-    setIsSubmitting(false);
-    setSubmitted(true);
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send message');
+      }
+
+      setIsSubmitting(false);
+      setSubmitted(true);
+    } catch (error) {
+      console.error('Contact form error:', error);
+      setErrors({ 
+        email: '', 
+        message: error.message || 'Failed to send message. Please try again later.' 
+      });
+      setIsSubmitting(false);
+    }
   };
 
   const resetConversation = () => {

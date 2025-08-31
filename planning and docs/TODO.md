@@ -102,8 +102,8 @@ _Last updated: 2025-08-30_
   - [ ] Blog post page with code highlighting
   - [ ] Create blogs later on (implement blog index, post pages, and editor/ingest flow)
 - [ ] Poetry/Writing Page (optional, for creative visitor type)
-- [x] Contact Page (frontend complete — backend/contact form pending)
-  - [ ] Contact form (with validation, error/loading states)
+- [x] Contact Page (frontend complete — backend complete ✅)
+  - [x] Contact form (with validation, error/loading states)
   - [x] Social links, resume download
   - [x] Fun CTA text
 - [x] 404 Page
@@ -116,17 +116,17 @@ _Last updated: 2025-08-30_
 - [ ] Test all pages/components on mobile and desktop
 
 ## 4. Backend: Express, Firebase Functions, MongoDB
-- [ ] Scaffold Express app in /functions
-- [ ] Set up API routes/controllers:
-  - [ ] /api/contact (POST, email sending)
-  - [ ] /api/projects (GET, list projects)
-  - [ ] /api/blog (GET, POST, if dynamic)
-- [ ] Connect to MongoDB Atlas (if using DB)
-  - [ ] Create Mongoose models (Project, Blog, etc.)
-- [ ] Set up Nodemailer or EmailJS for contact form
-- [ ] Add input validation and sanitization (express-validator)
-- [ ] Add error handling middleware
-- [ ] Add environment variable support (.env)
+- [x] Scaffold Express app in /functions
+- [x] Set up API routes/controllers:
+  - [x] /api/contact (POST, email sending)
+  - [ ] /api/projects (GET, list projects) - Optional, using static data
+  - [ ] /api/blog (GET, POST, if dynamic) - Future feature
+- [ ] Connect to MongoDB Atlas (if using DB) - Optional for now
+  - [ ] Create Mongoose models (Project, Blog, etc.) - Future feature
+- [x] Set up Nodemailer or EmailJS for contact form
+- [x] Add input validation and sanitization (express-validator)
+- [x] Add error handling middleware
+- [x] Add environment variable support (.env)
 - [ ] Write unit tests for API endpoints (Jest or similar)
 - [ ] Test endpoints locally with Postman/Thunder Client
 
@@ -141,29 +141,29 @@ _Last updated: 2025-08-30_
 - [ ] Add Open Graph/social preview images
 
 ## 6. Performance, SEO, Analytics
-- [ ] Lazy load 3D/animation components
-- [ ] Add route-based code splitting (React.lazy/Suspense)
+- [x] Lazy load 3D/animation components
+- [x] Add route-based code splitting (React.lazy/Suspense)
 - [ ] Optimize images (compression, next-gen formats)
 - [ ] Optimize fonts (self-host, subset, preload)
-- [ ] Add dynamic <title> and <meta> tags per page (React Helmet)
-- [ ] Add OG/social sharing tags (og:image, og:title, etc.)
-- [ ] Add sitemap.xml and robots.txt
-- [ ] Add accessibility features (keyboard nav, ARIA, color contrast)
+- [x] Add dynamic <title> and <meta> tags per page (React Helmet)
+- [x] Add OG/social sharing tags (og:image, og:title, etc.)
+- [x] Add sitemap.xml and robots.txt
+- [x] Add accessibility features (keyboard nav, ARIA, color contrast)
 - [ ] Integrate Firebase Analytics or Plausible
 - [ ] Run Lighthouse audits and fix issues
 
 ## 7. Testing & QA
-- [ ] Write unit tests for key components (Jest, React Testing Library)
+- [x] Write unit tests for key components (Jest, React Testing Library)
 - [ ] Write integration tests for API endpoints
-- [ ] Test all forms (validation, error, loading, success)
+- [x] Test all forms (validation, error, loading, success)
 - [ ] Test on multiple browsers (Chrome, Firefox, Edge, Safari)
 - [ ] Test on multiple devices (mobile, tablet, desktop)
-- [ ] Test accessibility (screen reader, keyboard nav)
+- [x] Test accessibility (screen reader, keyboard nav)
 - [ ] Test performance (Lighthouse, WebPageTest)
 
 ## 8. Deployment
-- [ ] Build React app (npm run build)
-- [ ] Configure firebase.json and .firebaserc for hosting + functions
+- [x] Build React app (npm run build)
+- [x] Configure firebase.json and .firebaserc for hosting + functions
 - [ ] Deploy to Firebase Hosting + Functions
 - [ ] Attach custom domain (optional)
 - [ ] Set up HTTPS and test SSL
@@ -171,9 +171,9 @@ _Last updated: 2025-08-30_
 - [ ] Set up error monitoring (Sentry or similar, optional)
 
 ## 9. Open Source & Launch
-- [ ] Polish README.md (stack, features, screenshots, Lighthouse score)
-- [ ] Add license (MIT or preferred)
-- [ ] Add CONTRIBUTING.md with guidelines
+- [x] Polish README.md (stack, features, screenshots, Lighthouse score)
+- [x] Add license (MIT or preferred)
+- [x] Add CONTRIBUTING.md with guidelines
 - [ ] Add CODE_OF_CONDUCT.md (optional)
 - [ ] Create launch checklist (final QA, backups, etc.)
 - [ ] Share on LinkedIn, X, dev communities
@@ -195,7 +195,9 @@ _Last updated: 2025-08-30_
 ---
 
 ## Notes / Next steps
-- Implement backend /api/contact endpoint (functions or server) and wire to frontend contact form.
-- Run a Lighthouse audit and address top accessibility and performance issues.
+- [x] Implement backend /api/contact endpoint (functions or server) and wire to frontend contact form.
+- [ ] Run a Lighthouse audit and address top accessibility and performance issues.
+- [ ] Deploy to Firebase and test production environment.
+- [ ] Optimize images and fonts for better performance.
 
 > Update this checklist as you progress. Treat it as your product roadmap!
