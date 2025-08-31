@@ -33,10 +33,6 @@ _Last updated: 2025-08-30_
     - Smooth scrolling & micro-interactions
     - Initial SEO (dynamic title/meta, sitemap, robots.txt)
     - Open source docs: README, CHANGELOG, CONTRIBUTING
-  - **Feature Freeze for v1:**
-    - No admin panel, blog, or advanced analytics in v1
-    - No 3D/Three.js or advanced animations in v1
-    - Focus on core UX, content, and reliability
 
 ## 2. Firebase & Environment Configuration
 - [x] Install Firebase CLI globally
@@ -104,6 +100,7 @@ _Last updated: 2025-08-30_
   - [ ] Markdown or DB-powered posts
   - [ ] Sorting/filtering (Tech, Poetic, Personal)
   - [ ] Blog post page with code highlighting
+  - [ ] Create blogs later on (implement blog index, post pages, and editor/ingest flow)
 - [ ] Poetry/Writing Page (optional, for creative visitor type)
 - [x] Contact Page (frontend complete — backend/contact form pending)
   - [ ] Contact form (with validation, error/loading states)

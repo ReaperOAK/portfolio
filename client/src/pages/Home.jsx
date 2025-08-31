@@ -67,13 +67,13 @@ export default function Home() {
             >
               Hire Me
             </a>
-            <a
+            {/* <a
               href="/blog"
               className="px-6 py-2 rounded-lg font-semibold border border-primary text-primary bg-transparent hover:bg-primary hover:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors duration-200"
               aria-label="Read Blogs"
             >
               Read Blogs
-            </a>
+            </a> */}
           </motion.div>
         </div>
       {/* Scroll-down indicator (bottom of hero section) */}
