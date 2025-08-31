@@ -2,12 +2,10 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
 import ConversationalMode from './modes/ConversationalMode';
-import PortalMode from './modes/PortalMode';
 import TerminalMode from './modes/TerminalMode';
 
 const modes = [
   { id: 'conversational', label: 'Conversational', icon: '🗨️' },
-  { id: 'portal', label: 'Portal', icon: '🌀' },
   { id: 'terminal', label: 'Terminal', icon: '💻' }
 ];
 

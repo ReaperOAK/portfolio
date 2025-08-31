@@ -11,6 +11,22 @@ import TypingRoles from '../components/TypingRoles';
 export default function Home() {
   const { themeVars } = useTheme();
 
+  // Small helpers to apply a themed focus ring using inline styles
+  const setFocusRing = (e, color) => {
+    try {
+      e.currentTarget.style.boxShadow = `0 0 0 4px ${color}33`;
+    } catch (err) {
+      // noop - defensive
+    }
+  };
+  const clearFocusRing = (e) => {
+    try {
+      e.currentTarget.style.boxShadow = 'none';
+    } catch (err) {
+      // noop
+    }
+  };
+
   useEffect(() => {
     // Delay cards until after hero/wireframe anim (e.g. 1.6s)
     const t = setTimeout(() => setShowCards(true), 1600);
@@ -55,15 +71,21 @@ export default function Home() {
           >
             <a
               href="/projects"
-              className="px-6 py-2 rounded-lg font-semibold bg-primary text-white shadow-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 transition-colors duration-200"
+              className="px-6 py-2 rounded-lg font-semibold text-white shadow-md hover:bg-opacity-90 focus:outline-none transition-colors duration-200"
               aria-label="View Projects"
+              style={{ backgroundColor: themeVars.primary, color: themeVars.buttonText || '#fff' }}
+              onFocus={(e) => setFocusRing(e, themeVars.primary)}
+              onBlur={clearFocusRing}
             >
               View Projects
             </a>
             <a
               href="/contact"
-              className="px-6 py-2 rounded-lg font-semibold bg-accent text-white shadow-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 transition-colors duration-200"
+              className="px-6 py-2 rounded-lg font-semibold text-white shadow-md hover:bg-opacity-90 focus:outline-none transition-colors duration-200"
               aria-label="Hire Me"
+              style={{ backgroundColor: themeVars.accent, color: themeVars.buttonText || '#fff' }}
+              onFocus={(e) => setFocusRing(e, themeVars.accent)}
+              onBlur={clearFocusRing}
             >
               Hire Me
             </a>
@@ -76,21 +98,6 @@ export default function Home() {
             </a> */}
           </motion.div>
         </div>
-      {/* Scroll-down indicator (bottom of hero section) */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center select-none" aria-hidden="true">
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2 }}
-          className="flex flex-col items-center"
-        >
-          <span className="block w-1.5 h-8 rounded-full bg-primary mb-1 animate-bounce" style={{ opacity: 0.7 }}></span>
-          <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="text-primary animate-bounce" viewBox="0 0 24 24" aria-label="Scroll down">
-            <path d="M12 5v14M19 12l-7 7-7-7" />
-          </svg>
-          <span className="text-xs text-primary mt-1 opacity-80">Scroll</span>
-        </motion.div>
-      </div>
     </section>
   </>
   );
