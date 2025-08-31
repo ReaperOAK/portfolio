@@ -188,3 +188,6 @@ app.use((req, res) => {
 
 // Export the Express app as a Firebase Function
 exports.api = functions.https.onRequest(app);
+
+// Export the Express app for testing
+module.exports = app;

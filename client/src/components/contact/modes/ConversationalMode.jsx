@@ -147,8 +147,10 @@ export default function ConversationalMode() {
     }
 
     try {
-      // Call the actual API
-      const response = await fetch('/api/contact', {
+      // Using Formspree for contact form submissions
+      // Form ID: xnnbvbor (configured for oaak78692@gmail.com)
+      // To change: Sign up at https://formspree.io and replace the form ID
+      const response = await fetch('https://formspree.io/f/xnnbvbor', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -157,14 +159,15 @@ export default function ConversationalMode() {
           email: formData.email,
           message: formData.message,
           subject: `Portfolio Contact from ${selectedPath.join(' → ')}`,
-          website: '', // Honeypot field
+          _subject: `Portfolio Contact from ${selectedPath.join(' → ')}`,
+          _replyto: formData.email,
+          // Honeypot field for spam protection
+          _gotcha: '', 
         }),
       });
 
-      const result = await response.json();
-
       if (!response.ok) {
-        throw new Error(result.error || 'Failed to send message');
+        throw new Error('Failed to send message');
       }
 
       setIsSubmitting(false);

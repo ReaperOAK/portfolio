@@ -1,0 +1,33 @@
+/* Instructions for creating Open Graph images:
+
+Use the og-template.html file to generate actual PNG images at 1200x630px:
+
+1. Open og-template.html in a browser
+2. Set viewport to exactly 1200x630
+3. Take a screenshot or use a tool like Puppeteer to generate:
+
+```javascript
+const puppeteer = require('puppeteer');
+
+(async () => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1200, height: 630 });
+  await page.goto('file://path/to/og-template.html');
+  await page.screenshot({ path: 'og-image.png' });
+  await browser.close();
+})();
+```
+
+4. Save the generated image as og-image.png in the public folder
+5. Create variations for each page by modifying the template content
+
+Required images:
+- og-image.png (default)
+- og-home.png
+- og-about.png  
+- og-projects.png
+- og-contact.png
+
+Once generated, update useSEO.jsx to reference these images.
+*/

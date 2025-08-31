@@ -38,24 +38,25 @@ export default function Home() {
     <>
       <SEOHead config={seoConfig} />
       {/* Hero section with wireframe background */}
-      <section className="relative flex flex-col items-center justify-center min-h-screen transition-colors duration-500 overflow-hidden" style={{ background: themeVars.background, color: themeVars.foreground }}>
-        <WireframeIcosahedronBg color={themeVars.accent} />
-        <div className="relative z-10 flex flex-col items-center w-full">
-          <motion.h1
-            className="text-5xl md:text-6xl font-display font-bold mb-4 text-center"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 120, delay: 0.1 }}
-          >
-            Engineer by logic, poet by soul
-            <br />
-            <TypingRoles
-              roles={["Full Stack Developer", "MERN Engineer", "Writer", "Creative Coder", "Open Source Enthusiast"]}
-              typingSpeed={70}
-              pause={1200}
-              className="text-xl md:text-3xl text-primary mt-2"
-            />
-          </motion.h1>
+      <main>
+        <section className="relative flex flex-col items-center justify-center min-h-screen transition-colors duration-500 overflow-hidden" style={{ background: themeVars.background, color: themeVars.foreground }}>
+          <WireframeIcosahedronBg color={themeVars.accent} />
+          <div className="relative z-10 flex flex-col items-center w-full">
+            <motion.h1
+              className="text-5xl md:text-6xl font-display font-bold mb-4 text-center"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 120, delay: 0.1 }}
+            >
+              Engineer by logic, poet by soul
+              <br />
+              <TypingRoles
+                roles={["Full Stack Developer", "MERN Engineer", "Writer", "Creative Coder", "Open Source Enthusiast"]}
+                typingSpeed={70}
+                pause={1200}
+                className="text-xl md:text-3xl text-primary mt-2"
+              />
+            </motion.h1>
           <motion.p
             className="text-lg md:text-2xl mb-8 text-center max-w-xl"
             initial={{ opacity: 0, y: 20 }}
@@ -100,7 +101,8 @@ export default function Home() {
             </a> */}
           </motion.div>
         </div>
-    </section>
-  </>
+      </section>
+      </main>
+    </>
   );
 }
