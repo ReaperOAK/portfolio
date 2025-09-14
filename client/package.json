@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node ./tools/bulk-convert-images.js",
     "build": "vite build",
     "images:convert": "node ./tools/convert-images.js",
     "lint": "eslint .",
