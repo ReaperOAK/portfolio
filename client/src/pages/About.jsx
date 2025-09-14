@@ -40,7 +40,6 @@ export default function About() {
         <SkillsConstellation />
         <PersonaSection />
         <FunFactsSection />
-        <EpiphanyCTA />
       </div>
     </>
   );

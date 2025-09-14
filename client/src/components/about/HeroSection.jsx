@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useTheme } from "../../contexts/ThemeContext";
+import ResponsiveImage from "../ResponsiveImage";
 
 const roles = ["Developer", "Poet", "Designer", "Engineer", "Creative Soul"];
 
@@ -40,14 +41,7 @@ export default function HeroSection() {
           style={{ borderColor: accent, background: bg }}
           aria-label="Owais Khan avatar"
         >
-          <img
-            src="/profile.png"
-            alt="Owais Khan profile"
-            className="w-full h-full object-cover rounded-full select-none"
-            draggable="false"
-            loading="lazy"
-            decoding="async"
-          />
+          <ResponsiveImage src="/profile.png" alt="Owais Khan profile" className="w-full h-full object-cover rounded-full select-none" />
         </div>
         {/* Animated role switcher (theme color) */}
         <div

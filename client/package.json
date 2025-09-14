@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "images:convert": "node ./tools/convert-images.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
@@ -44,5 +45,8 @@
     "tailwindcss": "^3.4.3",
     "vite": "^7.0.4",
     "vitest": "^3.2.4"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.32.1"
   }
 }

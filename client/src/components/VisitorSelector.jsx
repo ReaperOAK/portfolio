@@ -103,7 +103,8 @@ export default function VisitorSelector({ open, onClose }) {
               <span
                 className="absolute inset-0 w-full h-full"
                 style={{
-                  backgroundImage: `url(${v.bg})`,
+                  // Use image-set to prefer AVIF/WebP when supported, fall back to PNG
+                  backgroundImage: `image-set(url(${v.bg.replace(/\.png$/, '.avif')}) type('image/avif') 1x, url(${v.bg.replace(/\.png$/, '.webp')}) type('image/webp') 1x, url(${v.bg}) 1x)`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   zIndex: 0,
