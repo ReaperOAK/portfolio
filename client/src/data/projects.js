@@ -798,5 +798,78 @@ const projects = [
   },
 ];
 
-export default projects;
+// Helper: slugify titles for consistent URLs/keys
+const slugify = (input = '') =>
+  String(input)
+    .toLowerCase()
+    .trim()
+    .replace(/[’'`]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+// Normalize common tech names to a canonical, human-friendly form
+const normalizeTech = (t) => {
+  if (!t) return t;
+  const raw = String(t).trim();
+  const l = raw.toLowerCase();
+  if (l.includes('tailwind')) return 'Tailwind';
+  if (l.includes('framer')) return 'Framer Motion';
+  if (l.includes('react three') || l.includes('react-three') || l.includes('reactthree')) return 'React Three Fiber';
+  if (l === 'three.js' || l === 'threejs' || l === 'three') return 'Three.js';
+  if (l.includes('socket')) return 'Socket.IO';
+  if (l.includes('mysql')) return 'MySQL';
+  if (l.includes('postgres')) return 'PostgreSQL';
+  if (l.includes('mongo')) return 'MongoDB';
+  if (l.includes('node')) return 'Node.js';
+  if (l.includes('express')) return 'Express';
+  if (l.includes('next')) return 'Next.js';
+  if (l.includes('django')) return 'Django';
+  if (l.includes('flask')) return 'Flask';
+  if (l.includes('vite')) return 'Vite';
+  if (l.includes('typescript')) return 'TypeScript';
+  if (l.includes('react')) return 'React';
+  if (l.includes('python')) return 'Python';
+  if (l.includes('php')) return 'PHP';
+  if (l.includes('firebase')) return 'Firebase';
+  if (l.includes('docker')) return 'Docker';
+  // preserve original casing for anything unknown, but trim
+  return raw;
+};
+
+// Ensure screenshot paths are normalized (prefix with "/" when they look like local assets)
+const normalizeScreenshot = (s) => {
+  if (!s) return s;
+  const str = String(s).trim();
+  if (str.startsWith('http') || str.startsWith('/')) return str;
+  return str.startsWith('.') ? str.replace(/^\./, '/') : `/${str}`;
+};
+
+// Normalize tags (trim and remove duplicates)
+const normalizeTags = (arr) => {
+  if (!Array.isArray(arr)) return [];
+  const out = arr.map(t => String(t).trim());
+  return Array.from(new Set(out));
+};
+
+// Build a normalized export so components receive a consistent shape
+const normalizedProjects = projects.map((p) => {
+  const tech = Array.isArray(p.tech) ? p.tech.map(normalizeTech) : [];
+  const tags = normalizeTags(p.tags || []);
+  const screenshots = Array.isArray(p.screenshots) ? p.screenshots.map(normalizeScreenshot) : [];
+  const description = p.description || p.desc || '';
+  return {
+    ...p,
+    title: p.title || '',
+    shortDesc: p.shortDesc || p.summary || '',
+    description,
+    tech,
+    tags,
+    screenshots,
+    devLogs: Array.isArray(p.devLogs) ? p.devLogs : [],
+    decisions: Array.isArray(p.decisions) ? p.decisions : [],
+    slug: p.slug || slugify(p.title || ''),
+  };
+});
+
+export default normalizedProjects;
 

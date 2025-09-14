@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ProjectTile from "./ProjectTile";
 import AnimatedProjectCard from "./AnimatedProjectCard";
-import SkillMapOverlay from "./SkillMapOverlay";
 import { useTheme } from "../../contexts/ThemeContext";
 import projectsData from "../../data/projects";
 import { motion, AnimatePresence } from "framer-motion";
@@ -31,22 +30,23 @@ export default function WorkbenchGrid({ viewMode }) {
   const filterProjects = (list, mode) => {
     if (!mode || mode === 'all') return list;
 
-    const codeTech = ['Node.js', 'Express', 'PostgreSQL', 'MySQL', 'MongoDB', 'Next.js', 'Django', 'Flask'];
-    const uiTech = ['Tailwind', 'Framer Motion', 'React Three Fiber', 'React', 'Svelte', 'Vue.js', 'Angular', 'Tailwind'];
-    const rdTech = ['React Three Fiber', 'Socket.io', 'Mapbox', 'Three.js', 'Framer Motion'];
+    const codeTech = new Set(['Node.js', 'Express', 'PostgreSQL', 'MySQL', 'MongoDB', 'Next.js', 'Django', 'Flask']);
+    const uiTech = new Set(['Tailwind', 'Framer Motion', 'React Three Fiber', 'React', 'Svelte', 'Vue.js', 'Angular']);
+    const rdTech = new Set(['React Three Fiber', 'Socket.IO', 'Mapbox', 'Three.js', 'Framer Motion', 'Socket.IO']);
 
     return list.filter((p) => {
-      const tech = Array.isArray(p.tech) ? p.tech : [];
-      const tags = Array.isArray(p.tags) ? p.tags : [];
+      const tech = Array.isArray(p.tech) ? p.tech.map(t => String(t)) : [];
+      const tags = Array.isArray(p.tags) ? p.tags.map(t => String(t)) : [];
+      const status = String(p.status || '').toLowerCase();
       switch (mode) {
         case 'code':
-          return tech.some(t => codeTech.includes(t)) || tags.some(t => ['CRM','Client','Backend','API'].includes(t));
+          return tech.some(t => codeTech.has(t)) || tags.some(t => ['CRM','Client','Backend','API'].includes(t));
         case 'ui':
-          return tech.some(t => uiTech.includes(t)) || tags.some(t => ['UI','Design'].includes(t));
+          return tech.some(t => uiTech.has(t)) || tags.some(t => ['UI','Design'].includes(t));
         case 'rd':
-          return tech.some(t => rdTech.includes(t)) || tags.some(t => ['3D','Visualization','Realtime'].includes(t));
+          return tech.some(t => rdTech.has(t)) || tags.some(t => ['3D','Visualization','Realtime'].includes(t));
         case 'deployed':
-          return Boolean(p.live) || (p.status && p.status.toLowerCase().includes('deployed'));
+          return Boolean(p.live) || status.includes('deployed');
         default:
           return true;
       }
@@ -88,8 +88,7 @@ export default function WorkbenchGrid({ viewMode }) {
       >
         Shuffle Workbench
       </button>
-      {/* SkillMapOverlay placeholder */}
-      <SkillMapOverlay tech={[]} projects={projects} />
+  {/* SkillMapOverlay removed — overlay visuals disabled for cleaner grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full">
         <AnimatePresence>
           {filteredProjects.length === 0 && (
@@ -99,7 +98,7 @@ export default function WorkbenchGrid({ viewMode }) {
           )}
           {filteredProjects.map((project, idx) => (
             <motion.div
-              key={project.slug || idx}
+              key={project.slug || project.title || idx}
               layout
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}

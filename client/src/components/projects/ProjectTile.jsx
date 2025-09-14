@@ -97,6 +97,13 @@ export default function ProjectTile({ project = {}, allProjects = [] }) {
           </a>
         )}
       </div>
+      {/* optional screenshot / cover */}
+      {(project.screenshots && project.screenshots.length > 0) ? (
+        <div className="w-full h-36 mb-3 rounded-md overflow-hidden">
+          <img src={project.screenshots[0]} alt={`${project.title} screenshot`} className="w-full h-full object-cover block" loading="lazy" />
+        </div>
+      ) : null}
+
       <div className="flex items-center gap-3 mb-2">
         <span className="text-2xl" style={{ color: t.primary }}>{project.icon}</span>
         <div className="flex-1">
