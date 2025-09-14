@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme-aware variables (defaults) */
+:root {
+  --fade-color: rgba(255,255,255,0.92);
+  --scroll-thumb: rgba(100,110,255,0.6);
+}
+
 /* Global smooth scrolling */
 html {
   scroll-behavior: smooth;
@@ -43,4 +49,76 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Scrollbar & scroll affordance utilities */
+
+/* WebKit scrollbar styling (modern browsers) */
+.scroll-area::-webkit-scrollbar {
+  width: 10px;
+}
+.scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scroll-area::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Firefox scrollbar styling */
+.scroll-area {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) transparent;
+}
+
+/* Gradient fade overlays to indicate overflow */
+.fade-top,
+.fade-bottom {
+  pointer-events: none; /* allow clicks to pass through */
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2.2rem;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 220ms cubic-bezier(.2,.9,.2,1);
+}
+.fade-top {
+  top: 0;
+  /* blend from page background to transparent so fade matches page */
+  background-image: linear-gradient(to bottom, var(--page-bg, var(--fade-color, rgba(255,255,255,0.92))), transparent);
+}
+.fade-bottom {
+  bottom: 0;
+  background-image: linear-gradient(to top, var(--page-bg, var(--fade-color, rgba(255,255,255,0.92))), transparent);
+}
+
+/* visible state */
+.fade-top.visible,
+.fade-bottom.visible {
+  opacity: 1;
+}
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-top,
+  .fade-bottom {
+    transition: none;
+  }
+}
+
+/* Dark-mode aware fade: prefer CSS variable override via data-theme on the root */
+[data-theme='dark'] {
+  --fade-color: rgba(8,10,15,0.92);
+  --scroll-thumb: rgba(120,120,255,0.32);
+}
+
+/* Helper for sticky subheaders inside scrollable containers */
+.sticky-subheader {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: inherit; /* match container background */
 }
