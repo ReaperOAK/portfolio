@@ -26,12 +26,23 @@ export default function usePrefetchOnViewport(targetRefOrElement, prefetchFn, ro
       return;
     }
 
+    const schedulePrefetch = () => {
+      // Use requestIdleCallback when available so prefetch happens at low priority
+      const doImport = () => prefetchFn().catch(() => {});
+      if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+        window.requestIdleCallback(() => doImport(), { timeout: 2000 });
+      } else {
+        // fallback to setTimeout so it doesn't block immediate rendering
+        setTimeout(() => doImport(), 1500);
+      }
+    };
+
     const onIntersect = (entries, obs) => {
       entries.forEach((entry) => {
         if ((entry.isIntersecting || entry.intersectionRatio > 0) && !cancelled) {
-          // Warm up the chunk
-          prefetchFn().catch(() => {});
-          // Stop observing after prefetch
+          // Schedule a low-priority prefetch
+          schedulePrefetch();
+          // Stop observing after scheduling prefetch
           if (observed) obs.unobserve(observed);
         }
       });
