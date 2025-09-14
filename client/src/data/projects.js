@@ -6,7 +6,7 @@ const projects = [
     icon: "🤖",
     tech: ["Python", "Selenium", "Docker"],
     type: "Solo",
-    status: "🌿 Evolving",
+    status: "Evolving",
     shortDesc: "An automated script to farm Microsoft Rewards points.",
     description: "A Python-based automation tool that uses Selenium to complete daily Microsoft Rewards activities, including PC and mobile searches, quizzes, and daily sets. It supports multiple accounts, can run in headless mode, and is containerized with Docker for easy deployment and scheduling.",
     decisions: [
@@ -33,7 +33,7 @@ const projects = [
     icon: "🎭",
     tech: ["Python", "Flask", "SQLAlchemy", "OpenAI API", "Celery"],
     type: "Solo",
-    status: "🛠️ In Progress",
+    status: "In Progress",
     shortDesc: "An automated content pipeline for 'faceless' Instagram accounts.",
     description: "A full-stack Python application that automates content creation and scheduling for Instagram. It uses the OpenAI API to generate both images and captions, and Celery for background task management, all managed through a Flask web dashboard. The system is designed to run 'faceless' theme pages with minimal manual intervention.",
     decisions: [
@@ -60,7 +60,7 @@ const projects = [
     icon: "🤖",
     tech: ["Python", "PRAW", "schedule"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "Automated Python script for scheduling and posting content to Reddit.",
     description: "A Python script designed for content automation on Reddit. It uses the PRAW library to interface with the Reddit API, reading post schedules from a JSON file and publishing them to specified subreddits at configured times. The tool is built for efficiency and simplifies social media management workflows for Reddit.",
     decisions: [
@@ -87,7 +87,7 @@ const projects = [
     icon: "🎉",
     tech: ["React", "Node.js", "MongoDB", "Socket.IO", "Firebase Auth", "Tailwind CSS"],
     type: "Team",
-    status: "🚀 Deployed",
+    status: "Under Development",
     shortDesc: "A real-time, full-stack platform for managing college festivals.",
     description: "A comprehensive event management platform built on the MERN stack with Socket.IO for real-time features. It includes role-based access for organizers and attendees, team and task management, financial tracking, and live announcements, designed to streamline the entire lifecycle of a college festival.",
     decisions: [
@@ -114,7 +114,7 @@ const projects = [
     icon: "🔄",
     tech: ["React", "Node.js", "MongoDB", "Socket.IO", "Tailwind CSS"],
     type: "Team",
-    status: "🚀 Deployed",
+    status: "Complteted",
     shortDesc: "A P2P platform for users to trade skills and knowledge directly.",
     description: "A full-stack, real-time skill-swapping marketplace built on the MERN stack. The platform enables users to offer skills they possess and find others to learn from in a direct, peer-to-peer exchange. It includes real-time notifications for swap requests via Socket.IO, a user reputation system with reviews, and a dedicated admin dashboard for platform management.",
     decisions: [
@@ -141,7 +141,7 @@ const projects = [
     icon: "🕵️‍♂️",
     tech: ["Python", "asyncio", "aiohttp", "pandas"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "High-performance asynchronous web scraper for extracting influencer data.",
     description: "A Python-based data scraping tool designed to efficiently extract detailed information about Instagram influencers from the Hashfame platform. It uses an asynchronous architecture with `aiohttp` to handle thousands of requests concurrently, collecting profile data, contact information, and performance metrics. The results are processed and consolidated into a clean CSV file for market research and analysis.",
     decisions: [
@@ -168,7 +168,7 @@ const projects = [
     icon: "🎓",
     tech: ["React", "TypeScript", "Firebase", "Framer Motion", "Three.js", "Tailwind CSS"],
     type: "Team",
-    status: "🚀 Deployed",
+    status: "Deployed",
     shortDesc: "Interactive digital invitation platform for a university farewell event.",
     description: "A fully interactive and personalized digital invitation platform for a university farewell event. It features a themed, animated frontend with music, an RSVP system, and a complete admin dashboard for managing invitees and sending automated email invitations, all built on a serverless Firebase backend.",
     decisions: [
@@ -180,7 +180,7 @@ const projects = [
     ],
     tags: ["React", "Firebase", "Events", "Invitation", "Full-stack", "TypeScript"],
     github: "https://github.com/ReaperOAK/csefarewell2k25",
-    live: "https://csefarewell2k25.reaperoak.com/",
+    live: "https://oblivion-3c64c.web.app/",
     screenshots: [],
     devLogs: [
       "Configured Firebase for hosting, Firestore, and serverless functions to manage event data.",
@@ -195,7 +195,7 @@ const projects = [
     icon: "♟️",
     tech: ["React", "PHP", "MySQL", "Tailwind CSS", "Chart.js"],
     type: "Team",
-    status: "🚀 Deployed",
+    status: "Deployed",
     shortDesc: "A full-stack ERP for chess academies with role-based dashboards.",
     description: "A comprehensive, full-stack management platform for a chess academy, built with a React frontend and a PHP/MySQL backend. It features distinct, role-based dashboards for administrators, teachers, and students, providing tools for attendance tracking, interactive quiz creation, a PGN library, an online chess-playing platform with Stockfish analysis, and detailed performance analytics.",
     decisions: [
@@ -207,7 +207,7 @@ const projects = [
     ],
     tags: ["React", "PHP", "Full-stack", "E-learning", "Chess", "Dashboard"],
     github: "https://github.com/ReaperOAK/kcadashboard",
-    live: "https://dashboard.kolkatachessacademy.com/",
+    live: "https://dashboard.kolkatachessacademy.in/",
     screenshots: [],
     devLogs: [
       "Designed and implemented a normalized MySQL database schema to manage users, classrooms, quizzes, and chess games.",
@@ -222,7 +222,7 @@ const projects = [
     icon: "🧠",
     tech: ["Markdown", "GitHub", "Knowledge Management"],
     type: "Solo",
-    status: "🌿 Evolving",
+    status: "Evolving",
     shortDesc: "A personal operating system for managing relationships and social strategy.",
     description: "A private, Git-based system for managing social relationships and personal growth. It uses a structured set of Markdown files to track interactions, analyze social dynamics, and maintain deep context on key individuals. This serves as a strategic second brain for long-term social and reputational development.",
     decisions: [
@@ -247,7 +247,7 @@ const projects = [
     icon: "🤝",
     tech: ["React", "Node.js", "MongoDB", "Stripe", "Docker", "Tailwind CSS"],
     type: "Team",
-    status: "🚀 Deployed",
+    status: "Complteted",
     shortDesc: "A full-stack, Airbnb-like P2P rental marketplace with integrated payments.",
     description: "A comprehensive peer-to-peer rental marketplace built with the MERN stack and containerized with Docker. The platform supports three user roles (user, host, admin), features secure payment processing via Stripe, and includes a complete booking and reservation system. It is designed for scalability and real-world deployment.",
     decisions: [
@@ -274,7 +274,7 @@ const projects = [
     icon: "🎟️",
     tech: ["React", "Vite", "Firebase", "Zustand", "Tailwind CSS"],
     type: "Team",
-    status: "🚀 Deployed",
+    status: "Complteted",
     shortDesc: "A real-time, gamified event management platform using QR codes.",
     description: "A collaborative web application designed to manage and gamify events like treasure hunts. It features a real-time progress tracking system using QR code check-ins, with dedicated dashboards for administrators to manage the event and for participants to track their journey and view leaderboards. The platform is built on a serverless architecture using Firebase for the backend.",
     decisions: [
@@ -286,7 +286,7 @@ const projects = [
     ],
     tags: ["React", "Firebase", "Real-time", "Gamification", "Events"],
     github: "https://github.com/ReaperOAK/eventure",
-    live: "https://eventure.reaperoak.com/",
+    live: "",
     screenshots: [],
     devLogs: [
       "Defined project scope and assigned team roles for UI/UX, Firebase, and QR validation.",
@@ -301,7 +301,7 @@ const projects = [
     icon: "🧑‍⚖️",
     tech: ["React", "Node.js", "MySQL", "Socket.IO", "Tailwind CSS"],
     type: "Solo",
-    status: "🚀 Deployed",
+    status: "Deployed",
     shortDesc: "A real-time, multi-user platform for live player auctions.",
     description: "A full-stack web application that facilitates live player auctions with role-based dashboards for admins, teams, and viewers. Built with a Node.js/Express backend, MySQL database, and a React frontend, it uses Socket.IO to deliver real-time updates for bidding, player assignments, and auction status to all participants.",
     decisions: [
@@ -313,7 +313,7 @@ const projects = [
     ],
     tags: ["React", "Full-stack", "Real-time", "Socket.IO", "Auction"],
     github: "https://github.com/ReaperOAK/player-auction",
-    live: "",
+    live: "https://player-auction-eight.vercel.app",
     screenshots: [],
     devLogs: [
       "Set up the backend with Node.js, Express, and MySQL, defining the core database schema.",
@@ -328,7 +328,7 @@ const projects = [
     icon: "🥚",
     tech: ["React", "PHP", "SQL", "Tailwind CSS", "Chart.js"],
     type: "Solo",
-    status: "🚀 Deployed",
+    status: "Deployed",
     shortDesc: "SEO-driven platform for tracking daily egg prices in India.",
     description: "A full-stack web application providing real-time and historical egg prices across India. It features an automated data pipeline using PHP scrapers, an interactive data visualization map, a content-rich blog powered by MDX, and a comprehensive admin dashboard for data management. The project is heavily optimized for SEO to attract organic traffic.",
     decisions: [
@@ -340,7 +340,7 @@ const projects = [
     ],
     tags: ["React", "Full-stack", "PHP", "SEO", "Data Visualization"],
     github: "https://github.com/ReaperOAK/todayeggrates",
-    live: "https://todayeggrates.org/",
+    live: "https://todayeggrates.com/",
     screenshots: [],
     devLogs: [
       "Set up the LAMP stack backend with PHP and SQL for data storage and API endpoints.",
@@ -367,7 +367,7 @@ const projects = [
     ],
     tags: ["React", "Full-stack", "Chess", "E-learning", "Multi-tenant"],
     github: "https://github.com/ReaperOAK/chesscodex",
-    live: "https://chesscodex.vercel.app",
+    live: "https://kolkatachessacademy.in/",
     screenshots: [],
     devLogs: [
       "Established the full-stack architecture with Create React App and a Node.js server.",
@@ -394,8 +394,8 @@ const projects = [
     ],
     tags: ["React", "Portfolio", "UI/UX", "3D", "Personal Branding"],
     github: "https://github.com/ReaperOAK/portfolio",
-    live: "https://reaperoak.me",
-    screenshots: ["/profile.png", "/bg/developer.png"],
+    live: "https://reaperoak.web.app/",
+    screenshots: [],
     devLogs: [
       "Established core project structure with Vite, React, and Tailwind CSS.",
       "Developed the visitor context system to enable personalized themes and content.",
@@ -409,7 +409,7 @@ const projects = [
     icon: "🏆",
     tech: ["React", "Vite", "Tailwind", "jsPDF"],
     type: "Solo",
-    status: "🚀 Deployed",
+    status: "Completed",
     shortDesc: "Dynamic dashboard for managing live player auctions.",
     description: "A local-first auction management tool built with React and Vite. It features real-time player assignment, budget tracking for multiple teams, persistent state using localStorage, and data import/export functionalities (CSV, PDF). Designed for offline use in events like college sports tournaments.",
     decisions: [
@@ -436,7 +436,7 @@ const projects = [
     icon: "🎮",
     tech: ["HTML", "CSS", "JavaScript"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "A classic memory game built with vanilla JavaScript.",
     description: "A web-based implementation of the classic electronic memory game 'Simon Says.' The game generates a sequence of colors that the player must repeat. Each successful round increases the sequence length, testing the player's memory and focus. This project was built using vanilla HTML, CSS, and JavaScript to demonstrate core DOM manipulation and event handling skills.",
     decisions: [
@@ -461,7 +461,7 @@ const projects = [
     icon: "💬",
     tech: ["Node.js", "Express", "MongoDB", "EJS", "Mongoose"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "A full-stack CRUD app demonstrating core backend principles with a WhatsApp-style UI.",
     description: "This project is a foundational full-stack web application that implements Create, Read, Update, and Delete (CRUD) functionalities for chat messages. Built with Node.js, Express, and MongoDB, it uses EJS for server-side rendering to create a dynamic user interface resembling a chat application.",
     decisions: [
@@ -487,7 +487,7 @@ const projects = [
     icon: "🎵",
     tech: ["HTML", "CSS"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "A static, pixel-perfect clone of the Spotify web player's UI.",
     description: "A high-fidelity replica of the Spotify web player's user interface, built entirely with HTML and CSS. This project focuses on mastering advanced CSS layout techniques, including Flexbox and Grid, to recreate a complex, responsive, and aesthetically pleasing design without any JavaScript functionality.",
     decisions: [
@@ -513,7 +513,7 @@ const projects = [
     icon: "🌤️",
     tech: ["HTML", "CSS", "JavaScript", "API"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "A simple weather app using the OpenWeatherMap API and vanilla JavaScript.",
     description: "A lightweight, client-side web application built with vanilla HTML, CSS, and JavaScript that fetches and displays real-time weather data for a user-specified city from the OpenWeatherMap API. It provides current temperature, weather conditions, humidity, and wind speed.",
     decisions: [
@@ -538,7 +538,7 @@ const projects = [
     icon: "📈",
     tech: ["HTML", "CSS", "JavaScript", "API", "TradingView"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "A real-time cryptocurrency charting tool using the TradingView API.",
     description: "A client-side web application that provides real-time cryptocurrency charting by integrating the TradingView lightweight charts library. The application fetches data from the CoinGecko API to display key metrics like market cap, price changes, and volume, and allows users to search for and view charts for various cryptocurrencies.",
     decisions: [
@@ -564,7 +564,7 @@ const projects = [
     icon: "🧭",
     tech: ["HTML", "CSS"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "A clean, responsive navigation bar built with pure HTML and CSS.",
     description: "This project is a fundamental frontend exercise focused on creating a responsive navigation bar using only HTML and CSS. It showcases the use of media queries to adapt the layout for different screen sizes, transitioning from a horizontal bar on desktops to a hamburger menu on mobile devices.",
     decisions: [
@@ -589,7 +589,7 @@ const projects = [
     icon: "🏠",
     tech: ["Node.js", "Express", "MongoDB", "EJS", "Passport.js", "Cloudinary", "Mapbox"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "A full-featured clone of Airbnb with listings, reviews, and interactive maps.",
     description: "A complete web application built on the MERN stack (minus React, using EJS instead) that replicates the core functionalities of Airbnb. It features user authentication, CRUD for property listings, image uploads to Cloudinary, user reviews and ratings, and interactive maps via Mapbox.",
     decisions: [
@@ -618,7 +618,7 @@ const projects = [
     icon: "🌦️",
     tech: ["React", "Material UI", "API"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "A simple and clean weather application built with React and Material UI.",
     description: "A client-side web application that fetches and displays real-time weather data from the OpenWeatherMap API. Users can search for a city to get current weather conditions, including temperature, humidity, and a brief description. The interface is built with React and styled using Material UI for a clean and responsive user experience.",
     decisions: [
@@ -644,7 +644,7 @@ const projects = [
     icon: "📏",
     tech: ["HTML", "CSS", "JavaScript", "Canvas API"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Deployed",
     shortDesc: "A web tool to calculate and visualize the shortest distance from a point to a line.",
     description: "LineaRecta is a client-side web application that solves a classic geometry problem: finding the shortest distance between a point and a straight line. Built with vanilla HTML, CSS, and JavaScript, it provides an interactive experience where users can input the parameters of a line and the coordinates of a point, and see the result both numerically and visually on an HTML canvas.",
     decisions: [
@@ -655,7 +655,7 @@ const projects = [
     ],
     tags: ["JavaScript", "HTML", "Canvas API", "Mathematics", "Tool", "Web App"],
     github: "https://github.com/ReaperOAK/linearecta",
-    live: "",
+    live: "https://linearectabooks.com/",
     screenshots: [],
     devLogs: [
       "Developed the HTML structure for input fields and the canvas element.",
@@ -670,7 +670,7 @@ const projects = [
     icon: "🐾",
     tech: ["Node.js", "Express", "EJS"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "A web-based Palworld companion app for tracking and managing Pals.",
     description: "A server-side rendered web application built with Node.js and Express. It serves as a utility for the game Palworld, allowing users to view, track, and manage their collection of Pals. The application uses EJS for templating to dynamically generate pages based on game data.",
     decisions: [
@@ -696,7 +696,7 @@ const projects = [
     icon: "🤟",
     tech: ["Python", "Flask", "OpenCV", "TensorFlow", "Keras"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "A real-time Indian Sign Language (ISL) translator using computer vision.",
     description: "A prototype application that uses a webcam to capture hand gestures in real-time and translates them into text. The system is built with Python, Flask, and OpenCV, and it leverages a pre-trained TensorFlow/Keras model to recognize and interpret Indian Sign Language (ISL) gestures.",
     decisions: [
@@ -722,7 +722,7 @@ const projects = [
     icon: "🎓",
     tech: ["Python", "Tkinter", "Algorithms", "Data Structures"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "A collection of Python scripts from my 3rd semester university coursework.",
     description: "A comprehensive repository of Python scripts developed during my third semester of B.Tech. This collection covers fundamental computer science concepts including algorithms, data structures, mathematical problem-solving, and basic GUI development with tkinter. It represents a core phase of my foundational programming education.",
     decisions: [
@@ -747,7 +747,7 @@ const projects = [
     icon: "🤖",
     tech: ["Electron", "React", "Node.js", "Python", "OpenAI API", "Tailwind CSS"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "Desktop AI assistant to automate problem-solving workflows.",
     description: "A cross-platform desktop application built with Electron and React that leverages the OpenAI API to automate problem-solving. Users can input a problem, and the application uses a Python backend to execute code, run tests, and provide solutions in a terminal-style interface, streamlining development and debugging workflows.",
     decisions: [
@@ -774,7 +774,7 @@ const projects = [
     icon: "📜",
     tech: ["Python", "Pillow", "pandas"],
     type: "Solo",
-    status: "✅ Completed",
+    status: "Completed",
     shortDesc: "A Python utility to generate personalized certificates from a CSV file.",
     description: "A Python script designed to automate the creation of personalized certificates. It reads participant data from a CSV file, uses a template image, and leverages the Pillow library to programmatically place text, generating individual certificates for each participant. The project also includes an interactive designer tool to help users find the precise coordinates for text placement.",
     decisions: [

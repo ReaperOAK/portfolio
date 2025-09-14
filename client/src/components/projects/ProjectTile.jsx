@@ -98,23 +98,19 @@ export default function ProjectTile({ project = {}, allProjects = [] }) {
           </a>
         )}
       </div>
-      {/* optional screenshot / cover */}
-      {(project.screenshots && project.screenshots.length > 0) ? (
-        <div className="w-full h-36 mb-3 rounded-md overflow-hidden flex-shrink-0" style={{ flex: '0 0 auto' }}>
-          <img src={project.screenshots[0]} alt={`${project.title} screenshot`} className="w-full h-full object-cover block" loading="lazy" />
+      {/* content area that can scroll independently */}
+      <div className="flex flex-col gap-3 h-full">
+        <div className="flex items-start gap-3">
+          <span className="text-2xl" style={{ color: t.primary }}>{project.icon}</span>
+          <div className="flex-1 min-h-0">
+            <h3 className="text-lg font-bold" style={{ color: t.foreground }}>{project.title}</h3>
+            {/* status placed below title for clearer flow */}
+            <div className="mt-1 text-xs inline-block px-2 py-1 rounded" style={{ background: t.accent, color: t.background }}>{project.status}</div>
+            <div className="text-xs mt-1" style={{ color: t.fg, opacity: 0.75 }}>{project.shortDesc}</div>
+          </div>
         </div>
-      ) : null}
 
-      <div className="flex items-center gap-3 mb-2">
-        <span className="text-2xl" style={{ color: t.primary }}>{project.icon}</span>
-        <div className="flex-1 min-h-0">
-          <h3 className="text-lg font-bold" style={{ color: t.foreground }}>{project.title}</h3>
-          <div className="text-xs" style={{ color: t.fg, opacity: 0.75 }}>{project.shortDesc}</div>
-        </div>
-  <span className="text-xs px-2 py-1 rounded" style={{ background: t.accent, color: t.background }}>{project.status}</span>
-      </div>
-
-      <div className="flex gap-2 flex-wrap mb-3">
+        <div className="flex gap-2 flex-wrap mb-0">
         {Array.isArray(project.tech) && project.tech.map((tech) => (
           <motion.span
             key={tech}
@@ -126,19 +122,22 @@ export default function ProjectTile({ project = {}, allProjects = [] }) {
             {tech}
           </motion.span>
         ))}
-      </div>
-
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="text-xs px-2 py-1 rounded" style={{ background: t.background, color: t.foreground }}>{project.type}</span>
         </div>
-        <div className="flex items-center gap-2">
-          {/* non-interactive controls removed */}
+
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-xs px-2 py-1 rounded" style={{ background: t.background, color: t.foreground }}>{project.type}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            {/* non-interactive controls removed */}
+          </div>
+        </div>
+
+        {/* flexible scrollable description area (each card scrolls internally) */}
+        <div className="mt-2 text-sm overflow-auto" style={{ color: t.foreground, opacity: 0.95 }} tabIndex={0} id={`desc-${project.slug || slugify(project.title || '')}`}>
+          {project.shortDesc || project.desc || ''}
         </div>
       </div>
-
-  {/* make description area flexible and scrollable without causing card overflow */}
-  <div className="mt-3 text-sm flex-1 min-h-0 overflow-auto" style={{ color: t.foreground, opacity: 0.95 }} tabIndex={0}>{project.shortDesc || project.desc || ''}</div>
 
   {/* tech wiring removed */}
     </motion.div>
