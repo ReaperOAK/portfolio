@@ -13,7 +13,7 @@ export default function Home() {
   // SEO configuration
   const seoConfig = useSEO(seoConfigs.home);
   const heroRef = useRef(null);
-  usePrefetchOnViewport(heroRef, () => import('../components/WireframeIcosahedron'));
+  usePrefetchOnViewport(heroRef, () => import('../components/WireframeIcosahedron'), '200px', 'src/components/WireframeIcosahedron.jsx');
 
   // Small helpers to apply a themed focus ring using inline styles
   const setFocusRing = (e, color) => {

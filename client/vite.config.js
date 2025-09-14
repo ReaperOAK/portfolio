@@ -6,6 +6,8 @@ import path from 'path'
 export default defineConfig(({ command, mode }) => ({
   plugins: [react()],
   build: {
+    // emit a manifest mapping source files to output files so we can runtime-preload chunks
+    manifest: true,
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -19,7 +21,19 @@ export default defineConfig(({ command, mode }) => ({
           }
         }
       }
+      ,
+      // mark three as external so rollup doesn't include it in bundles
+      external: ['three']
     }
+    ,
+    // Treat three as external to avoid bundling the big runtime library
+    commonjsOptions: {
+      ignoreTryCatch: []
+    }
+  },
+  // Prevent Vite dev pre-bundling for three (we load via import map / CDN at runtime)
+  optimizeDeps: {
+    exclude: ['three']
   },
   resolve: {
     alias: {

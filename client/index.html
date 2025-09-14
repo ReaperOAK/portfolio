@@ -32,6 +32,14 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <!-- Import map to load three.js from CDN (ES module) to keep bundle small -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js"
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

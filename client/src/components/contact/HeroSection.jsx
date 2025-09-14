@@ -8,7 +8,7 @@ export default function HeroSection({ onEnterContact }) {
   const { themeVars } = useTheme();
 
   const heroRef = useRef(null);
-  usePrefetchOnViewport(heroRef, () => import('./ContactPortal'));
+  usePrefetchOnViewport(heroRef, () => import('./ContactPortal'), '200px', 'src/components/contact/ContactPortal.jsx');
 
   const primary = themeVars?.primary || '#C084FC';
   const accent = themeVars?.accent || '#FB7185';

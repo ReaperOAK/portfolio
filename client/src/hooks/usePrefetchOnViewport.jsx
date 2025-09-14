@@ -10,7 +10,7 @@ import { useEffect } from 'react';
  * @param {() => Promise<any>} prefetchFn - function that triggers the dynamic import
  * @param {string} rootMargin - IntersectionObserver rootMargin (default: '200px')
  */
-export default function usePrefetchOnViewport(targetRefOrElement, prefetchFn, rootMargin = '200px') {
+export default function usePrefetchOnViewport(targetRefOrElement, prefetchFn, rootMargin = '200px', manifestKey) {
   useEffect(() => {
     if (!prefetchFn) return;
 
@@ -34,6 +34,32 @@ export default function usePrefetchOnViewport(targetRefOrElement, prefetchFn, ro
       } else {
         // fallback to setTimeout so it doesn't block immediate rendering
         setTimeout(() => doImport(), 1500);
+      }
+      // If a manifestKey is provided, try to fetch the Vite manifest and preload the mapped files
+      if (manifestKey && typeof window !== 'undefined') {
+        // low priority: try to fetch manifest after a short idle
+        const tryManifest = () => {
+          fetch('/manifest.json').then((r) => r.json()).then((m) => {
+            const entry = m[manifestKey];
+            if (!entry) return;
+            const files = [entry.file].concat(entry.css || [], entry.assets || []);
+            files.forEach((f) => {
+              try {
+                const href = '/' + f.replace(/^\//, '');
+                if (!document.querySelector(`link[rel="modulepreload"][href="${href}"]`)) {
+                  const l = document.createElement('link');
+                  l.rel = 'modulepreload';
+                  l.href = href;
+                  l.crossOrigin = '';
+                  document.head.appendChild(l);
+                }
+              } catch (e) {
+                // ignore
+              }
+            });
+          }).catch(()=>{});
+        };
+        if ('requestIdleCallback' in window) window.requestIdleCallback(tryManifest, { timeout: 3000 }); else setTimeout(tryManifest, 2500);
       }
     };
 

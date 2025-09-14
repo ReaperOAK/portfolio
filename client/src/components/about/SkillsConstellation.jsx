@@ -8,7 +8,7 @@ import { BrainCircuit } from "lucide-react";
 export default function SkillsConstellation() {
   const { themeVars } = useTheme();
   const sectionRef = useRef(null);
-  usePrefetchOnViewport(sectionRef, () => import('./skills3d/SkillCanvas'));
+  usePrefetchOnViewport(sectionRef, () => import('./skills3d/SkillCanvas'), '200px', 'src/components/about/skills3d/SkillCanvas.jsx');
   return (
     <section
       ref={sectionRef}
