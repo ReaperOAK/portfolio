@@ -6,13 +6,13 @@ export const story = [
     colorKey: "primary"
   },
   {
-    year: "2018-2019",
+    year: "2018",
     title: "Foundations",
     desc: "Class 9: learned proper web dev with pure HTML, CSS, and JavaScript. Built my first fun clones — a Spotify UI and later a fully functional Airbnb clone during COVID.",
     colorKey: "accent"
   },
   {
-    year: "2020-2021",
+    year: "2020",
     title: "First Real Builds",
     desc: "Deep dive into MERN. Shipped projects that weren’t just tutorials but actual apps. Fell in love with turning concepts into experiences.",
     colorKey: "highlight"
