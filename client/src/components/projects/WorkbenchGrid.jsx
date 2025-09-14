@@ -89,7 +89,7 @@ export default function WorkbenchGrid({ viewMode }) {
         Shuffle Workbench
       </button>
   {/* SkillMapOverlay removed — overlay visuals disabled for cleaner grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full" style={{ gridAutoRows: '1fr' }}>
         <AnimatePresence>
           {filteredProjects.length === 0 && (
             <div className="col-span-full text-center py-12" style={{ color: themeVars.foreground }}>
@@ -106,7 +106,7 @@ export default function WorkbenchGrid({ viewMode }) {
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               onMouseEnter={() => setActiveIdx(idx)}
               onMouseLeave={() => setActiveIdx(null)}
-              style={{ zIndex: activeIdx === idx ? 2 : 1, height: '100%' }}
+              style={{ zIndex: activeIdx === idx ? 2 : 1 }}
             >
               <AnimatedProjectCard docked={true} active={activeIdx === idx}>
                 <ProjectTile project={project} allProjects={projects} />

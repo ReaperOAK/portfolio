@@ -10,10 +10,17 @@ export default function ProjectMediaCarousel({ screenshots = [] }) {
   const next = () => setIdx((i) => (i + 1) % screenshots.length);
 
   return (
-    // fixed, responsive height so images stay consistent between slides
     <div
       className="w-full rounded-2xl overflow-hidden relative h-64 md:h-80 lg:h-96"
       style={{ border: `1px solid ${themeVars.primary}10`, background: themeVars.background }}
+      role="region"
+      aria-roledescription="carousel"
+      aria-label={`Project media carousel, slide ${idx + 1} of ${screenshots.length}`}
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'ArrowLeft') prev();
+        if (e.key === 'ArrowRight') next();
+      }}
     >
       <img
         src={screenshots[idx]}

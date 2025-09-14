@@ -13,13 +13,14 @@ export default function DevLogTrail({ logs }) {
       <ul className="space-y-4 relative pl-6">
         {/* Timeline vertical line */}
         <div
-          className="absolute left-0 top-6 bottom-0 w-px"
-          style={{ background: themeVars.primary, opacity: 0.08, left: 10 }}
+          className="absolute top-6 bottom-0"
+          style={{ width: 1, background: themeVars.primary, opacity: 0.08, left: 10 }}
+          aria-hidden
         />
 
         {normalized.map((log, i) => (
           <li key={i} className="flex items-start gap-3 relative" style={{ animationDelay: `${i * 80}ms` }}>
-            <span className="w-3 h-3 rounded-full mt-2 border-2" style={{ background: themeVars.accent, borderColor: themeVars.primary, zIndex: 1, boxShadow: `0 0 0 6px ${themeVars.background}` }}></span>
+            <span className="w-3 h-3 rounded-full mt-2 border-2 flex-shrink-0" style={{ background: themeVars.accent, borderColor: themeVars.primary, zIndex: 1, boxShadow: `0 0 0 6px ${themeVars.background}` }} aria-hidden></span>
             <div className="flex flex-col">
               {log.date && <div className="text-xs font-mono" style={{ color: themeVars.foreground, opacity: 0.7 }}>{log.date}</div>}
               <div className="text-sm" style={{ color: themeVars.foreground, fontWeight: 500 }}>{log.text}</div>

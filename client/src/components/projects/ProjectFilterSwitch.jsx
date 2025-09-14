@@ -14,7 +14,7 @@ export default function ProjectFilterSwitch({ selected, onSelect }) {
   const { themeVars: t } = useTheme();
   const node = (
     <div
-      className="fixed right-8 flex gap-2 px-3 py-2 rounded-xl shadow-lg backdrop-blur-md animate-fade-in"
+      className="fixed right-4 sm:right-8 flex gap-2 px-3 py-2 rounded-xl shadow-lg backdrop-blur-md animate-fade-in max-w-full"
       style={{
         background: `${t.background}cc`,
         border: `1px solid ${t.border}`,
@@ -25,7 +25,7 @@ export default function ProjectFilterSwitch({ selected, onSelect }) {
     >
       {VIEW_MODES.map((mode) => (
         <div key={mode.value} className="relative">
-          <button
+            <button
             className={`flex items-center gap-2 px-3 py-1 rounded-full font-medium text-sm transition-all duration-300 focus:outline-none ${selected === mode.value ? "scale-110 shadow-lg font-bold" : "opacity-70"}`}
             style={{
               background: selected === mode.value ? t.primary : "transparent",

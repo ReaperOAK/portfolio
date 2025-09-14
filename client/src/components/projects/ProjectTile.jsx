@@ -50,7 +50,8 @@ export default function ProjectTile({ project = {}, allProjects = [] }) {
 
   return (
     <motion.div
-      className={`relative flex flex-col p-3 rounded-xl h-full ${expanded ? "z-20" : ""} group cursor-pointer`}
+      className={`relative flex flex-col p-3 rounded-xl overflow-hidden h-full ${expanded ? "z-20" : ""} group cursor-pointer`}
+      style={{ transition: "box-shadow 0.2s, transform 0.2s" }}
       tabIndex={0}
       aria-expanded={expanded}
       role={project.slug ? "link" : undefined}
@@ -60,7 +61,7 @@ export default function ProjectTile({ project = {}, allProjects = [] }) {
           targetSlug && navigate(`/project/${targetSlug}`);
         }
       }}
-      style={{ transition: "box-shadow 0.2s, transform 0.2s", background: t.subtle, border: `1px solid ${t.border}` }}
+      
       initial={false}
       animate={{ rotateY: 0 }}
       whileHover={{ boxShadow: `0 10px 40px ${t.primary}22` }}
@@ -99,14 +100,14 @@ export default function ProjectTile({ project = {}, allProjects = [] }) {
       </div>
       {/* optional screenshot / cover */}
       {(project.screenshots && project.screenshots.length > 0) ? (
-        <div className="w-full h-36 mb-3 rounded-md overflow-hidden">
+        <div className="w-full h-36 mb-3 rounded-md overflow-hidden flex-shrink-0" style={{ flex: '0 0 auto' }}>
           <img src={project.screenshots[0]} alt={`${project.title} screenshot`} className="w-full h-full object-cover block" loading="lazy" />
         </div>
       ) : null}
 
       <div className="flex items-center gap-3 mb-2">
         <span className="text-2xl" style={{ color: t.primary }}>{project.icon}</span>
-        <div className="flex-1">
+        <div className="flex-1 min-h-0">
           <h3 className="text-lg font-bold" style={{ color: t.foreground }}>{project.title}</h3>
           <div className="text-xs" style={{ color: t.fg, opacity: 0.75 }}>{project.shortDesc}</div>
         </div>
@@ -136,7 +137,8 @@ export default function ProjectTile({ project = {}, allProjects = [] }) {
         </div>
       </div>
 
-  <div className="mt-3 text-sm" style={{ color: t.foreground, opacity: 0.9 }}>{project.shortDesc || project.desc || ''}</div>
+  {/* make description area flexible and scrollable without causing card overflow */}
+  <div className="mt-3 text-sm flex-1 min-h-0 overflow-auto" style={{ color: t.foreground, opacity: 0.95 }} tabIndex={0}>{project.shortDesc || project.desc || ''}</div>
 
   {/* tech wiring removed */}
     </motion.div>
