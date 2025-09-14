@@ -1,6 +1,7 @@
+import React from 'react';
 import socials from '../data/socials';
 
-export default function SocialLinks({ className = '' }) {
+function SocialLinks({ className = '' }) {
   return (
     <div className={`flex gap-4 items-center ${className}`}>
       <a href={socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">
@@ -56,3 +57,5 @@ export default function SocialLinks({ className = '' }) {
     </div>
   );
 }
+
+export default React.memo(SocialLinks);

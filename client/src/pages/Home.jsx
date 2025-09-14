@@ -1,9 +1,9 @@
 
 import { useTheme } from '../contexts/ThemeContext';
 import { motion } from 'framer-motion';
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { useSEO, SEOHead, seoConfigs } from '../hooks/useSEO.jsx';
-import WireframeIcosahedronBg from '../components/WireframeIcosahedron';
+const WireframeIcosahedronBg = lazy(() => import('../components/WireframeIcosahedron'));
 import TypingRoles from '../components/TypingRoles';
 
 export default function Home() {
@@ -40,7 +40,11 @@ export default function Home() {
       {/* Hero section with wireframe background */}
       <main>
         <section className="relative flex flex-col items-center justify-center min-h-screen transition-colors duration-500 overflow-hidden" style={{ background: themeVars.background, color: themeVars.foreground }}>
-          <WireframeIcosahedronBg color={themeVars.accent} />
+            <Suspense fallback={
+              <div aria-hidden className="absolute inset-0 w-full h-full z-0 bg-gradient-to-br from-transparent to-transparent" />
+            }>
+              <WireframeIcosahedronBg color={themeVars.accent} />
+            </Suspense>
           <div className="relative z-10 flex flex-col items-center w-full">
             <motion.h1
               className="text-5xl md:text-6xl font-display font-bold mb-4 text-center"

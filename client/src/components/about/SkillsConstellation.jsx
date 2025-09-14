@@ -1,5 +1,6 @@
 
-import { SkillCanvas } from "./skills3d/SkillCanvas";
+import React, { Suspense, lazy } from 'react';
+const SkillCanvas = lazy(() => import('./skills3d/SkillCanvas').then(m => ({ default: m.SkillCanvas })));
 import { useTheme } from "../../contexts/ThemeContext";
 import { BrainCircuit } from "lucide-react";
 
@@ -19,7 +20,9 @@ export default function SkillsConstellation() {
           Explore the stack I orbit around
         </p>
       </div>
-      <SkillCanvas />
+      <Suspense fallback={<div aria-hidden className="h-[600px] w-full bg-transparent" /> }>
+        <SkillCanvas />
+      </Suspense>
     </section>
   );
 }

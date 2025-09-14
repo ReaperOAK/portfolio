@@ -45,6 +45,8 @@ export default function HeroSection() {
             alt="Owais Khan profile"
             className="w-full h-full object-cover rounded-full select-none"
             draggable="false"
+            loading="lazy"
+            decoding="async"
           />
         </div>
         {/* Animated role switcher (theme color) */}

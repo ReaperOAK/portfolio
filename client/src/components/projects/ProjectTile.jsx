@@ -135,7 +135,7 @@ export default function ProjectTile({ project = {}, allProjects = [] }) {
 
         {/* flexible scrollable description area (each card scrolls internally) */}
         <div className="mt-2 text-sm overflow-auto" style={{ color: t.foreground, opacity: 0.95 }} tabIndex={0} id={`desc-${project.slug || slugify(project.title || '')}`}>
-          {project.shortDesc || project.desc || ''}
+          {project.description || project.shortDesc || ''}
         </div>
       </div>
 

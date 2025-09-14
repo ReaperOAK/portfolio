@@ -35,7 +35,7 @@ export const SkillCanvas = () => {
         <Stars
           radius={100}
           depth={50}
-          count={5000}
+          count={typeof window !== 'undefined' ? Math.min(5000, Math.max(200, Math.floor((window.innerWidth * window.innerHeight) / 2400))) : 600}
           factor={4}
           fade
           saturation={themeVars?.background === '#1C0C2E' ? 0.7 : 1}

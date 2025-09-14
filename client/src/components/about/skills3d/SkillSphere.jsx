@@ -18,6 +18,8 @@ export const SkillSphere = ({ name, position, logo }) => {
             alt={name + ' logo'}
             className="w-16 h-16 object-contain rounded-lg bg-white/80 p-2 shadow-md"
             draggable={false}
+            loading="lazy"
+            decoding="async"
             style={{ pointerEvents: 'none' }}
           />
           

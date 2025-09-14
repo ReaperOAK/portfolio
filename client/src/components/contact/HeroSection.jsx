@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
-import ContactPortal from './ContactPortal';
+import React, { Suspense, lazy } from 'react';
+const ContactPortal = lazy(() => import('./ContactPortal'));
 
 export default function HeroSection({ onEnterContact }) {
   const { themeVars } = useTheme();
@@ -71,7 +72,9 @@ export default function HeroSection({ onEnterContact }) {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.8 }}
         >
-          <ContactPortal />
+          <Suspense fallback={<div aria-hidden className="w-64 h-64 mx-auto bg-transparent" />}>
+            <ContactPortal />
+          </Suspense>
         </motion.div>
 
         {/* CTA Button */}

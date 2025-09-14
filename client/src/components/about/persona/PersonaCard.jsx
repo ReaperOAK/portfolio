@@ -78,7 +78,7 @@ export default function PersonaCard({ icon, title, description, bg }) {
                 zIndex: 0,
               }}
             />
-            <img src={icon} alt={title} className="w-16 h-16 relative z-10" />
+            <img src={icon} alt={title} className="w-16 h-16 relative z-10" loading="lazy" decoding="async" />
           </div>
           <h3 className="text-xl mt-2 font-semibold" style={{ color: themeVars?.primary }}>{title}</h3>
           <p className="text-center" style={{ color: themeVars?.secondary }}>{description}</p>
