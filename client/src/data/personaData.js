@@ -43,7 +43,7 @@ export const personas = [
   },
   {
     icon: "/logo/fitness.png",
-    title: "Lifter",
+    title: "Athlete",
     description: "Discipline builds strength. Whether in body or in code, consistency compounds results.",
     bg: "/bg/fitness.png"
   },
