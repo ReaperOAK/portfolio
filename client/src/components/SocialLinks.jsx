@@ -11,6 +11,16 @@ export default function SocialLinks({ className = '' }) {
         <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.452 20.452h-3.555v-5.569c0-1.328-.025-3.038-1.852-3.038-1.853 0-2.136 1.445-2.136 2.939v5.668H9.347V9h3.414v1.561h.049c.476-.9 1.637-1.852 3.369-1.852 3.602 0 4.269 2.37 4.269 5.451v6.292zM5.337 7.433c-1.144 0-2.07-.928-2.07-2.073 0-1.145.926-2.073 2.07-2.073 1.145 0 2.073.928 2.073 2.073 0 1.145-.928 2.073-2.073 2.073zM7.114 20.452H3.56V9h3.554v11.452z"/></svg>
       </a>
 
+      {socials.instagram && (
+        <a href={socials.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.2"/>
+            <path d="M16 11.999a3.999 3.999 0 11-8 0 3.999 3.999 0 018 0z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="17.5" cy="6.5" r="0.75" fill="currentColor" />
+          </svg>
+        </a>
+      )}
+
       <a
         href={socials.resume}
         target="_blank"
