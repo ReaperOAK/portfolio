@@ -1,8 +1,9 @@
 
 import { useTheme } from '../contexts/ThemeContext';
 import { motion } from 'framer-motion';
-import React, { useEffect, Suspense, lazy } from 'react';
+import React, { useEffect, Suspense, lazy, useRef } from 'react';
 import { useSEO, SEOHead, seoConfigs } from '../hooks/useSEO.jsx';
+import usePrefetchOnViewport from '../hooks/usePrefetchOnViewport';
 const WireframeIcosahedronBg = lazy(() => import('../components/WireframeIcosahedron'));
 import TypingRoles from '../components/TypingRoles';
 
@@ -11,6 +12,8 @@ export default function Home() {
   
   // SEO configuration
   const seoConfig = useSEO(seoConfigs.home);
+  const heroRef = useRef(null);
+  usePrefetchOnViewport(heroRef, () => import('../components/WireframeIcosahedron'));
 
   // Small helpers to apply a themed focus ring using inline styles
   const setFocusRing = (e, color) => {
@@ -39,12 +42,13 @@ export default function Home() {
       <SEOHead config={seoConfig} />
       {/* Hero section with wireframe background */}
       <main>
-        <section className="relative flex flex-col items-center justify-center min-h-screen transition-colors duration-500 overflow-hidden" style={{ background: themeVars.background, color: themeVars.foreground }}>
-            <Suspense fallback={
-              <div aria-hidden className="absolute inset-0 w-full h-full z-0 bg-gradient-to-br from-transparent to-transparent" />
-            }>
-              <WireframeIcosahedronBg color={themeVars.accent} />
-            </Suspense>
+  <section ref={heroRef} className="relative flex flex-col items-center justify-center min-h-screen transition-colors duration-500 overflow-hidden" style={{ background: themeVars.background, color: themeVars.foreground }}>
+          {/* prefetch when hero is near viewport */}
+          <Suspense fallback={
+            <div aria-hidden className="absolute inset-0 w-full h-full z-0 bg-gradient-to-br from-transparent to-transparent" />
+          }>
+            <WireframeIcosahedronBg color={themeVars.accent} />
+          </Suspense>
           <div className="relative z-10 flex flex-col items-center w-full">
             <motion.h1
               className="text-5xl md:text-6xl font-display font-bold mb-4 text-center"

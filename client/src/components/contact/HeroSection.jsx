@@ -1,17 +1,21 @@
 import { motion } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useRef } from 'react';
+import usePrefetchOnViewport from '../../hooks/usePrefetchOnViewport';
 const ContactPortal = lazy(() => import('./ContactPortal'));
 
 export default function HeroSection({ onEnterContact }) {
   const { themeVars } = useTheme();
+
+  const heroRef = useRef(null);
+  usePrefetchOnViewport(heroRef, () => import('./ContactPortal'));
 
   const primary = themeVars?.primary || '#C084FC';
   const accent = themeVars?.accent || '#FB7185';
   const gradient = themeVars?.gradient || ['#FB7185', '#C084FC'];
 
   return (
-    <section className="relative h-screen flex flex-col items-center justify-center px-6">
+  <section ref={heroRef} className="relative h-screen flex flex-col items-center justify-center px-6">
       {/* Animated background gradients */}
       <div
         className="absolute w-96 h-96 rounded-full blur-3xl opacity-30 animate-pulse"

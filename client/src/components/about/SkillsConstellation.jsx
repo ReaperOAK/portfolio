@@ -1,13 +1,17 @@
 
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useRef } from 'react';
+import usePrefetchOnViewport from '../../hooks/usePrefetchOnViewport';
 const SkillCanvas = lazy(() => import('./skills3d/SkillCanvas').then(m => ({ default: m.SkillCanvas })));
 import { useTheme } from "../../contexts/ThemeContext";
 import { BrainCircuit } from "lucide-react";
 
 export default function SkillsConstellation() {
   const { themeVars } = useTheme();
+  const sectionRef = useRef(null);
+  usePrefetchOnViewport(sectionRef, () => import('./skills3d/SkillCanvas'));
   return (
     <section
+      ref={sectionRef}
       className="w-full py-20"
       style={{ background: themeVars.background, color: themeVars.foreground }}
     >
