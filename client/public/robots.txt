@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://owais.dev/sitemap.xml
+Sitemap: https://reaperoak.web.app/sitemap.xml
 
 # Block common crawler paths
 Disallow: /api/
