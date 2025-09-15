@@ -132,7 +132,7 @@ app.post('/contact',
           </div>
           <p>Best regards,<br>Owais</p>
           <hr>
-          <small>This is an automated response from owais.dev</small>
+          <small>This is an automated response from reaperoak.web.app</small>
         `
       };
 

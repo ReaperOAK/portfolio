@@ -11,7 +11,7 @@ export const useSEO = ({
 }) => {
   const siteTitle = 'Owais Khan - Full Stack Developer & Creative Technologist';
   const siteDescription = 'Portfolio of Owais Khan - MERN Stack Developer, UI/UX Enthusiast, and Digital Creative. Crafting exceptional web experiences with React, Node.js, and modern technologies.';
-  const siteUrl = 'https://owais.dev'; // Update with actual domain
+  const siteUrl = 'https://reaperoak.web.app'; // Update with actual domain
   const defaultImage = `${siteUrl}/og-image.png`; // Create this image
 
   const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
