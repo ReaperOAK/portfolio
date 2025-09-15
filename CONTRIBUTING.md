@@ -290,7 +290,7 @@ If applicable, add screenshots.
 
 - **GitHub Issues**: For bugs and feature requests
 - **GitHub Discussions**: For questions and general discussion
-- **Email**: owais@example.com for private matters
+- **Email**: oaak78692@gmail.com for private matters
 
 ## 🏆 Recognition
 

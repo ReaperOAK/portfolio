@@ -15,7 +15,7 @@ export default function FinalCTA() {
   const { reviewsList, current, prev, next } = useTestimonials();
 
   const handleHireMe = () => {
-    window.open('mailto:owais@example.com?subject=Let\'s Work Together!&body=Hi Owais,%0D%0A%0D%0AI\'d like to discuss a project with you.', '_blank');
+    window.open('mailto:oaak78692@gmail.com?subject=Let\'s Work Together!&body=Hi Owais,%0D%0A%0D%0AI\'d like to discuss a project with you.', '_blank');
   };
 
   return (

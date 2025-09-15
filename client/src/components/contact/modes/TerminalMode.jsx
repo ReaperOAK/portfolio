@@ -14,14 +14,14 @@ const commands = {
   email: {
     description: 'Open email client',
     action: () => {
-      window.open('mailto:owais@example.com', '_blank');
+      window.open('mailto:oaak78692@gmail.com', '_blank');
       return 'Opening email client...';
     }
   },
   linkedin: {
     description: 'Open LinkedIn profile',
     action: () => {
-      window.open('https://linkedin.com/in/owais', '_blank');
+      window.open('https://linkedin.com/in/owaistech', '_blank');
       return 'Opening LinkedIn profile...';
     }
   },
@@ -36,7 +36,7 @@ const commands = {
     description: 'Download resume',
     action: () => {
       const link = document.createElement('a');
-      link.href = '/resume.pdf';
+      link.href = 'https://docs.google.com/document/d/1VBTwYLku3u3uDPyuh6PyQFK6QW-JMYjWvRT4SM7zNgA/export?format=pdf';
       link.download = 'Owais_Khan_Resume.pdf';
       link.click();
       return 'Downloading resume...';

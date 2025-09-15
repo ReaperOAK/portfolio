@@ -3,6 +3,21 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Float, Sparkles, MeshDistortMaterial, MeshTransmissionMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import { useTheme } from '../../contexts/ThemeContext';
+import socials from '../../data/socials';
+
+const buildUrl = (platform, path) => {
+  if (!path) return '#';
+  switch (platform) {
+    case 'github':
+      return path.startsWith('http') ? path : `https://github.com${path}`;
+    case 'linkedin':
+      return path.startsWith('http') ? path : `https://linkedin.com/in${path}`;
+    case 'instagram':
+      return path.startsWith('http') ? path : `https://instagram.com${path}`;
+    default:
+      return path;
+  }
+};
 
 function AtomicRing({ radius, tube, color, speed = 1, tilt = [0, 0, 0] }) {
   const group = useRef();
@@ -131,10 +146,10 @@ export default function ContactPortal({ className = 'w-64 h-64 mx-auto' }) {
         </div>
         <div className="text-center text-sm opacity-80 mb-3">Interactive 3D portal is unavailable in this browser. Use the quick links below to connect.</div>
         <div className="grid grid-cols-2 gap-2 w-full">
-          <a className="p-3 rounded-lg border text-center" href="mailto:owais@example.com">📧 Email</a>
-          <a className="p-3 rounded-lg border text-center" href="https://linkedin.com/in/owais" target="_blank" rel="noreferrer">💼 LinkedIn</a>
-          <a className="p-3 rounded-lg border text-center" href="https://github.com/ReaperOAK" target="_blank" rel="noreferrer">🐙 GitHub</a>
-          <a className="p-3 rounded-lg border text-center" href="https://calendly.com/owais" target="_blank" rel="noreferrer">📅 Schedule</a>
+          <a className="p-3 rounded-lg border text-center" href="mailto:oaak78692@gmail.com">📧 Email</a>
+          <a className="p-3 rounded-lg border text-center" href={buildUrl('linkedin', socials.linkedin)} target="_blank" rel="noreferrer">📋 LinkedIn</a>
+          <a className="p-3 rounded-lg border text-center" href={buildUrl('github', socials.github)} target="_blank" rel="noreferrer">🐙 GitHub</a>
+          <a className="p-3 rounded-lg border text-center" href="mailto:oaak78692@gmail.com">📅 Schedule</a>
         </div>
       </div>
     );
