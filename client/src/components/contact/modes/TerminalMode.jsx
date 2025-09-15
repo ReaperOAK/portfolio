@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import socials from '../../../data/socials';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const commands = {
@@ -21,14 +22,15 @@ const commands = {
   linkedin: {
     description: 'Open LinkedIn profile',
     action: () => {
-      window.open('https://linkedin.com/in/owaistech', '_blank');
+      // use canonical value from data/socials so links are managed in one place
+      window.open(socials.linkedin, '_blank');
       return 'Opening LinkedIn profile...';
     }
   },
   github: {
     description: 'Open GitHub profile',
     action: () => {
-      window.open('https://github.com/ReaperOAK', '_blank');
+      window.open(socials.github, '_blank');
       return 'Opening GitHub profile...';
     }
   },
@@ -36,7 +38,8 @@ const commands = {
     description: 'Download resume',
     action: () => {
       const link = document.createElement('a');
-      link.href = 'https://docs.google.com/document/d/1VBTwYLku3u3uDPyuh6PyQFK6QW-JMYjWvRT4SM7zNgA/export?format=pdf';
+      // use resume URL from data/socials (Google Docs export URL)
+      link.href = socials.resume;
       link.download = 'Owais_Khan_Resume.pdf';
       link.click();
       return 'Downloading resume...';
