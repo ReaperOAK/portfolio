@@ -124,19 +124,7 @@ export default function PersonaSection() {
           <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 6l6 6-6 6"/></svg>
         </button>
       </div>
-      <div className="flex justify-center gap-2 mt-4">
-        {Array.from({ length: total }).map((_, i) => (
-          <button
-            key={i}
-            className={`w-2.5 h-2.5 rounded-full ${i === getActive() ? 'bg-primary scale-125' : 'bg-slate-400 opacity-60'}`}
-            onClick={() => {
-              if (isAnimating) return;
-              setIndex(i + realStart);
-            }}
-            aria-label={`Go to slide ${i + 1}`}
-          />
-        ))}
-      </div>
+      {/* Indicators intentionally removed per design decision; navigation uses arrows only */}
     </SectionWrapper>
   );
 }
