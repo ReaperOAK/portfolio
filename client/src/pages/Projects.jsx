@@ -6,7 +6,7 @@ import WorkbenchGrid from "../components/projects/WorkbenchGrid";
 import ProjectFilterSwitch from "../components/projects/ProjectFilterSwitch";
 
 export default function Projects() {
-  const [selectedViewMode, setSelectedViewMode] = useState("code");
+  const [selectedViewMode, setSelectedViewMode] = useState("all");
   const { theme, themeVars } = useTheme();
   
   // SEO configuration

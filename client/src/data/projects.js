@@ -6,7 +6,7 @@ const projects = [
     icon: "🤖",
     tech: ["Python", "Selenium", "Docker"],
     type: "Solo",
-    status: "Evolving",
+    status: "Under Development",
     shortDesc: "An automated script to farm Microsoft Rewards points.",
     description: "A Python-based automation tool that uses Selenium to complete daily Microsoft Rewards activities, including PC and mobile searches, quizzes, and daily sets. It supports multiple accounts, can run in headless mode, and is containerized with Docker for easy deployment and scheduling.",
     decisions: [
@@ -33,7 +33,7 @@ const projects = [
     icon: "🎭",
     tech: ["Python", "Flask", "SQLAlchemy", "OpenAI API", "Celery"],
     type: "Solo",
-    status: "In Progress",
+    status: "Under development",
     shortDesc: "An automated content pipeline for 'faceless' Instagram accounts.",
     description: "A full-stack Python application that automates content creation and scheduling for Instagram. It uses the OpenAI API to generate both images and captions, and Celery for background task management, all managed through a Flask web dashboard. The system is designed to run 'faceless' theme pages with minimal manual intervention.",
     decisions: [
@@ -114,7 +114,7 @@ const projects = [
     icon: "🔄",
     tech: ["React", "Node.js", "MongoDB", "Socket.IO", "Tailwind CSS"],
     type: "Team",
-    status: "Complteted",
+    status: "Completed",
     shortDesc: "A P2P platform for users to trade skills and knowledge directly.",
     description: "A full-stack, real-time skill-swapping marketplace built on the MERN stack. The platform enables users to offer skills they possess and find others to learn from in a direct, peer-to-peer exchange. It includes real-time notifications for swap requests via Socket.IO, a user reputation system with reviews, and a dedicated admin dashboard for platform management.",
     decisions: [
@@ -222,7 +222,7 @@ const projects = [
     icon: "🧠",
     tech: ["Markdown", "GitHub", "Knowledge Management"],
     type: "Solo",
-    status: "Evolving",
+    status: "Under Development",
     shortDesc: "A personal operating system for managing relationships and social strategy.",
     description: "A private, Git-based system for managing social relationships and personal growth. It uses a structured set of Markdown files to track interactions, analyze social dynamics, and maintain deep context on key individuals. This serves as a strategic second brain for long-term social and reputational development.",
     decisions: [
@@ -247,7 +247,7 @@ const projects = [
     icon: "🤝",
     tech: ["React", "Node.js", "MongoDB", "Stripe", "Docker", "Tailwind CSS"],
     type: "Team",
-    status: "Complteted",
+    status: "Completed",
     shortDesc: "A full-stack, Airbnb-like P2P rental marketplace with integrated payments.",
     description: "A comprehensive peer-to-peer rental marketplace built with the MERN stack and containerized with Docker. The platform supports three user roles (user, host, admin), features secure payment processing via Stripe, and includes a complete booking and reservation system. It is designed for scalability and real-world deployment.",
     decisions: [
@@ -274,7 +274,7 @@ const projects = [
     icon: "🎟️",
     tech: ["React", "Vite", "Firebase", "Zustand", "Tailwind CSS"],
     type: "Team",
-    status: "Complteted",
+    status: "Completed",
     shortDesc: "A real-time, gamified event management platform using QR codes.",
     description: "A collaborative web application designed to manage and gamify events like treasure hunts. It features a real-time progress tracking system using QR code check-ins, with dedicated dashboards for administrators to manage the event and for participants to track their journey and view leaderboards. The platform is built on a serverless architecture using Firebase for the backend.",
     decisions: [
@@ -355,7 +355,7 @@ const projects = [
     icon: "♟️",
     tech: ["React", "Node.js", "SQL", "Tailwind CSS"],
     type: "Solo",
-    status: "🚀 Deployed",
+    status: "Deployed",
     shortDesc: "A multi-tenant online platform for chess academies.",
     description: "A comprehensive e-learning website designed to serve multiple chess academies from a single, unified platform. It features distinct portals for different academies (Aspire Chess Academy, KCA), offering course listings, event management, pro memberships, and educational content. The backend is powered by Node.js with a SQL database to manage all data.",
     decisions: [
@@ -382,7 +382,7 @@ const projects = [
     icon: "💻",
     tech: ["React", "Vite", "Tailwind", "Three.js", "Framer Motion", "Zustand"],
     type: "Solo",
-    status: "🚀 Deployed",
+    status: "Deployed",
     shortDesc: "An interactive, visitor-adaptive portfolio experience.",
     description: "A personal portfolio designed as a modular workbench, showcasing projects, skills, and personal identity. It features a unique visitor-based theming system that tailors the UI for recruiters, clients, or friends, and incorporates 3D elements with React Three Fiber.",
     decisions: [

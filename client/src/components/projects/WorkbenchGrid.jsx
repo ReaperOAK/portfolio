@@ -30,26 +30,24 @@ export default function WorkbenchGrid({ viewMode }) {
   const filterProjects = (list, mode) => {
     if (!mode || mode === 'all') return list;
 
-    const codeTech = new Set(['Node.js', 'Express', 'PostgreSQL', 'MySQL', 'MongoDB', 'Next.js', 'Django', 'Flask']);
-    const uiTech = new Set(['Tailwind', 'Framer Motion', 'React Three Fiber', 'React', 'Svelte', 'Vue.js', 'Angular']);
-    const rdTech = new Set(['React Three Fiber', 'Socket.IO', 'Mapbox', 'Three.js', 'Framer Motion', 'Socket.IO']);
+    // Only support status-based modes (normalize both project.status and mode to lowercase)
+    const statusModes = new Set(['evolving', 'in progress', 'under development', 'completed', 'deployed']);
+    const normalizedMode = String(mode || '').toLowerCase();
 
     return list.filter((p) => {
-      const tech = Array.isArray(p.tech) ? p.tech.map(t => String(t)) : [];
-      const tags = Array.isArray(p.tags) ? p.tags.map(t => String(t)) : [];
       const status = String(p.status || '').toLowerCase();
-      switch (mode) {
-        case 'code':
-          return tech.some(t => codeTech.has(t)) || tags.some(t => ['CRM','Client','Backend','API'].includes(t));
-        case 'ui':
-          return tech.some(t => uiTech.has(t)) || tags.some(t => ['UI','Design'].includes(t));
-        case 'rd':
-          return tech.some(t => rdTech.has(t)) || tags.some(t => ['3D','Visualization','Realtime'].includes(t));
-        case 'deployed':
+
+      // If the selected mode matches one of the status modes, filter by status
+      if (statusModes.has(normalizedMode)) {
+        if (normalizedMode === 'deployed') {
           return Boolean(p.live) || status.includes('deployed');
-        default:
-          return true;
+        }
+        // match status substring (handles small variations and emojis)
+        return status.includes(normalizedMode.replace(/ /g, '')) || status.includes(normalizedMode);
       }
+
+      // Default: if mode is unknown, show all
+      return true;
     });
   };
 

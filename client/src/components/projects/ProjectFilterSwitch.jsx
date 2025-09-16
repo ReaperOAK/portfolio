@@ -3,11 +3,12 @@ import { createPortal } from 'react-dom';
 import { useTheme } from "../../contexts/ThemeContext";
 import { Code2, Palette, Brain, Rocket } from "lucide-react";
 
+// Status-based filters that map to values found in `client/src/data/projects.js`
 const VIEW_MODES = [
-  { label: "Codebase-heavy", value: "code", icon: <Code2 size={18} /> },
-  { label: "UI-intensive", value: "ui", icon: <Palette size={18} /> },
-  { label: "R&D / Idea-heavy", value: "rd", icon: <Brain size={18} /> },
-  { label: "Deployed & In Use", value: "deployed", icon: <Rocket size={18} /> },
+  { label: "All", value: "all", icon: <Code2 size={18} /> },
+  { label: "Under Development", value: "under development", icon: <Palette size={18} /> },
+  { label: "Completed", value: "completed", icon: <Brain size={18} /> },
+  { label: "Deployed", value: "deployed", icon: <Rocket size={18} /> },
 ];
 
 export default function ProjectFilterSwitch({ selected, onSelect }) {
