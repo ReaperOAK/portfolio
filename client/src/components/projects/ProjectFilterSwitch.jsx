@@ -18,6 +18,7 @@ export default function ProjectFilterSwitch({ selected, onSelect }) {
   const [showRight, setShowRight] = useState(false);
   const [sliderValue, setSliderValue] = useState(0);
   const [sliderMax, setSliderMax] = useState(0);
+  const [isSmallScreen, setIsSmallScreen] = useState(typeof window !== 'undefined' ? window.matchMedia('(max-width: 639px)').matches : false);
 
   const updateIndicators = () => {
     const el = scrollRef.current;
@@ -58,9 +59,21 @@ export default function ProjectFilterSwitch({ selected, onSelect }) {
   useEffect(() => {
     if (typeof window === 'undefined') return;
     updateIndicators();
-    const onResize = () => updateIndicators();
+    const onResize = () => {
+      updateIndicators();
+      setIsSmallScreen(window.matchMedia('(max-width: 639px)').matches);
+    };
     window.addEventListener('resize', onResize);
-    return () => window.removeEventListener('resize', onResize);
+    // also listen for matchMedia changes for more responsive updates
+    const mq = window.matchMedia('(max-width: 639px)');
+    const mqListener = (e) => setIsSmallScreen(e.matches);
+    if (mq.addEventListener) mq.addEventListener('change', mqListener);
+    else mq.addListener(mqListener);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      if (mq.removeEventListener) mq.removeEventListener('change', mqListener);
+      else mq.removeListener(mqListener);
+    };
   }, []);
 
   // Responsive container:
@@ -101,24 +114,26 @@ export default function ProjectFilterSwitch({ selected, onSelect }) {
             ))}
           </div>
 
-          {/* slider control replaces arrows/pulse; visible but disabled when no overflow */}
-          <div className="mt-2 px-1">
-            <input
-              type="range"
-              min={0}
-              max={sliderMax}
-              value={sliderValue}
-              onInput={onSliderInput}
-              aria-label="Scroll project filters"
-              className="w-[calc(100vw-96px)] sm:w-full h-2 bg-transparent appearance-none"
-              disabled={sliderMax === 0}
-              style={{ accentColor: t.primary }}
-            />
-            {/* provide visual hint when disabled */}
-            {sliderMax === 0 && (
-              <div className="text-xs text-center opacity-60 mt-1" style={{ color: t.primary }}>No more filters</div>
-            )}
-          </div>
+          {/* slider control replaces arrows/pulse; only show on small screens or when overflow exists */}
+          {(isSmallScreen || sliderMax > 0) && (
+            <div className="mt-2 px-1">
+              <input
+                type="range"
+                min={0}
+                max={sliderMax}
+                value={sliderValue}
+                onInput={onSliderInput}
+                aria-label="Scroll project filters"
+                className="w-[calc(100vw-96px)] sm:w-full h-2 bg-transparent appearance-none"
+                disabled={sliderMax === 0}
+                style={{ accentColor: t.primary }}
+              />
+              {/* provide visual hint when disabled (only visible on small screens) */}
+              {isSmallScreen && sliderMax === 0 && (
+                <div className="text-xs text-center opacity-60 mt-1" style={{ color: t.primary }}>No more filters</div>
+              )}
+            </div>
+          )}
         </div>
       </div>
       <style>{`/* hide scrollbar for Webkit */ .scrollbar-none::-webkit-scrollbar { display: none; } .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; } .sr-only:focus:not(:focus-visible) { position: static; width: auto; height: auto; clip: auto; clip-path: none; white-space: normal; }`}</style>
