@@ -1,7 +1,7 @@
 
 import { useTheme } from '../contexts/ThemeContext';
 import { motion } from 'framer-motion';
-import React, { useEffect, Suspense, lazy, useRef } from 'react';
+import React, { useEffect, Suspense, lazy, useRef, useState } from 'react';
 import { useSEO, SEOHead, seoConfigs } from '../hooks/useSEO.jsx';
 import usePrefetchOnViewport from '../hooks/usePrefetchOnViewport';
 const WireframeIcosahedronBg = lazy(() => import('../components/WireframeIcosahedron'));
@@ -30,6 +30,8 @@ export default function Home() {
       // noop
     }
   };
+
+  const [showCards, setShowCards] = useState(false);
 
   useEffect(() => {
     // Delay cards until after hero/wireframe anim (e.g. 1.6s)

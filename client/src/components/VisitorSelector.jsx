@@ -72,7 +72,7 @@ export default function VisitorSelector({ open, onClose }) {
   return (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 z-50 flex flex-row md:flex-row flex-col md:h-screen h-full w-full bg-black"
+        className="fixed inset-0 z-50 flex flex-col md:flex-row h-full w-full bg-black"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -85,7 +85,7 @@ export default function VisitorSelector({ open, onClose }) {
             <motion.button
               key={v.key}
               type="button"
-              className="group relative flex-1 flex flex-col items-center justify-end overflow-hidden outline-none focus:z-20"
+              className="group relative flex-1 flex flex-col items-center justify-end overflow-hidden outline-none focus:z-20 min-h-[160px] md:min-h-0"
               style={{ minWidth: 0, minHeight: 0 }}
               onMouseEnter={() => setHovered(idx)}
               onMouseLeave={() => setHovered(null)}
@@ -115,7 +115,7 @@ export default function VisitorSelector({ open, onClose }) {
               <span className="absolute inset-0 bg-black/60 group-hover:bg-black/40 group-focus:bg-black/40 transition-colors z-10" />
               <span className="relative z-20 flex flex-col items-center justify-center w-full h-full p-6 md:p-10">
                 <motion.h2
-                  className="text-2xl md:text-3xl font-bold text-white drop-shadow mb-2 transition-all"
+                  className="text-xl sm:text-2xl md:text-3xl font-bold text-white drop-shadow mb-2 transition-all"
                   initial={false}
                   animate={{
                     opacity: isActive ? 1 : 0.7,

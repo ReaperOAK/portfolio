@@ -31,3 +31,4 @@ yarn-error.log*
 # VSCode
 .vscode/
 /terminal_logs
+/.playwright-mcp

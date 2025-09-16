@@ -15,8 +15,16 @@ html {
 
 
 h1 {
-  font-size: 3.2em;
+  /* Responsive heading using clamp to scale between devices */
+  font-size: clamp(1.6rem, 1.6rem + 2.4vw, 3.2rem);
   line-height: 1.1;
+}
+
+/* Make images and media responsive by default */
+img, video, picture {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 button {

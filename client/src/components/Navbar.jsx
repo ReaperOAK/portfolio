@@ -32,7 +32,7 @@ export default function Navbar() {
       style={{ background: themeVars.background, color: themeVars.foreground }}
       aria-label="Main navigation"
     >
-      <div className="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
         {/* Logo */}
         <motion.div
           className="font-extrabold text-2xl tracking-tight flex items-center gap-2"
@@ -72,6 +72,7 @@ export default function Navbar() {
         <button
           className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary"
           aria-label="Open menu"
+          aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((v) => !v)}
         >
           <span className="block w-6 h-0.5 bg-current mb-1"></span>
@@ -82,7 +83,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <motion.div
-          className="md:hidden flex flex-col gap-4 px-4 pb-4 bg-opacity-95"
+          className="md:hidden flex flex-col gap-3 px-4 pb-4 bg-opacity-95"
           style={{ background: themeVars.background, color: themeVars.foreground }}
           initial={{ y: -40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -92,7 +93,7 @@ export default function Navbar() {
             <Link
               key={link.to}
               to={link.to}
-              className="font-medium py-2 px-2 rounded-lg"
+              className="font-medium py-2 px-3 rounded-lg text-left w-full"
               style={{ color: themeVars.foreground, background: location.pathname === link.to ? themeVars.accent : 'transparent' }}
               onClick={() => setMobileOpen(false)}
               tabIndex={0}

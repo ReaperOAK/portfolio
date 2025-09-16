@@ -30,8 +30,8 @@ export default function ContactModes({ currentMode, setCurrentMode }) {
   const subtle = themeVars?.subtle || '#2E1065';
 
   return (
-    <section className="relative min-h-screen py-20 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section className="relative py-12 sm:py-16 px-4 sm:px-6">
+      <div className="max-w-4xl mx-auto">
         {/* Mode Selector */}
         <motion.div
           className="flex justify-center mb-12"
@@ -40,7 +40,7 @@ export default function ContactModes({ currentMode, setCurrentMode }) {
           transition={{ duration: 0.6 }}
         >
           <div 
-            className="flex p-2 rounded-2xl border backdrop-blur-sm"
+            className="flex p-2 rounded-2xl border backdrop-blur-sm flex-wrap"
             style={{ 
               backgroundColor: `${subtle}80`,
               borderColor: `${primary}40`

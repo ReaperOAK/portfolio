@@ -15,23 +15,27 @@ export default function HeroSection({ onEnterContact }) {
   const gradient = themeVars?.gradient || ['#FB7185', '#C084FC'];
 
   return (
-  <section ref={heroRef} className="relative h-screen flex flex-col items-center justify-center px-6">
+  <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center px-6 sm:px-8">
       {/* Animated background gradients */}
       <div
-        className="absolute w-96 h-96 rounded-full blur-3xl opacity-30 animate-pulse"
+        className="absolute rounded-full blur-3xl opacity-30 animate-pulse"
         style={{ 
           background: `linear-gradient(135deg, ${gradient[0]}, ${gradient[1]})`,
-          top: '20%',
-          left: '10%'
+          width: 'min(40vw, 384px)',
+          height: 'min(40vw, 384px)',
+          top: '15%',
+          left: '6%'
         }}
         aria-hidden="true"
       />
       <div
-        className="absolute w-80 h-80 rounded-full blur-3xl opacity-20 animate-pulse"
+        className="absolute rounded-full blur-3xl opacity-20 animate-pulse"
         style={{ 
           background: `linear-gradient(225deg, ${gradient[1]}, ${gradient[0]})`,
-          bottom: '30%',
-          right: '15%',
+          width: 'min(34vw, 320px)',
+          height: 'min(34vw, 320px)',
+          bottom: '22%',
+          right: '8%',
           animationDelay: '1s'
         }}
         aria-hidden="true"
@@ -45,7 +49,7 @@ export default function HeroSection({ onEnterContact }) {
         transition={{ duration: 0.8, delay: 0.2 }}
       >
         <motion.h1
-          className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+          className="text-3xl sm:text-4xl md:text-6xl font-bold mb-6 leading-tight"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -61,7 +65,7 @@ export default function HeroSection({ onEnterContact }) {
         </motion.h1>
 
         <motion.p
-          className="text-xl md:text-2xl opacity-80 mb-12 max-w-2xl mx-auto"
+          className="text-base sm:text-lg md:text-xl opacity-80 mb-12 max-w-xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -84,7 +88,7 @@ export default function HeroSection({ onEnterContact }) {
         {/* CTA Button */}
         <motion.button
           onClick={onEnterContact}
-          className="group relative px-8 py-4 text-lg font-semibold rounded-full border-2 transition-all duration-300 hover:scale-105 active:scale-95"
+          className="group relative px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-full border-2 transition-all duration-300 hover:scale-105 active:scale-95"
           style={{ 
             borderColor: primary,
             backgroundColor: 'transparent',

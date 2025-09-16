@@ -47,14 +47,22 @@ export default function ProjectTile({ project = {}, allProjects = [] }) {
   );
 
   const targetSlug = project.slug || slugify(project.title || '');
+  const href = `/project/${targetSlug}`;
 
   return (
-    <motion.div
+    <motion.a
+      href={href}
       className={`relative flex flex-col p-3 rounded-xl overflow-hidden h-full ${expanded ? "z-20" : ""} group cursor-pointer`}
       style={{ transition: "box-shadow 0.2s, transform 0.2s" }}
       tabIndex={0}
       aria-expanded={expanded}
       role={project.slug ? "link" : undefined}
+      onClick={(e) => {
+        // allow normal modifier clicks to open in new tab; otherwise navigate using react-router
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        targetSlug && navigate(`/project/${targetSlug}`);
+      }}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
@@ -66,8 +74,7 @@ export default function ProjectTile({ project = {}, allProjects = [] }) {
       animate={{ rotateY: 0 }}
       whileHover={{ boxShadow: `0 10px 40px ${t.primary}22` }}
       transition={{ type: "spring", stiffness: 240, damping: 26 }}
-  onClick={() => targetSlug && navigate(`/project/${targetSlug}`)}
-    >
+  >
       {/* Hover quick actions */}
       <div className="absolute right-3 top-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex gap-2">
         {project.github && (
@@ -140,7 +147,7 @@ export default function ProjectTile({ project = {}, allProjects = [] }) {
       </div>
 
   {/* tech wiring removed */}
-    </motion.div>
+    </motion.a>
   );
 }
 

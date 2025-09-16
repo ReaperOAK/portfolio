@@ -11,7 +11,7 @@ export default function ProjectMediaCarousel({ screenshots = [] }) {
 
   return (
     <div
-      className="w-full rounded-2xl overflow-hidden relative h-64 md:h-80 lg:h-96"
+      className="w-full rounded-2xl overflow-hidden relative h-48 sm:h-56 md:h-72 lg:h-80"
       style={{ border: `1px solid ${themeVars.primary}10`, background: themeVars.background }}
       role="region"
       aria-roledescription="carousel"
@@ -27,6 +27,7 @@ export default function ProjectMediaCarousel({ screenshots = [] }) {
         alt={`Screenshot ${idx + 1}`}
         className="w-full h-full object-cover block"
         loading="lazy"
+        style={{ aspectRatio: '16/9' }}
       />
 
       {screenshots.length > 1 && (

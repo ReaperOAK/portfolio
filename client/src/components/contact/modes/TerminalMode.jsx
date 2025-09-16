@@ -288,7 +288,7 @@ export default function TerminalMode() {
         {/* Terminal Content */}
         <div
           ref={terminalRef}
-          className="h-96 overflow-y-auto p-4 bg-black text-green-400"
+          className="max-h-[60vh] sm:max-h-[48vh] md:max-h-[60vh] overflow-y-auto p-4 bg-black text-green-400"
           onClick={() => inputRef.current?.focus()}
           role="log"
           aria-live="polite"

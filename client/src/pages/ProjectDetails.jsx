@@ -25,13 +25,13 @@ export default function ProjectDetails() {
 
   if (!finalProject) {
     return (
-      <div className="w-full min-h-screen flex items-center justify-center" style={{ background: themeVars.background, color: themeVars.foreground }}>
+      <div className="w-full min-h-[40vh] flex items-center justify-center" style={{ background: themeVars.background, color: themeVars.foreground }}>
         <h2 className="text-2xl font-bold">Project not found</h2>
       </div>
     );
   }
   return (
-    <main className="w-full min-h-screen px-4 py-12 md:py-20 flex justify-center" style={{ background: themeVars.background, color: themeVars.foreground }}>
+    <main className="w-full min-h-[70vh] px-4 py-12 md:py-20 flex justify-center" style={{ background: themeVars.background, color: themeVars.foreground }}>
       <article className="max-w-6xl w-full space-y-8">
         {/* Header: stacked hero */}
         <header className="rounded-2xl p-6 md:p-8" style={{ background: themeVars.subtle, border: `1px solid ${themeVars.primary}10` }}>
