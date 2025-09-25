@@ -4,6 +4,8 @@ import HireButton from './HireButton';
 import Testimonial from './Testimonial';
 import useTestimonials from '../../hooks/useTestimonials';
 
+// `goTo` is provided by useTestimonials; ensure it's used for dot navigation below
+
 export default function FinalCTA() {
   const { themeVars } = useTheme();
 
@@ -12,7 +14,7 @@ export default function FinalCTA() {
   const gradient = themeVars?.gradient || ['#FB7185', '#C084FC'];
 
   // use testimonials hook (rotation + controls)
-  const { reviewsList, current, prev, next } = useTestimonials();
+  const { reviewsList, current, prev, next, goTo } = useTestimonials();
 
   const handleHireMe = () => {
     window.open('mailto:oaak78692@gmail.com?subject=Let\'s Work Together!&body=Hi Owais,%0D%0A%0D%0AI\'d like to discuss a project with you.', '_blank');

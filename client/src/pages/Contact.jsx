@@ -35,7 +35,33 @@ export default function Contact() {
         />
         
         {/* Hero Section */}
-        <HeroSection onEnterContact={() => setCurrentMode('conversational')} />
+        <HeroSection onEnterContact={() => {
+          // set mode first
+          setCurrentMode('conversational');
+
+          // then smooth-scroll to the conversational panel and focus its first input
+          // poll for the element because mode switch may cause a render delay
+          const focusConversation = (attempt = 0) => {
+            const container = document.getElementById('conversational-mode');
+            const emailInput = document.getElementById('email');
+            if (container) {
+              container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            if (emailInput) {
+              // small timeout to ensure scroll completes before focus
+              setTimeout(() => {
+                emailInput.focus();
+              }, 300);
+              return;
+            }
+            // retry a few times
+            if (attempt < 8) {
+              setTimeout(() => focusConversation(attempt + 1), 200);
+            }
+          };
+
+          focusConversation();
+        }} />
         
         {/* Main Contact Interaction Zone */}
         <ContactModes currentMode={currentMode} setCurrentMode={setCurrentMode} />

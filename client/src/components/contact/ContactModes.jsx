@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../../contexts/ThemeContext';
 import ConversationalMode from './modes/ConversationalMode';
 import TerminalMode from './modes/TerminalMode';
+import ContactPortal from './ContactPortal';
 
 const modes = [
   { id: 'conversational', label: 'Conversational', icon: '🗨️' },
@@ -90,7 +91,7 @@ export default function ContactModes({ currentMode, setCurrentMode }) {
                 exit={{ opacity: 0, scale: 1.1 }}
                 transition={{ duration: 0.5 }}
               >
-                <PortalMode />
+                <ContactPortal />
               </motion.div>
             )}
 
