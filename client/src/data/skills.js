@@ -35,7 +35,12 @@ export const skills = [
   { name: "Playwright", logo: "/logo/playwright.png", orbit: "outer" },
   { name: "System Design", logo: "/logo/architecture.png", orbit: "outer" },
   { name: "UI/UX Thinking", logo: "/logo/design.png", orbit: "outer" },
-  { name: "Agile & Collaboration", logo: "/logo/team.png", orbit: "outer" }
+  { name: "Agile & Collaboration", logo: "/logo/team.png", orbit: "outer" },
+  { name: "Aptos Blockchain", logo: "/logo/aptos.png", orbit: "outer" },
+  { name: "Move Smart Contracts", logo: "/logo/move.png", orbit: "outer" },
+  { name: "Web3 & NFTs", logo: "/logo/web3.png", orbit: "outer" },
+  { name: "Cryptography (RSA/JWT)", logo: "/logo/crypto.png", orbit: "outer" },
+  { name: "PWA Development", logo: "/logo/PWA.png", orbit: "outer" }
 ].map((skill, i, arr) => {
   const orbitSkills = arr.filter(s => s.orbit === skill.orbit);
   const orbitIndex = orbitSkills.indexOf(skill);

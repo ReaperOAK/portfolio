@@ -36,6 +36,21 @@ export const facts = [
     icon: "Sparkle",
   },
   {
+    label: "Web3 breakthrough",
+    value: "Built a gasless NFT ticketing system on Aptos—blockchain with zero friction.",
+    icon: "Blocks",
+  },
+  {
+    label: "Crypto philosophy",
+    value: "Decentralization is trust in code, not people. RSA signatures are truth.",
+    icon: "Lock",
+  },
+  {
+    label: "Blockchain mindset",
+    value: "Smart contracts are just logic with permanence—Move is Rust for assets.",
+    icon: "FileCode",
+  },
+  {
     label: "Dev philosophy",
     value: "Build small, scale fast, break nothing.",
     icon: "Hammer",

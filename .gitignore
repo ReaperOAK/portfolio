@@ -32,3 +32,4 @@ yarn-error.log*
 .vscode/
 /terminal_logs
 /.playwright-mcp
+/client/public/logo

@@ -2,6 +2,44 @@
 
 const projects = [
   {
+    title: "TicketVault: Decentralized Ticketing Platform",
+    icon: "🎫",
+    tech: ["Next.js", "Node.js", "Express", "MongoDB", "Aptos Blockchain", "Move", "JWT", "AI/NLP"],
+    type: "Solo",
+    status: "Completed (Hackathon)",
+    shortDesc: "A Web 2.5 hybrid ticketing platform that leverages Aptos blockchain for NFT tickets with gasless transactions and offline verification.",
+    description: "TicketVault is a production-grade decentralized ticketing platform built on Aptos blockchain that solves critical industry problems: fraud, scalping, and blockchain adoption barriers. It implements a 'Web 2.5' hybrid architecture where tickets are NFTs with verifiable ownership, buyers enjoy gasless transactions via a relayer service, and venue staff can validate tickets offline using cryptographically signed JWT QR codes. Post-event, tickets transform into collectible digital souvenirs. The platform includes three specialized frontends (organizer dashboard, buyer marketplace, redeemer PWA), a robust Express backend with AI-powered analytics concierge, and a Move smart contract managing the complete ticket lifecycle with state transitions (LOCKED → ADMITTED → SOUVENIR).",
+    decisions: [
+      "Architected a Web 2.5 hybrid system combining Web2 UX (gasless, familiar flow) with Web3 security (blockchain-based ownership, immutability).",
+      "Implemented true gasless transactions using a relayer account pattern where the backend sponsors all on-chain operations, abstracting blockchain complexity from end users.",
+      "Designed an offline-first redemption system using RSA-signed JWTs in QR codes, enabling venue staff to cryptographically verify ticket authenticity without internet connectivity.",
+      "Built three distinct Next.js applications for three user personas (Organizer, Buyer, Redeemer) with role-specific UX optimizations and security constraints.",
+      "Created a Move smart contract with a state machine pattern for tickets (STATE_LOCKED → STATE_ADMITTED → STATE_SOUVENIR) to manage the complete event lifecycle.",
+      "Implemented MongoDB as a high-speed cache layer mirroring on-chain data, enabling sub-second query responses while maintaining blockchain as the single source of truth.",
+      "Developed a template-based NLQ (Natural Language Query) AI Concierge using regex and MongoDB aggregation pipelines to provide organizers with instant analytics insights.",
+      "Established comprehensive security layers: rate limiting (general/auth/CAPTCHA/minting), NoSQL injection prevention, input sanitization, and role-based access control.",
+      "Used RSA public/private key cryptography for JWT signatures, allowing distributed offline verification while maintaining centralized trust anchor.",
+      "Designed the Redeemer app as a Progressive Web App (PWA) for offline-first operation, enabling reliable ticket validation even in poor network conditions at venues."
+    ],
+    tags: ["Blockchain", "Web3", "Aptos", "Move", "NFT", "Decentralized", "Next.js", "Full-stack", "AI", "Cryptography", "PWA", "Smart Contracts"],
+    github: "https://github.com/ReaperOAK/ticketvault",
+    live: "",
+    screenshots: [],
+    devLogs: [
+      "Designed the complete system architecture with three-layer separation: Frontend (Next.js) → Backend (Express) → Blockchain (Aptos).",
+      "Implemented the Move smart contract with comprehensive ticket lifecycle management and authorization patterns.",
+      "Built the RelayerService for true gasless transactions, using a pre-funded Aptos account to sponsor all user operations.",
+      "Developed the JWT-based offline verification system with RSA key pair generation and secure public key distribution.",
+      "Created the AI Concierge with 6 pre-defined query templates and dynamic MongoDB aggregation pipeline generation.",
+      "Implemented multi-layer security: sanitization middleware, rate limiters (4 tiers), and CAPTCHA integration for bot prevention.",
+      "Built the Organizer dashboard with real-time analytics, redeemer authorization, and event management capabilities.",
+      "Developed the Buyer marketplace with wallet integration (Petra/Martian), CAPTCHA-protected minting, and NFT ticket visualization.",
+      "Created the Redeemer PWA with QR code scanning, offline JWT verification, and batch syncing for redemptions.",
+      "Established a formal API contract (OpenAPI 3.0) defining all endpoints, request/response schemas, and error codes.",
+      "Implemented comprehensive error handling, logging, and monitoring infrastructure for production readiness."
+    ]
+  },
+  {
     title: "Microsoft Rewards Farmer",
     icon: "🤖",
     tech: ["Python", "Selenium", "Docker"],
