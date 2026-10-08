@@ -1,49 +1,38 @@
+/* Colour tokens are registered so a universe change interpolates instead of snapping.
+   Initial values are Blueprint's, so first paint matches the default universe. */
+@property --u-bg      { syntax: '<color>'; inherits: true; initial-value: #F2F4F2 }
+@property --u-bg2     { syntax: '<color>'; inherits: true; initial-value: #E4E8E6 }
+@property --u-fg      { syntax: '<color>'; inherits: true; initial-value: #12181C }
+@property --u-dim     { syntax: '<color>'; inherits: true; initial-value: #5C6B72 }
+@property --u-accent  { syntax: '<color>'; inherits: true; initial-value: #0E7C86 }
+@property --u-accent2 { syntax: '<color>'; inherits: true; initial-value: #C2410C }
+@property --u-line    { syntax: '<color>'; inherits: true; initial-value: #C3CDCC }
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --morph: 900ms cubic-bezier(.65,.02,.24,1);
+  --pad: clamp(16px, 4vw, 56px);
+  --u-display: var(--font-blueprint-sans), ui-sans-serif, system-ui, sans-serif;
+  --u-body: var(--font-blueprint-sans), ui-sans-serif, system-ui, sans-serif;
+  --u-mono: var(--font-blueprint-mono), ui-monospace, Menlo, monospace;
+  --u-display-weight: 600;
+  --u-tracking: -0.01em;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  background: var(--u-bg);
+  color: var(--u-fg);
+  font-family: var(--u-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--morph), color var(--morph);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+:focus-visible { outline: 2px solid var(--u-accent); outline-offset: 2px; }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
