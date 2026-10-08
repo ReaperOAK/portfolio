@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Blocks pushes that add employer product names or the wrong title (employment NDA).
+# Enable once per clone: git config core.hooksPath .githooks
+set -euo pipefail
+pattern='pindow|crosbird|opacity ai|founding engineer'
+zero=0000000000000000000000000000000000000000
+while read -r _ local_sha _ remote_sha; do
+  [ "$local_sha" = "$zero" ] && continue
+  range=$([ "$remote_sha" = "$zero" ] && echo "$local_sha" || echo "$remote_sha..$local_sha")
+  if hits=$(git log -p --no-color "$range" -- . ':!*.lock' ':!*lock.yaml' ':!.githooks' | grep -E '^\+' | grep -inE "$pattern"); then
+    echo "pre-push: NDA-protected term in outgoing commits:" >&2
+    echo "$hits" | head -20 >&2
+    exit 1
+  fi
+done

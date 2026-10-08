@@ -33,3 +33,5 @@ yarn-error.log*
 /terminal_logs
 /.playwright-mcp
 /client/public/logo
+
+.vercel
