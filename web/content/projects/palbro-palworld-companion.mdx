@@ -1,0 +1,37 @@
+---
+slug: palbro-palworld-companion
+title: PalBro
+tagline: A web-based Palworld companion app for tracking and managing Pals.
+stack:
+  - Node.js
+  - Express
+  - EJS
+role: Solo
+period: Completed
+metrics: []
+decisions:
+  - >-
+    Chose Node.js and Express for a lightweight and fast backend, ideal for a
+    simple data-driven application.
+  - >-
+    Used EJS for server-side rendering to keep the frontend simple and directly
+    tied to the backend logic without a complex client-side framework.
+  - >-
+    Structured the game data in separate JavaScript files for easy management
+    and updates as the game evolves.
+  - >-
+    Focused on a clean, functional UI to provide a straightforward user
+    experience for gamers.
+devlogs:
+  - Set up the initial Express server and view engine configuration.
+  - >-
+    Structured the routes to handle different views like the main Pal database
+    and deployed Pals.
+  - Populated the `data.js` and `palNames.js` with initial game data.
+  - Created the EJS templates to render the Pal data dynamically.
+  - 'Styled the frontend for a simple, usable interface.'
+links:
+  github: 'https://github.com/ReaperOAK/palbro'
+nda: false
+---
+A server-side rendered web application built with Node.js and Express. It serves as a utility for the game Palworld, allowing users to view, track, and manage their collection of Pals. The application uses EJS for templating to dynamically generate pages based on game data.

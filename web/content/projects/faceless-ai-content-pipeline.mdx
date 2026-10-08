@@ -1,0 +1,34 @@
+---
+slug: faceless-ai-content-pipeline
+title: Faceless AI Content Pipeline
+tagline: An automated content pipeline for 'faceless' Instagram accounts.
+stack:
+  - Python
+  - Flask
+  - SQLAlchemy
+  - OpenAI API
+  - Celery
+role: Solo
+period: Under development
+metrics: []
+decisions:
+  - Used Flask for a lightweight and flexible web framework.
+  - Integrated OpenAI's DALL-E and GPT models for automated content creation.
+  - Used SQLAlchemy as an ORM for robust database interactions.
+  - >-
+    Implemented Celery for reliable background job scheduling and execution of
+    posts.
+  - Designed a simple web dashboard for users to manage their content pipeline.
+devlogs:
+  - Set up the Flask application with SQLAlchemy for database modeling.
+  - Developed the content_generator module to interface with the OpenAI API.
+  - Built the instagram_publisher and instagram_scheduler utilities.
+  - >-
+    Designed the frontend dashboard using HTML templates for managing the
+    system.
+  - Documented the project workflow and milestones.
+links:
+  github: 'https://github.com/ReaperOAK/faceless'
+nda: false
+---
+A full-stack Python application that automates content creation and scheduling for Instagram. It uses the OpenAI API to generate both images and captions, and Celery for background task management, all managed through a Flask web dashboard. The system is designed to run 'faceless' theme pages with minimal manual intervention.

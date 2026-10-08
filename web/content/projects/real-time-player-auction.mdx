@@ -1,0 +1,51 @@
+---
+slug: real-time-player-auction
+title: Real-Time Player Auction
+tagline: 'A real-time, multi-user platform for live player auctions.'
+stack:
+  - React
+  - Node.js
+  - MySQL
+  - Socket.IO
+  - Tailwind
+role: Solo
+period: Deployed
+metrics: []
+decisions:
+  - >-
+    Chose a full-stack architecture with a decoupled frontend and backend for
+    scalability and maintainability.
+  - >-
+    Integrated Socket.IO for real-time, low-latency communication, which is
+    critical for a live auction environment.
+  - >-
+    Implemented role-based access control (Admin, Team, Viewer) to provide
+    tailored experiences and secure auction management.
+  - >-
+    Used a MySQL database to ensure data integrity and handle relational data
+    like players, teams, and bids.
+  - >-
+    Designed separate, intuitive dashboards for each user role to streamline the
+    auction process.
+devlogs:
+  - >-
+    Set up the backend with Node.js, Express, and MySQL, defining the core
+    database schema.
+  - >-
+    Integrated Socket.IO on both client and server to establish the real-time
+    data layer.
+  - >-
+    Built the React frontend with Vite, creating distinct dashboards for Admin,
+    Team, and Viewer roles.
+  - >-
+    Developed the authentication flow and protected routes to manage user
+    permissions.
+  - >-
+    Configured and deployed the frontend to Vercel and the backend to Render,
+    establishing a full CI/CD pipeline.
+links:
+  github: 'https://github.com/ReaperOAK/player-auction'
+  live: 'https://player-auction-eight.vercel.app'
+nda: false
+---
+A full-stack web application that facilitates live player auctions with role-based dashboards for admins, teams, and viewers. Built with a Node.js/Express backend, MySQL database, and a React frontend, it uses Socket.IO to deliver real-time updates for bidding, player assignments, and auction status to all participants.

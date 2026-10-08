@@ -2,7 +2,7 @@
 # Blocks pushes that add employer product names or the wrong title (employment NDA).
 # Enable once per clone: git config core.hooksPath .githooks
 set -euo pipefail
-pattern='pindow|crosbird|opacity ai|founding engineer'
+pattern=$(cat "$(git rev-parse --show-toplevel)/.githooks/nda-terms")
 zero=0000000000000000000000000000000000000000
 while read -r _ local_sha _ remote_sha; do
   [ "$local_sha" = "$zero" ] && continue

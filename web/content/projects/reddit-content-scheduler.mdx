@@ -1,0 +1,46 @@
+---
+slug: reddit-content-scheduler
+title: Reddit Content Scheduler
+tagline: Automated Python script for scheduling and posting content to Reddit.
+stack:
+  - Python
+  - PRAW
+  - schedule
+role: Solo
+period: Completed
+metrics: []
+decisions:
+  - >-
+    Utilized the PRAW library for a high-level, intuitive interface with the
+    Reddit API.
+  - >-
+    Decoupled post content and scheduling from the core logic by using a
+    `posts.json` file, allowing for easy updates without code changes.
+  - >-
+    Integrated the `schedule` library for a simple, human-readable syntax to
+    manage posting times.
+  - >-
+    Stored all API credentials and settings in a `config.ini` file to keep
+    sensitive information separate from the application logic.
+  - >-
+    Included a `setup.bat` script to streamline the installation process for
+    Windows users.
+devlogs:
+  - >-
+    Configured Reddit API credentials and initialized PRAW for authenticated
+    requests.
+  - >-
+    Designed the JSON schema for `posts.json` to flexibly handle multiple posts,
+    subreddits, and schedules.
+  - Implemented the core posting functionality using `praw.subreddit.submit`.
+  - >-
+    Integrated the `schedule` library to run the posting task at intervals
+    defined in the config.
+  - >-
+    Finalized the project with a `requirements.txt` file and a setup script for
+    ease of use.
+links:
+  github: 'https://github.com/ReaperOAK/reddit-post'
+nda: false
+---
+A Python script designed for content automation on Reddit. It uses the PRAW library to interface with the Reddit API, reading post schedules from a JSON file and publishing them to specified subreddits at configured times. The tool is built for efficiency and simplifies social media management workflows for Reddit.
