@@ -14,9 +14,12 @@ Deviations from the plan, on purpose: `REGISTERED` grows one universe at a time 
 `loader` stage slot was added (see `docs/inspo.md`); harvest skips the influencer scraper and the Microsoft
 Rewards bot; the 2025 timeline entry no longer mentions a side venture (exclusivity clause).
 
-Blocked on Owais: the Vercel project `reaper-oak` is linked at the repo root, so it cannot build. Set Root
-Directory to `web` in the Vercel dashboard. The local Vercel CLI token has expired, so this cannot be checked
-from here.
+**Live: <https://reaperoak.vercel.app/hire>** — Vercel project `reaperoak` in Owais's personal team, Root
+Directory `web`. Deploy with `pnpm dlx vercel@latest deploy --prod` from the repo root.
+
+Not yet automatic: the personal Vercel account has no GitHub login connection, so pushes do not deploy.
+Connect GitHub in Vercel account settings, then `vercel git connect`. The older `reaper-oak` project belongs
+to a different Vercel account and was left untouched.
 
 NDA guard: `git config core.hooksPath .githooks` once per clone. Terms live in `.githooks/nda-terms`, shared
 with the content test.
