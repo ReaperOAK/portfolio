@@ -38,7 +38,7 @@ export const story = [
   {
     year: "2025",
     title: "From Code to Companies",
-    desc: "Now working with a startup to build their next million-dollar app while simultaneously laying the foundation for my own venture. Not just shipping products — building ecosystems.",
+    desc: "Joined a startup as a Senior Developer, building a generative-AI media platform and a creator marketplace. Owning backend and infrastructure, and the on-call that comes with it.",
     colorKey: "primary"
   }
 ];

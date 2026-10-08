@@ -225,11 +225,6 @@ export const facts = [
     icon: "Trophy",
   },
   {
-    label: "Freelance win",
-    value: "Negotiated a 40% equity stake as a co-founder—value over salary.",
-    icon: "Handshake",
-  },
-  {
     label: "Career dream",
     value: "Build products that scale from Kolkata to the world.",
     icon: "Globe",
