@@ -34,4 +34,4 @@ yarn-error.log*
 /.playwright-mcp
 /client/public/logo
 
-.vercel
+.vercel.gstack/

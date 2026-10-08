@@ -982,7 +982,7 @@ export interface CurtainSpec {
 export type Renderer<K extends ContentKind = ContentKind> =
   FC<{ records: RecordFor<K>[]; lens: Lens }>
 
-export type StageSlot = 'afterHero' | 'afterList' | 'footer'
+export type StageSlot = 'loader' | 'afterHero' | 'afterList' | 'footer'
 
 export interface Universe {
   id: UniverseId
