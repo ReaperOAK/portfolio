@@ -13,6 +13,9 @@ interface SiteState {
   universe: UniverseId
   tier: Tier
   morphing: boolean
+  /** Set by the first landing of a visit. The route's universe applies only if the visitor never chose one. */
+  entered: boolean
+  enter: (lens: Lens, universe: UniverseId) => void
   setLens: (l: Lens) => void
   setUniverse: (u: UniverseId) => void
   setTier: (t: Tier) => void
@@ -41,6 +44,15 @@ export const useSite = create<SiteState>(set => ({
   universe: 'blueprint',
   tier: 'reduced',
   morphing: false,
+  entered: false,
+  enter: (lens, universe) =>
+    set(st => {
+      save('site:lens', lens)
+      if (st.entered) return { lens }
+      const chosen = read('site:universe', UNIVERSE_IDS) ?? universe // a returning visitor keeps their world
+      save('site:universe', chosen)
+      return { lens, universe: chosen, entered: true }
+    }),
   setLens: lens => (save('site:lens', lens), set({ lens })),
   setUniverse: universe => (save('site:universe', universe), set({ universe })),
   setTier: tier => set({ tier }),

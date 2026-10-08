@@ -22,21 +22,26 @@ type Src = {
 const { default: projects } = (await import(path.join(SRC, 'projects.js'))) as { default: Src[] }
 await fs.mkdir(OUT, { recursive: true })
 
+// Slug from the short name before any colon: /work/ticketvault, not /work/ticketvault-decentralized-ticketing-platform
+const slugify = (t: string) => t.split(':')[0]!.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
 for (const p of projects) {
   if (SKIP.has(p.slug)) continue
+  const title = p.title.split(':')[0]!.trim()
+  const slug = slugify(title)
   const data = {
-    slug: p.slug,
-    title: p.title.split(':')[0]!.trim(),
+    slug,
+    title,
     tagline: p.shortDesc,
     stack: p.tech,
     role: p.type ?? 'Solo',
     period: p.status ?? '',
-    metrics: METRICS[p.slug] ?? [],
+    metrics: METRICS[slug] ?? [],
     decisions: p.decisions,
     devlogs: p.devLogs,
     links: { ...(p.github && { github: p.github }), ...(p.live && { live: p.live }) },
     nda: false,
   }
-  await fs.writeFile(path.join(OUT, `${p.slug}.mdx`), matter.stringify(`${p.description}\n`, data))
+  await fs.writeFile(path.join(OUT, `${slug}.mdx`), matter.stringify(`${p.description}\n`, data))
 }
 console.log('harvested', (await fs.readdir(OUT)).length, 'projects')

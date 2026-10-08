@@ -41,3 +41,21 @@ test('hydrate restores valid persisted values', () => {
   expect(useSite.getState().lens).toBe('soul')
   expect(useSite.getState().universe).toBe('nightride')
 })
+
+test('first deep-link landing sets lens and universe; later landings change only the lens', () => {
+  useSite.setState({ entered: false })
+  useSite.getState().enter('work', 'blueprint')
+  useSite.getState().setUniverse('nightride')
+  useSite.getState().enter('soul', 'nightride')
+  useSite.getState().setUniverse('blueprint')
+  useSite.getState().enter('work', 'nightride')
+  expect(useSite.getState().lens).toBe('work')
+  expect(useSite.getState().universe).toBe('blueprint')
+})
+
+test('a returning visitor keeps their chosen universe over the route default', () => {
+  useSite.setState({ entered: false })
+  localStorage.setItem('site:universe', 'nightride')
+  useSite.getState().enter('work', 'blueprint')
+  expect(useSite.getState().universe).toBe('nightride')
+})

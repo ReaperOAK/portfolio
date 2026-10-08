@@ -1,0 +1,19 @@
+.dock {
+  position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 50;
+  display: flex; align-items: center; gap: 4px; padding: 4px;
+  background: color-mix(in srgb, var(--u-bg) 82%, transparent); backdrop-filter: blur(14px);
+  border: 1px solid var(--u-line); border-radius: var(--u-radius);
+  font-family: var(--u-mono); font-size: 11px; max-width: calc(100vw - 32px); overflow-x: auto;
+  transition: background-color var(--morph), border-color var(--morph);
+}
+.group { display: flex; gap: 2px; }
+.sep { width: 1px; align-self: stretch; background: var(--u-line); margin: 0 4px; }
+.item {
+  appearance: none; border: 0; background: none; color: var(--u-dim); cursor: pointer; white-space: nowrap;
+  font: inherit; text-transform: uppercase; letter-spacing: .04em; text-decoration: none;
+  padding: 8px 12px; border-radius: var(--u-radius); transition: color .2s, background-color .2s;
+}
+.item:hover { color: var(--u-fg); }
+.item[aria-current='page'], .item[aria-pressed='true'] { background: var(--u-accent); color: var(--u-bg); }
+.item:disabled { cursor: progress; }
+@media (prefers-reduced-motion: reduce) { .item { transition: none; } }

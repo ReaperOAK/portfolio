@@ -30,7 +30,11 @@ export function applyNda(p: Project): Project {
 
 export async function loadProjects(dir = path.join(CONTENT, 'projects')): Promise<Project[]> {
   const files = await readDir(dir, '.mdx')
-  return files.map(f => applyNda(parse(projectSchema, f.name, f.data)))
+  return files.map(f => applyNda(parse(projectSchema, f.name, { ...f.data, body: f.content.trim() })))
+}
+
+export async function loadProject(slug: string): Promise<Project | undefined> {
+  return (await loadProjects()).find(p => p.slug === slug)
 }
 
 export async function loadPoems(dir = path.join(CONTENT, 'poems')): Promise<Poem[]> {

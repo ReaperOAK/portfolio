@@ -3,12 +3,9 @@ import { nightride } from '../nightride'
 import { blueprint } from '../blueprint'
 import { Tacho } from '../nightride/signature'
 import { useSite } from '@/lib/store'
-import type { Project } from '@/lib/content/types'
+import { makeProject } from '@/test/fixtures'
 
-const projects: Project[] = [{
-  slug: 'ticketvault', title: 'TicketVault', tagline: 'NFT ticketing.', stack: ['Aptos'], role: 'Lead',
-  period: '2025', metrics: [], decisions: [], devlogs: [], links: {}, nda: false,
-}]
+const projects = [makeProject({ slug: 'ticketvault', title: 'TicketVault', tagline: 'NFT ticketing.', stack: ['Aptos'] })]
 
 test('renders the same records as blueprint', () => {
   for (const u of [blueprint, nightride]) {

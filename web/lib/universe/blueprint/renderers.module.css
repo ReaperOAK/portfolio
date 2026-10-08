@@ -23,3 +23,8 @@
   .note, .metric { grid-column: 2; }
 }
 @media (prefers-reduced-motion: reduce) { .row::before { transition: none; } }
+/* whole row is the hit area; the title stays the single link */
+.link { color: inherit; text-decoration: none; }
+.link::before { content: ''; position: absolute; inset: 0; }
+.link:focus-visible { outline: none; }
+.row:has(.link:focus-visible) { outline: 2px solid var(--u-accent); outline-offset: 2px; }

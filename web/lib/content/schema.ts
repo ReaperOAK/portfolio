@@ -21,6 +21,7 @@ export const projectSchema = z.object({
       live: z.string().optional(),
     })
     .default({}),
+  body: z.string().default(''),
   /** When true, decisions and devlogs are stripped at load. Shape, not specifics. */
   nda: z.boolean().default(false),
 })

@@ -4,15 +4,8 @@ import { useSite } from '@/lib/store'
 import { resolve } from '@/lib/universe/registry'
 import { detectTier, probe } from '@/lib/tier'
 import type { TokenSet } from '@/lib/universe/types'
+import { CSS_VAR } from '@/lib/universe/css'
 import { Curtain } from './Curtain'
-
-const CSS_VAR: Record<keyof TokenSet, string> = {
-  bg: '--u-bg', bg2: '--u-bg2', fg: '--u-fg', dim: '--u-dim',
-  accent: '--u-accent', accent2: '--u-accent2', line: '--u-line',
-  radius: '--u-radius', tracking: '--u-tracking',
-  display: '--u-display', body: '--u-body', mono: '--u-mono',
-  displayWeight: '--u-display-weight', displayStretch: '--u-display-stretch',
-}
 
 /** The only place universe tokens touch the DOM. Colour vars are @property-registered in globals.css, so they interpolate. */
 export function UniverseProvider({ children }: { children: React.ReactNode }) {

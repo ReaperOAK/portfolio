@@ -1,12 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import { Stage } from '../Stage'
 import { useSite } from '@/lib/store'
-import type { Project } from '@/lib/content/types'
+import { makeProject } from '@/test/fixtures'
 
-const projects: Project[] = [{
-  slug: 'forgeos', title: 'ForgeOS', tagline: 'SDLC engine of orchestrated agents.', stack: ['TypeScript'],
-  role: 'Solo', period: '2025', metrics: [], decisions: [], devlogs: [], links: {}, nda: false,
-}]
+const projects = [makeProject({ slug: 'forgeos', title: 'ForgeOS', tagline: 'SDLC engine of orchestrated agents.', stack: ['TypeScript'] })]
 
 beforeEach(() => useSite.setState({ universe: 'blueprint', lens: 'work' }))
 

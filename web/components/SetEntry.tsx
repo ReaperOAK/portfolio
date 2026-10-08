@@ -2,13 +2,9 @@
 import { useEffect } from 'react'
 import { useSite, type Lens, type UniverseId } from '@/lib/store'
 
-/** Deep links (/hire, /soul) pin their lens and universe on arrival, overriding whatever was persisted. */
+/** A route declares its lens and its default universe. The universe applies only on the first landing of a visit. */
 export function SetEntry({ lens, universe }: { lens: Lens; universe: UniverseId }) {
-  const setLens = useSite(s => s.setLens)
-  const setUniverse = useSite(s => s.setUniverse)
-  useEffect(() => {
-    setLens(lens)
-    setUniverse(universe)
-  }, [lens, universe, setLens, setUniverse])
+  const enter = useSite(s => s.enter)
+  useEffect(() => enter(lens, universe), [lens, universe, enter])
   return null
 }

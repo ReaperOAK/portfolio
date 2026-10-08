@@ -1,13 +1,10 @@
 import path from 'node:path'
 import { loadProjects, applyNda } from '../load'
-import type { Project } from '../types'
+import { makeProject } from '@/test/fixtures'
 
 const FIXTURES = path.join(__dirname, 'fixtures')
 
-const base: Project = {
-  slug: 'x', title: 'X', tagline: 't', stack: [], role: 'r', period: 'p',
-  metrics: [], decisions: ['detail'], devlogs: ['detail'], links: {}, nda: false,
-}
+const base = makeProject({ slug: 'x', title: 'X', decisions: ['detail'], devlogs: ['detail'] })
 
 test('loads and validates a good project file', async () => {
   const [p] = await loadProjects(path.join(FIXTURES, 'good'))
@@ -27,4 +24,9 @@ test('applyNda strips decisions and devlogs', () => {
 
 test('applyNda leaves non-NDA projects untouched', () => {
   expect(applyNda(base).decisions).toEqual(['detail'])
+})
+
+test('keeps the MDX body as plain text', async () => {
+  const [p] = await loadProjects(path.join(FIXTURES, 'good'))
+  expect(p?.body).toBe('Body copy.')
 })

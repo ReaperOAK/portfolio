@@ -1,18 +1,19 @@
 import type { ReactNode } from 'react'
+import Link from 'next/link'
 import type { Universe } from '../types'
 import s from './renderers.module.css'
 
 const pad = (i: number) => String(i + 1).padStart(2, '0')
 
 /** One spec-sheet row. Every content kind maps onto these four cells. */
-function Row({ idx, title, sub, note, metric, verse }: {
-  idx: string; title: string; sub: string; note?: ReactNode; metric?: string; verse?: boolean
+function Row({ idx, title, sub, note, metric, verse, href }: {
+  idx: string; title: string; sub: string; note?: ReactNode; metric?: string; verse?: boolean; href?: string
 }) {
   return (
     <article className={s.row}>
       <span className={s.idx}>{idx}</span>
       <div>
-        <h3 className={s.title}>{title}</h3>
+        <h3 className={s.title}>{href ? <Link href={href} className={s.link}>{title}</Link> : title}</h3>
         <p className={verse ? `${s.sub} ${s.verse}` : s.sub}>{sub}</p>
       </div>
       {note ? <p className={s.note}>{note}</p> : <span />}
@@ -25,7 +26,7 @@ export const renderers: Universe['renderers'] = {
   project: ({ records }) => (
     <div className={s.list}>
       {records.map((p, i) => (
-        <Row key={p.slug} idx={pad(i)} title={p.title} sub={p.tagline}
+        <Row key={p.slug} href={`/work/${p.slug}`} idx={pad(i)} title={p.title} sub={p.tagline}
           note={p.decisions[0] ?? p.stack.join(' · ')} metric={p.metrics[0]?.value ?? p.period} />
       ))}
     </div>

@@ -1,0 +1,7 @@
+.back { font-family: var(--u-mono); font-size: 11px; color: var(--u-dim); text-decoration: none; text-transform: uppercase; }
+.back:hover { color: var(--u-accent); }
+.body { max-width: 68ch; font-size: 17px; color: var(--u-fg); margin: 0; }
+.list { margin: 0; padding-left: 1.2em; max-width: 72ch; display: grid; gap: 10px; color: var(--u-dim); }
+.links { display: flex; gap: 16px; flex-wrap: wrap; }
+.links a { font-family: var(--u-mono); font-size: 12px; color: var(--u-accent); }
+.nda { font-family: var(--u-mono); font-size: 12px; color: var(--u-dim); border: 1px dashed var(--u-line); padding: 12px 14px; margin: 0; max-width: 68ch; }

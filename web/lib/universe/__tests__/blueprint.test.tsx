@@ -1,12 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { blueprint } from '../blueprint'
-import type { Project } from '@/lib/content/types'
+import { makeProject } from '@/test/fixtures'
 
-const projects: Project[] = [{
-  slug: 'ticketvault', title: 'TicketVault', tagline: 'NFT ticketing.', stack: ['Aptos'], role: 'Lead',
-  period: '2025', metrics: [{ value: '3', label: 'dApps' }], decisions: ['Relayer sponsors gas.'],
-  devlogs: [], links: {}, nda: false,
-}]
+const projects = [makeProject({ slug: 'ticketvault', title: 'TicketVault', tagline: 'NFT ticketing.', stack: ['Aptos'], metrics: [{ value: '3', label: 'dApps' }], decisions: ['Relayer sponsors gas.'] })]
 
 test('renders every project title', () => {
   const R = blueprint.renderers.project
@@ -25,4 +21,14 @@ test('renders identical content under either lens', () => {
 
 test('signature pieces render without throwing', () => {
   for (const Piece of Object.values(blueprint.signature ?? {})) render(<Piece />)
+})
+
+test('project titles link to their detail page in every universe', async () => {
+  const { UNIVERSES, REGISTERED } = await import('../registry')
+  for (const id of REGISTERED) {
+    const R = UNIVERSES[id].renderers.project
+    const { unmount } = render(<R records={projects} lens="work" />)
+    expect(screen.getByRole('link', { name: 'TicketVault' })).toHaveAttribute('href', '/work/ticketvault')
+    unmount()
+  }
 })
