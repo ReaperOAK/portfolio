@@ -11,5 +11,11 @@ export default defineConfig({
     include: ['**/__tests__/**/*.test.{ts,tsx}'],
     exclude: ['node_modules', '.next'],
   },
-  resolve: { alias: { '@': path.resolve(__dirname, '.') } },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '.'),
+      // server-only throws outside a React Server Component bundle; tests run in plain node/jsdom
+      'server-only': path.resolve(__dirname, 'test/server-only-stub.ts'),
+    },
+  },
 })
