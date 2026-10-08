@@ -14,7 +14,8 @@ Deviations from the plan, on purpose: `REGISTERED` grows one universe at a time 
 `loader` stage slot was added (see `docs/inspo.md`); harvest skips the influencer scraper and the Microsoft
 Rewards bot; the 2025 timeline entry no longer mentions a side venture (exclusivity clause).
 
-**Live: <https://reaperoak.vercel.app/hire>** — Vercel project `reaperoak` in Owais's personal team, Root
+**Live: <https://portfolio.owaiskhan.website/hire>** (also <https://reaperoak.vercel.app>). DNS: Cloudflare CNAME
+`portfolio` → Vercel, DNS-only. `/` redirects to `/hire` until the cold open ships. — Vercel project `reaperoak` in Owais's personal team, Root
 Directory `web`. Deploy with `pnpm dlx vercel@latest deploy --prod` from the repo root.
 
 Not yet automatic: the personal Vercel account has no GitHub login connection, so pushes do not deploy.
