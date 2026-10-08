@@ -27,6 +27,7 @@ export const defaultUniverseFor = (pathname: string): UniverseId => ROUTE_UNIVER
 export function bootScript(): string {
   return `(function(){try{var ok=${JSON.stringify(REGISTERED)},r=${JSON.stringify(ROUTE_UNIVERSE)};` +
     `var u=localStorage.getItem('site:universe');` +
+    `if(localStorage.getItem('site:coldOpenSeen'))document.documentElement.dataset.cold='seen';` +
     `document.documentElement.dataset.universe=ok.indexOf(u)>=0?u:(r[location.pathname]||'blueprint')}` +
     `catch(e){document.documentElement.dataset.universe='blueprint'}})()`
 }
