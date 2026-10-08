@@ -4,7 +4,7 @@
 @property --u-bg2     { syntax: '<color>'; inherits: true; initial-value: #E4E8E6 }
 @property --u-fg      { syntax: '<color>'; inherits: true; initial-value: #12181C }
 @property --u-dim     { syntax: '<color>'; inherits: true; initial-value: #5C6B72 }
-@property --u-accent  { syntax: '<color>'; inherits: true; initial-value: #0E7C86 }
+@property --u-accent  { syntax: '<color>'; inherits: true; initial-value: #0B6A73 }
 @property --u-accent2 { syntax: '<color>'; inherits: true; initial-value: #C2410C }
 @property --u-line    { syntax: '<color>'; inherits: true; initial-value: #C3CDCC }
 

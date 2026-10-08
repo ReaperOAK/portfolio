@@ -6,6 +6,7 @@ import { universeCss, bootScript } from '@/lib/universe/css'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://portfolio.owaiskhan.website'),
   title: 'Owais Ahmed Khan',
   description: 'Senior Developer. Rider. Shayar.',
 }

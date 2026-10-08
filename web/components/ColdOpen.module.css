@@ -33,7 +33,7 @@
 .doorName { font-family: var(--font-blueprint-sans), sans-serif; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
 .doorName::after { content: ' →'; }
 .hint { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); font-family: var(--font-blueprint-mono), monospace;
-  font-size: 10px; text-transform: uppercase; color: #5C6B72; margin: 0; }
+  font-size: 10px; text-transform: uppercase; color: #7A8A90; margin: 0; }
 
 /* ── the sequence, ~6s ── */
 .play .loader { animation: fadeLoader 1.7s ease both; }

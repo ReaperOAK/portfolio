@@ -3,7 +3,7 @@ import { loadProjects } from '@/lib/content/load'
 import { timeline } from '@/content/timeline'
 import { Stage } from '@/components/Stage'
 import { Signature } from '@/components/Signature'
-import { SetEntry } from '@/components/SetEntry'
+import { Entry } from '@/components/Entry'
 import { defaultUniverseFor } from '@/lib/universe/css'
 import { Page, Hero, Section } from '@/components/Page'
 
@@ -18,8 +18,8 @@ export default async function Hire() {
     (a, b) => Number(b.nda) - Number(a.nda) || Number(!!b.links.live) - Number(!!a.links.live),
   )
   return (
+    <Entry lens="work" universe={defaultUniverseFor('/hire')}>
     <Page>
-      <SetEntry lens="work" universe={defaultUniverseFor('/hire')} />
       <Hero
         eyebrow="[ Work ] Kolkata, India"
         title="Owais Ahmed Khan"
@@ -35,5 +35,6 @@ export default async function Hire() {
         <Stage kind="timelineEntry" records={timeline} />
       </Section>
     </Page>
+    </Entry>
   )
 }

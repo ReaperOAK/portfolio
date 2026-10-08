@@ -4,7 +4,7 @@ import { personas } from '@/content/personas'
 import { timeline } from '@/content/timeline'
 import { Stage } from '@/components/Stage'
 import { Signature } from '@/components/Signature'
-import { SetEntry } from '@/components/SetEntry'
+import { Entry } from '@/components/Entry'
 import { defaultUniverseFor } from '@/lib/universe/css'
 import { Page, Hero, Section } from '@/components/Page'
 
@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 export default async function Soul() {
   const poems = await loadPoems()
   return (
+    <Entry lens="soul" universe={defaultUniverseFor('/soul')}>
     <Page>
-      <SetEntry lens="soul" universe={defaultUniverseFor('/soul')} />
       <Hero
         eyebrow="[ Soul ] Kolkata, after dark"
         title="Owais Ahmed Khan"
@@ -37,5 +37,6 @@ export default async function Soul() {
         <Stage kind="timelineEntry" records={timeline} />
       </Section>
     </Page>
+    </Entry>
   )
 }

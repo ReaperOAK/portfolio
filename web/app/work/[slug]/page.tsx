@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { loadProject, loadProjects } from '@/lib/content/load'
-import { SetEntry } from '@/components/SetEntry'
+import { Entry } from '@/components/Entry'
 import { defaultUniverseFor } from '@/lib/universe/css'
 import { Page, Hero, Section } from '@/components/Page'
 import s from './page.module.css'
@@ -25,8 +25,8 @@ export default async function Project({ params }: Props) {
   const p = await loadProject((await params).slug)
   if (!p) notFound()
   return (
+    <Entry lens="work" universe={defaultUniverseFor('/hire')}>
     <Page>
-      <SetEntry lens="work" universe={defaultUniverseFor('/hire')} />
       <p><Link href="/hire" className={s.back}>← All work</Link></p>
       <Hero eyebrow={`[ ${p.role} ] ${p.period}`} title={p.title} line={p.tagline} chips={p.stack} />
       {p.body && <Section id="about" title="What it is"><p className={s.body}>{p.body}</p></Section>}
@@ -48,5 +48,6 @@ export default async function Project({ params }: Props) {
         </div>
       )}
     </Page>
+    </Entry>
   )
 }

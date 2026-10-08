@@ -1,4 +1,5 @@
 'use client'
+import { useUniverse } from './Entry'
 import Link from 'next/link'
 import { useSite } from '@/lib/store'
 import { REGISTERED, UNIVERSES } from '@/lib/universe/registry'
@@ -17,7 +18,7 @@ export function LensSwitch() {
 }
 
 export function UniverseRail() {
-  const universe = useSite(st => st.universe)
+  const universe = useUniverse()
   const morphing = useSite(st => st.morphing)
   const morphTo = useMorphTo()
   return (

@@ -12,6 +12,7 @@ export function UniverseProvider({ children }: { children: React.ReactNode }) {
   const universe = useSite(s => s.universe)
   const hydrate = useSite(s => s.hydrate)
   const setTier = useSite(s => s.setTier)
+  const entered = useSite(s => s.entered)
 
   useEffect(() => {
     hydrate()
@@ -19,11 +20,12 @@ export function UniverseProvider({ children }: { children: React.ReactNode }) {
   }, [hydrate, setTier])
 
   useEffect(() => {
+    if (!entered) return // before entry, the boot script's data-universe attribute already paints the right world
     const { id, tokens } = resolve(universe)
     const root = document.documentElement
     for (const key of Object.keys(CSS_VAR) as (keyof TokenSet)[]) root.style.setProperty(CSS_VAR[key], tokens[key])
     root.dataset.universe = id
-  }, [universe])
+  }, [universe, entered])
 
   return (
     <>

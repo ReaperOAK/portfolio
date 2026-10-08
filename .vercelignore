@@ -1,10 +1,11 @@
 # Only web/ is built (Root Directory = web). Keep raw assets and the old site out of the upload.
-client/
-functions/
-public/
-reports/
-assets/
-docs/
-.gstack/
+# Anchored with a leading slash: an unanchored "public/" also matched web/public and dropped every static asset.
+/client/
+/functions/
+/public/
+/reports/
+/assets/
+/docs/
+/.gstack/
 **/node_modules
 **/.next
