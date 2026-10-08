@@ -6,24 +6,28 @@
 
 ## Status (2026-10-08)
 
-Built and pushed: Tasks 0–10 of the Foundation plan, plus `/hire` live on the engine (Blueprint, real fonts,
-all projects + timeline). 35 tests, `tsc --noEmit` and `next build` green. Next: Task 11 (morph), Task 12
-(Nightride), Task 13 (routes, rail, lens switch), Task 14 (cold open), Task 15 (a11y/perf gate).
+**Foundation (sub-project A) is built and live: <https://portfolio.owaiskhan.website>.** Cold open on `/`,
+`/hire` (Work, Blueprint), `/soul` (Soul, Nightride), `/work/[slug]` for 31 projects, the dock (lens switch +
+universe rail with the curtain morph). 56 tests; CI runs tests, `tsc`, build and a Lighthouse budget of 95 in
+every category. Live mobile Lighthouse: 100/100/100/100 on `/` and `/hire`, 99/100/100/100 on `/soul`.
+
+Deploy: `pnpm dlx vercel@latest deploy --prod` from the repo root, then `pnpm --dir web smoke`.
+Vercel project `reaperoak` (personal team), Root Directory `web`. DNS: Cloudflare CNAME `portfolio` → Vercel, DNS-only.
 
 Deviations from the plan, on purpose: `REGISTERED` grows one universe at a time so no commit is red; a
-`loader` stage slot was added (see `docs/inspo.md`); harvest skips the influencer scraper and the Microsoft
-Rewards bot; the 2025 timeline entry no longer mentions a side venture (exclusivity clause).
+`loader` stage slot exists (see `docs/inspo.md`); routes wrap content in `Entry`, which renders the route's
+default universe on the server so markup matches on hydration; a returning visitor keeps their chosen universe
+over a route's default; harvest skips the influencer scraper and the Microsoft Rewards bot; employer-sensitive
+lines were removed from the timeline and the old site's data.
 
-**Live: <https://portfolio.owaiskhan.website/hire>** (also <https://reaperoak.vercel.app>). DNS: Cloudflare CNAME
-`portfolio` → Vercel, DNS-only. `/` redirects to `/hire` until the cold open ships. — Vercel project `reaperoak` in Owais's personal team, Root
-Directory `web`. Deploy with `pnpm dlx vercel@latest deploy --prod` from the repo root.
-
-Not yet automatic: the personal Vercel account has no GitHub login connection, so pushes do not deploy.
-Connect GitHub in Vercel account settings, then `vercel git connect`. The older `reaper-oak` project belongs
-to a different Vercel account and was left untouched.
+Waiting on Owais:
+- `firebase login`, then deploy `firebase-redirect/` so reaperoak.web.app 301s here. The old site still serves
+  a compensation line and a side-venture line until then.
+- Connect GitHub to the personal Vercel account so pushes deploy (then `vercel git connect`).
+- Rotate the Cloudflare token saved in `blogging/.secrets/cloudflare.env` (it was pasted into a chat log).
 
 NDA guard: `git config core.hooksPath .githooks` once per clone. Terms live in `.githooks/nda-terms`, shared
-with the content test.
+with the content test and `scripts/smoke.sh`.
 
 The design phase is finished and approved. This file exists so the next session starts with the reasoning
 intact and does not re-open settled questions.
@@ -90,7 +94,7 @@ required renderer already covers that content.
 
 | | Universe | Origin | Ground / accent |
 |---|---|---|---|
-| 01 | Blueprint | the engineer | `#F2F4F2` / `#0E7C86` (dark ground too) |
+| 01 | Blueprint | the engineer | `#F2F4F2` / `#0B6A73` (dark ground too) |
 | 02 | Nightride | the Hero Xtreme 125R | `#07070A` / `#FF8A3D` |
 | 03 | Dastan | the shayar | `#EDE4D3` / `#8C2F1E` |
 | 04 | Campaign | chess + strategy games | `#101014` / `#C6923E` |
