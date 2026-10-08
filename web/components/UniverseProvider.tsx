@@ -4,6 +4,7 @@ import { useSite } from '@/lib/store'
 import { resolve } from '@/lib/universe/registry'
 import { detectTier, probe } from '@/lib/tier'
 import type { TokenSet } from '@/lib/universe/types'
+import { Curtain } from './Curtain'
 
 const CSS_VAR: Record<keyof TokenSet, string> = {
   bg: '--u-bg', bg2: '--u-bg2', fg: '--u-fg', dim: '--u-dim',
@@ -31,5 +32,10 @@ export function UniverseProvider({ children }: { children: React.ReactNode }) {
     root.dataset.universe = id
   }, [universe])
 
-  return <>{children}</>
+  return (
+    <>
+      <Curtain />
+      {children}
+    </>
+  )
 }
