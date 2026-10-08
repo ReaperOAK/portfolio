@@ -1,0 +1,12 @@
+.cluster { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; padding: 22px 24px 30px;
+  background: var(--u-bg2); position: relative; margin: 8px 0 0; }
+/* lane markings */
+.cluster::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; opacity: .75;
+  background: repeating-linear-gradient(90deg, var(--u-accent) 0 26px, transparent 26px 48px); }
+.gauge { position: relative; width: 132px; height: 132px; flex: none; }
+.gauge svg { transform: rotate(135deg); display: block; }
+.readout { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.rpm { font-family: var(--u-display); font-weight: 900; font-size: 38px; line-height: 1; font-variant-numeric: tabular-nums; }
+.unit { font-family: var(--u-mono); font-size: 9px; letter-spacing: .08em; color: var(--u-dim); text-transform: uppercase; }
+.copy { margin: 0; max-width: 46ch; color: var(--u-dim); font-size: 15px; }
+.copy em { font-family: var(--font-nightride-serif), serif; color: var(--u-accent); font-size: 19px; }
