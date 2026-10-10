@@ -1,0 +1,8 @@
+.close { padding: clamp(64px, 10vh, 120px) var(--pad) 140px; display: grid; gap: 40px; }
+.big { justify-self: start; font-family: var(--u-display); font-weight: 600; letter-spacing: -0.055em; line-height: .88;
+  font-size: clamp(64px, 13vw, 220px); color: var(--u-fg); text-decoration: none; transition: color .4s; }
+.big:hover, .big:focus-visible { color: var(--u-accent); }
+.row { display: flex; flex-wrap: wrap; gap: 12px 36px; align-items: baseline; font-size: 17px; }
+.addr { color: var(--u-dim); font-variant-numeric: tabular-nums; }
+.row a { color: var(--u-fg); text-decoration: none; border-bottom: 1px solid var(--u-line); padding-bottom: 3px; }
+.row a:hover { border-bottom-color: var(--u-accent); }

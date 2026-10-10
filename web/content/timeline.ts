@@ -9,7 +9,7 @@ export const timeline: TimelineEntry[] = [
   {
     "year": "2018",
     "title": "Foundations",
-    "body": "Class 9: learned proper web dev with pure HTML, CSS, and JavaScript. Built my first fun clones — a Spotify UI and later a fully functional Airbnb clone during COVID."
+    "body": "Class 9: learned proper web dev with pure HTML, CSS, and JavaScript. Built my first fun clones: a Spotify UI and later a fully functional Airbnb clone during COVID."
   },
   {
     "year": "2020",
@@ -24,12 +24,12 @@ export const timeline: TimelineEntry[] = [
   {
     "year": "2023",
     "title": "From Freelancer to Builder",
-    "body": "Built todayeggrates.com from scratch — now past 34.2k clicks and 2K monthly users. Also developed kolkatachessacademy.com + a custom LMS, experimenting with React + PHP stacks outside the usual MERN path."
+    "body": "Built todayeggrates.com from scratch, now past 34.2k clicks and 2K monthly users. Also developed kolkatachessacademy.com + a custom LMS, experimenting with React + PHP stacks outside the usual MERN path."
   },
   {
     "year": "2024",
     "title": "Parallel Worlds",
-    "body": "Coder, writer, rider. I’ve kept them separate, but they shape me. Writing since Class 8, riding since 14 — creativity and grit fuel my builds as much as code does."
+    "body": "Coder, writer, rider. I’ve kept them separate, but they shape me. Writing since Class 8, riding since 14. Creativity and grit fuel my builds as much as code does."
   },
   {
     "year": "2025",

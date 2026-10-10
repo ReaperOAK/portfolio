@@ -20,7 +20,7 @@ function parse<T>(schema: z.ZodType<T>, file: string, data: unknown): T {
   const r = schema.safeParse(data)
   if (r.success) return r.data
   const issue = r.error.issues[0]
-  throw new Error(`${file}: ${issue?.path.join('.')} — ${issue?.message}`)
+  throw new Error(`${file}: ${issue?.path.join('.')}: ${issue?.message}`)
 }
 
 /** Defense in depth only: the repo is public, so NDA detail must never be in source files at all. */

@@ -2,7 +2,7 @@ import { universeCss, bootScript, defaultUniverseFor } from '../css'
 
 test('emits a token rule for every shipped universe', () => {
   const css = universeCss()
-  expect(css).toContain(':root[data-universe="blueprint"]{--u-bg:#F2F4F2')
+  expect(css).toContain(':root[data-universe="blueprint"]{--u-bg:#0A0E10')
   expect(css).toContain(':root[data-universe="nightride"]{--u-bg:#07070A')
 })
 

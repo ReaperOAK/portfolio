@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const p = await loadProject((await params).slug)
-  return p ? { title: `${p.title} — Owais Ahmed Khan`, description: p.tagline } : {}
+  return p ? { title: `${p.title}, by Owais Ahmed Khan`, description: p.tagline } : {}
 }
 
 // ponytail: one neutral layout styled only through tokens. Universe-specific case studies are sub-project B.

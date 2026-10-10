@@ -6,6 +6,6 @@ beforeEach(() => useSite.setState({ universe: 'blueprint', lens: 'work', entered
 
 test('writes the active universe tokens onto the root element', () => {
   render(<UniverseProvider><div /></UniverseProvider>)
-  expect(document.documentElement.style.getPropertyValue('--u-accent')).toBe('#0B6A73')
+  expect(document.documentElement.style.getPropertyValue('--u-accent')).toBe('#4FD1C5')
   expect(document.documentElement.dataset.universe).toBe('blueprint')
 })

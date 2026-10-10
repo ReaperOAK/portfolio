@@ -4,7 +4,7 @@ export const personas: Persona[] = [
   {
     "slug": "developer",
     "title": "Developer",
-    "description": "I build tools that solve real problems — structured, scalable, purposeful."
+    "description": "I build tools that solve real problems: structured, scalable, purposeful."
   },
   {
     "slug": "poet",
@@ -19,7 +19,7 @@ export const personas: Persona[] = [
   {
     "slug": "gamer",
     "title": "Gamer",
-    "description": "I prefer stealth over chaos. Strategy isn't just a playstyle — it's a mindset."
+    "description": "I prefer stealth over chaos. Strategy isn't just a playstyle. It's a mindset."
   },
   {
     "slug": "writer",
@@ -29,12 +29,12 @@ export const personas: Persona[] = [
   {
     "slug": "thinker",
     "title": "Thinker",
-    "description": "An INTP brain wired for patterns, frameworks, and possibilities — I live in ideas before they become reality."
+    "description": "An INTP brain wired for patterns, frameworks, and possibilities. I live in ideas before they become reality."
   },
   {
     "slug": "strategist",
     "title": "Strategist",
-    "description": "Every move is a calculation. Whether in chess, code, or life — I play for the long game."
+    "description": "Every move is a calculation. Whether in chess, code, or life, I play for the long game."
   },
   {
     "slug": "athlete",
@@ -44,7 +44,7 @@ export const personas: Persona[] = [
   {
     "slug": "stargazer",
     "title": "Stargazer",
-    "description": "Not for superstition, but for perspective — I study the stars to understand timing, cycles, and destiny."
+    "description": "Not for superstition, but for perspective. I study the stars to understand timing, cycles, and destiny."
   },
   {
     "slug": "philosopher",

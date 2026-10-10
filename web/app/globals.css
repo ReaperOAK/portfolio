@@ -1,12 +1,12 @@
 /* Colour tokens are registered so a universe change interpolates instead of snapping.
    Initial values are Blueprint's, so first paint matches the default universe. */
-@property --u-bg      { syntax: '<color>'; inherits: true; initial-value: #F2F4F2 }
-@property --u-bg2     { syntax: '<color>'; inherits: true; initial-value: #E4E8E6 }
-@property --u-fg      { syntax: '<color>'; inherits: true; initial-value: #12181C }
-@property --u-dim     { syntax: '<color>'; inherits: true; initial-value: #5C6B72 }
-@property --u-accent  { syntax: '<color>'; inherits: true; initial-value: #0B6A73 }
-@property --u-accent2 { syntax: '<color>'; inherits: true; initial-value: #C2410C }
-@property --u-line    { syntax: '<color>'; inherits: true; initial-value: #C3CDCC }
+@property --u-bg      { syntax: '<color>'; inherits: true; initial-value: #0A0E10 }
+@property --u-bg2     { syntax: '<color>'; inherits: true; initial-value: #12191C }
+@property --u-fg      { syntax: '<color>'; inherits: true; initial-value: #E9EFEC }
+@property --u-dim     { syntax: '<color>'; inherits: true; initial-value: #8FA1A6 }
+@property --u-accent  { syntax: '<color>'; inherits: true; initial-value: #4FD1C5 }
+@property --u-accent2 { syntax: '<color>'; inherits: true; initial-value: #FF8A57 }
+@property --u-line    { syntax: '<color>'; inherits: true; initial-value: #22303A }
 
 :root {
   --morph: 900ms cubic-bezier(.65,.02,.24,1);

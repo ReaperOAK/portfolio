@@ -14,6 +14,12 @@ const METRICS: Record<string, { value: string; label: string }[]> = {
   'today-egg-rates': [{ value: '34.2k+', label: 'clicks' }, { value: '2K+', label: 'monthly users' }],
 }
 
+// Real screenshots of the live sites, captured into public/shots.
+const COVERS: Record<string, string> = {
+  'today-egg-rates': '/shots/today-egg-rates.webp', chesscodex: '/shots/chesscodex.webp',
+  linearecta: '/shots/linearecta.webp', 'cse-farewell-2025': '/shots/cse-farewell-2025.webp',
+}
+
 type Src = {
   title: string; slug: string; shortDesc: string; description: string; tech: string[]
   type?: string; status?: string; decisions: string[]; devLogs: string[]; github?: string; live?: string
@@ -37,6 +43,7 @@ for (const p of projects) {
     role: p.type ?? 'Solo',
     period: p.status ?? '',
     metrics: METRICS[slug] ?? [],
+    ...(COVERS[slug] && { cover: COVERS[slug] }),
     decisions: p.decisions,
     devlogs: p.devLogs,
     links: { ...(p.github && { github: p.github }), ...(p.live && { live: p.live }) },

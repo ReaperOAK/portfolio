@@ -1,0 +1,11 @@
+.career { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 48px);
+  padding: clamp(72px, 12vh, 140px) var(--pad); }
+.title { grid-column: 1 / -1; margin: 0 0 clamp(8px, 2vh, 24px); font-family: var(--u-display); font-weight: 600;
+  letter-spacing: -0.04em; line-height: .95; font-size: clamp(36px, 4.4vw, 68px); }
+.role { display: grid; gap: 12px; align-content: start; padding-top: 22px; border-top: 2px solid var(--u-line); }
+.role:first-of-type { border-top-color: var(--u-accent); }
+.when { font-size: 14px; color: var(--u-dim); font-variant-numeric: tabular-nums; }
+.what { margin: 0; font-size: clamp(20px, 1.7vw, 26px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+.where { margin: 0; color: var(--u-accent); font-size: 16px; }
+.body { margin: 0; color: var(--u-dim); font-size: 16px; max-width: 36ch; }
+@media (max-width: 860px) { .career { grid-template-columns: 1fr; } }

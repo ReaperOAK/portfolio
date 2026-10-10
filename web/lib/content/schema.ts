@@ -21,6 +21,8 @@ export const projectSchema = z.object({
       live: z.string().optional(),
     })
     .default({}),
+  /** Path under /public: a real screenshot of the live system, or a photograph for NDA work. */
+  cover: z.string().optional(),
   body: z.string().default(''),
   /** When true, decisions and devlogs are stripped at load. Shape, not specifics. */
   nda: z.boolean().default(false),

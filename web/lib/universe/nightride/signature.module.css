@@ -9,4 +9,4 @@
 .rpm { font-family: var(--u-display); font-weight: 900; font-size: 38px; line-height: 1; font-variant-numeric: tabular-nums; }
 .unit { font-family: var(--u-mono); font-size: 9px; letter-spacing: .08em; color: var(--u-dim); text-transform: uppercase; }
 .copy { margin: 0; max-width: 46ch; color: var(--u-dim); font-size: 15px; }
-.copy em { font-family: var(--font-nightride-serif), serif; color: var(--u-accent); font-size: 19px; }
+.copy em { font-family: var(--u-body); font-weight: 500; font-style: italic; color: var(--u-accent); font-size: 19px; }

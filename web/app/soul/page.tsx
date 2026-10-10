@@ -9,7 +9,7 @@ import { defaultUniverseFor } from '@/lib/universe/css'
 import { Page, Hero, Section } from '@/components/Page'
 
 export const metadata: Metadata = {
-  title: 'Owais Ahmed Khan — Soul',
+  title: 'Owais Ahmed Khan, off the clock',
   description: 'Rider, shayar, strategist. The person behind the work.',
 }
 
