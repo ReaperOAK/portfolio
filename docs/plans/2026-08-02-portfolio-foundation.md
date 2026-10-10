@@ -1089,7 +1089,7 @@ import type { TokenSet } from '../types'
 
 export const tokens: TokenSet = {
   bg: '#F2F4F2', bg2: '#E4E8E6', fg: '#12181C', dim: '#5C6B72',
-  accent: '#0E7C86', accent2: '#C2410C', line: '#C3CDCC',
+  accent: '#0B6A73', accent2: '#C2410C', line: '#C3CDCC',
   radius: '1px', tracking: '0.01em',
   display: 'ui-sans-serif, system-ui, "Segoe UI", sans-serif',
   body: 'ui-sans-serif, system-ui, "Segoe UI", sans-serif',
@@ -1104,7 +1104,7 @@ export const tokens: TokenSet = {
 import type { CurtainSpec } from '../types'
 
 export const curtain: CurtainSpec = {
-  background: 'repeating-linear-gradient(90deg,#0E7C86 0 2px,transparent 2px 26px)',
+  background: 'repeating-linear-gradient(90deg,#0B6A73 0 2px,transparent 2px 26px)',
   durationIn: 460, durationOut: 520, easing: 'cubic-bezier(.7,0,.3,1)',
 }
 ```
@@ -1271,7 +1271,7 @@ import { useSite } from '@/lib/store'
 
 test('writes the active universe tokens onto the root element', () => {
   render(<UniverseProvider><div /></UniverseProvider>)
-  expect(document.documentElement.style.getPropertyValue('--u-accent')).toBe('#0E7C86')
+  expect(document.documentElement.style.getPropertyValue('--u-accent')).toBe('#0B6A73')
 })
 
 test('rewrites tokens when the universe changes', () => {
@@ -1297,7 +1297,7 @@ Prepend to `web/app/globals.css`:
 @property --u-bg2     { syntax: '<color>'; inherits: true; initial-value: #E4E8E6 }
 @property --u-fg      { syntax: '<color>'; inherits: true; initial-value: #12181C }
 @property --u-dim     { syntax: '<color>'; inherits: true; initial-value: #5C6B72 }
-@property --u-accent  { syntax: '<color>'; inherits: true; initial-value: #0E7C86 }
+@property --u-accent  { syntax: '<color>'; inherits: true; initial-value: #0B6A73 }
 @property --u-accent2 { syntax: '<color>'; inherits: true; initial-value: #C2410C }
 @property --u-line    { syntax: '<color>'; inherits: true; initial-value: #C3CDCC }
 
@@ -1365,7 +1365,7 @@ In `web/app/layout.tsx`, wrap `{children}` in `<UniverseProvider>` and import `.
 ```bash
 cd portfolio/web && pnpm test UniverseProvider && pnpm build
 ```
-Expected: 2 tests PASS (the second requires `nightride` from Task 12 — until then it asserts the fallback to blueprint; adjust the expectation to `#0E7C86` and restore it in Task 12 Step 6).
+Expected: 2 tests PASS (the second requires `nightride` from Task 12 — until then it asserts the fallback to blueprint; adjust the expectation to `#0B6A73` and restore it in Task 12 Step 6).
 
 - [ ] **Step 7: Commit**
 

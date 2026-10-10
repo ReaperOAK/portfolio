@@ -158,7 +158,7 @@ Each is grounded in something in Owais's life rather than a generic aesthetic ge
 
 | | Universe | Origin | Ground / accent | Type | Layout strategy |
 |---|---|---|---|---|---|
-| 01 | **Blueprint** | the engineer | `#F2F4F2` / `#0E7C86` (dark ground available) | grotesk + mono, tight | spec-sheet rows, dimension rules |
+| 01 | **Blueprint** | the engineer | `#F2F4F2` / `#0B6A73` (dark ground available) | grotesk + mono, tight | spec-sheet rows, dimension rules |
 | 02 | **Nightride** | the Hero Xtreme 125R | `#07070A` / `#FF8A3D` | condensed, uppercase | skewed speed board |
 | 03 | **Dastan** | the shayar | `#EDE4D3` / `#8C2F1E` | serif, generous | printed index, roman numerals, dot leaders |
 | 04 | **Campaign** | chess + strategy games | `#101014` / `#C6923E` | display + tabular | stat cards, cut brass corner |
