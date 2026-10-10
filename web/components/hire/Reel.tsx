@@ -17,13 +17,15 @@ export function Reel({ projects }: { projects: Project[] }) {
             <Link key={p.slug} href={`/work/${p.slug}`} className={s.card}>
               <div className={s.frame}>
                 {p.cover
-                  ? <Image src={p.cover} alt={`${p.title}${p.nda ? '' : ', live site'}`} fill sizes="(max-width: 768px) 78vw, 58vw" />
+                  ? <Image src={p.cover} alt={`${p.title}${p.nda ? '' : ', live site'}`} fill sizes="(max-width: 768px) 72vw, 58vw"
+                      loading="eager" fetchPriority="low" /> /* lazy never fires for cards translated off-screen inside the panned track */
                   : <div className={s.type} aria-hidden="true"><span className={s.typeWord}>{p.title}</span></div>}
               </div>
               <div className={s.meta}>
                 <h3 className={s.name}>{p.title}</h3>
                 <span className={s.year}>{p.period}</span>
                 <p className={s.what}>{p.tagline}</p>
+                {p.metrics[0] && <span className={s.fig}>{p.metrics[0].value} {p.metrics[0].label}</span>}
                 {p.nda && <span className={s.nda}>Day job. Under NDA, so shape rather than specifics.</span>}
               </div>
             </Link>

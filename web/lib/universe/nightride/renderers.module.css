@@ -5,6 +5,7 @@
   transform: skewX(-7deg); transition: transform .35s cubic-bezier(.2,.8,.2,1);
 }
 .row > * { transform: skewX(7deg); }
+.row:not(:has(> .idx)) { grid-template-columns: minmax(0, 1fr) auto; }
 /* sodium streak passes on hover */
 .row::after {
   content: ''; position: absolute; inset: 0; width: 45%;

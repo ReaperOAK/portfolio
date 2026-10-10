@@ -5,10 +5,10 @@ import s from './renderers.module.css'
 const pad = (i: number) => String(i + 1).padStart(2, '0')
 
 /** One lap on the board. Uppercase comes from CSS: the content strings stay identical to every other universe. */
-function Row({ idx, title, sub, metric, verse, href }: { idx: string; title: string; sub: string; metric?: string; verse?: boolean; href?: string }) {
+function Row({ idx, title, sub, metric, verse, href }: { idx?: string; title: string; sub: string; metric?: string; verse?: boolean; href?: string }) {
   return (
     <article className={s.row}>
-      <span className={s.idx}>{idx}</span>
+      {idx && <span className={s.idx}>{idx}</span>}
       <div>
         <h3 className={s.title}>{href ? <Link href={href} className={s.link}>{title}</Link> : title}</h3>
         <p className={verse ? s.verse : s.sub}>{sub}</p>
@@ -21,8 +21,8 @@ function Row({ idx, title, sub, metric, verse, href }: { idx: string; title: str
 export const renderers: Universe['renderers'] = {
   project: ({ records }) => (
     <div className={s.board}>
-      {records.map((p, i) => (
-        <Row key={p.slug} href={`/work/${p.slug}`} idx={pad(i)} title={p.title} sub={p.tagline} metric={p.metrics[0]?.value ?? p.period} />
+      {records.map(p => (
+        <Row key={p.slug} href={`/work/${p.slug}`} title={p.title} sub={p.tagline} metric={p.metrics[0]?.value ?? p.period} />
       ))}
     </div>
   ),
@@ -38,7 +38,7 @@ export const renderers: Universe['renderers'] = {
   ),
   persona: ({ records }) => (
     <div className={s.board}>
-      {records.map((p, i) => <Row key={p.slug} idx={pad(i)} title={p.title} sub={p.description} />)}
+      {records.map(p => <Row key={p.slug} title={p.title} sub={p.description} />)}
     </div>
   ),
 }

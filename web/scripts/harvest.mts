@@ -12,12 +12,13 @@ const SKIP = new Set(['hashfame-influent-scraper', 'microsoft-rewards-farmer'])
 // Verified public figures only (resume). Never employer metrics.
 const METRICS: Record<string, { value: string; label: string }[]> = {
   'today-egg-rates': [{ value: '34.2k+', label: 'clicks' }, { value: '2K+', label: 'monthly users' }],
+  'skill-swap-platform': [{ value: 'National finalist', label: 'Odoo Hackathon 2025, 19,000+ entrants' }],
 }
 
 // Real screenshots of the live sites, captured into public/shots.
 const COVERS: Record<string, string> = {
   'today-egg-rates': '/shots/today-egg-rates.webp', chesscodex: '/shots/chesscodex.webp',
-  linearecta: '/shots/linearecta.webp', 'cse-farewell-2025': '/shots/cse-farewell-2025.webp',
+  linearecta: '/shots/linearecta.webp', 'cse-farewell-2025': '/shots/cse-farewell-2025.webp', ticketvault: '/shots/ticketvault.webp',
 }
 
 type Src = {

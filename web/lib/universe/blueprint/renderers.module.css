@@ -1,21 +1,18 @@
-/* A mosaic, not a spec sheet: cells separated by a 2px seam of ground, no hairline under every row. */
-.list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 2px;
-  background: var(--u-line); border: 2px solid var(--u-line); border-radius: var(--u-radius); overflow: hidden; }
-.row { position: relative; display: grid; grid-template-rows: auto 1fr auto; gap: 14px; padding: 24px 24px 22px;
-  background: var(--u-bg); min-height: 200px; transition: background-color .35s; }
-.row:hover, .row:has(.link:focus-visible) { background: var(--u-bg2); }
-.idx { font-family: var(--u-mono); font-size: 11px; color: var(--u-dim); }
-.title { font-family: var(--u-display); font-weight: var(--u-display-weight); font-size: 22px; letter-spacing: -0.025em;
-  line-height: 1.15; margin: 0 0 8px; transition: color .35s; }
+/* Dense index rows: what it is, one line, status. No ordinal numbers; the order carries no information. */
+.list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(32px, 4vw, 64px); }
+.row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 24px; align-items: baseline;
+  padding: 18px 0; border-bottom: 1px solid var(--u-line); }
+.row:has(> .idx) { grid-template-columns: 64px minmax(0, 1fr) auto; }
+.idx { font-family: var(--u-mono); font-size: 12px; color: var(--u-dim); }
+.title { font-family: var(--u-display); font-weight: var(--u-display-weight); font-size: 20px; letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 4px; transition: color .3s; }
 .row:hover .title { color: var(--u-accent); }
 .sub { font-size: 15px; line-height: 1.5; color: var(--u-dim); margin: 0; }
 .verse { white-space: pre-line; color: var(--u-fg); }
 .note { display: none; }
-.metric { font-size: 13px; color: var(--u-dim); font-variant-numeric: tabular-nums; align-self: end; }
-/* whole cell is the hit area; the title stays the single link */
+.metric { font-size: 13px; color: var(--u-dim); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .link { color: inherit; text-decoration: none; }
 .link::before { content: ''; position: absolute; inset: 0; }
 .link:focus-visible { outline: none; }
-.row:has(.link:focus-visible) { outline: 2px solid var(--u-accent); outline-offset: -2px; }
-@media (max-width: 640px) { .row { min-height: 0; padding: 18px 18px 16px; gap: 8px; } .title { font-size: 19px; margin-bottom: 4px; } .sub { font-size: 14px; } }
-@media (prefers-reduced-motion: reduce) { .row, .title { transition: none; } }
+.row:has(.link:focus-visible) { outline: 2px solid var(--u-accent); outline-offset: 4px; }
+@media (max-width: 860px) { .list { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .title { transition: none; } }

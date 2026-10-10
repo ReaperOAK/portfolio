@@ -44,7 +44,9 @@ universes are his.
   `prefers-reduced-motion`. CI enforces Lighthouse ≥ 95 in every category on `/`, `/hire`, `/soul`.
 - **Employment NDA (binding, legal):** never name the employer's products; describe them only as "a generative-AI
   media platform" and "a creator marketplace". No internal metrics, configs, costs, vendors or unreleased features.
-  Job title is **Senior Developer**. No public mention of side ventures, freelancing or compensation. Enforced by
+  Job title is **Senior Developer**. No internal day-job numbers (team size, latency, uptime, costs). No mention of
+  side ventures, freelancing during the current employment, freelance platforms, or compensation. Past freelance
+  and contract roles (Today Egg Rates 2023-24, Kolkata Chess Academy 2024-25) are public résumé facts and may appear. Enforced by
   `.githooks/nda-terms`, a content test and `web/scripts/smoke.sh`.
 
 ## Brand Commitments
@@ -60,9 +62,14 @@ universes are his.
   NDA shape-only).
 - Timeline (`web/content/timeline.ts`), eleven personas (`web/content/personas.ts`).
 - Verified public figures: Today Egg Rates 34.2k+ clicks, 2K+ monthly users; TicketVault 3 dApps, team of 3;
-  Odoo Hackathon 2025 national finalist (19,000+ field). Nothing else may be presented as a metric.
-- Photography: `assets/cold-open/` (a1 helmet + monitor approved; b1 is a real portrait of Owais; a3/a4 to be
-  replaced with real photos of the 125R and his handwriting). Videos v1–v3 unreviewed.
+  Odoo Hackathon 2025 national finalist (19,000+ field); 3 years building production systems (résumé). Nothing
+  else may be presented as a metric. Several projects are still in development, so never say "31 shipped".
+- Photography: `assets/cold-open/` (a1 helmet + monitor approved; b1 and b2 are portraits of Owais; a3/a4 to be
+  replaced with real photos of the 125R and his handwriting).
+- Films v1–v3 (desk, ride, throttle) were supplied by Owais and approved by him as world imagery. The bikes in v1/v2
+  are not his 125R; he has said he will replace footage gradually and does not want this re-argued. Do not pair
+  bike footage with claims that it is his bike.
+- Live screenshots of his own deployed projects: `web/public/shots/` (provenance embedded).
 - Absent and not to be fabricated: shayari (pending his dump), gym logs, testimonials, client logos.
 
 ## Product Principles

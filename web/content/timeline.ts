@@ -19,7 +19,7 @@ export const timeline: TimelineEntry[] = [
   {
     "year": "2022",
     "title": "Freelance Hustle",
-    "body": "Started on Upwork, delivering small gigs. Each bug fixed was a paycheck and a lesson. Built confidence through real clients, real deadlines."
+    "body": "First paid work: small client projects. Each bug fixed was a lesson. Built confidence through real clients and real deadlines."
   },
   {
     "year": "2023",

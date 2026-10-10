@@ -48,7 +48,7 @@ export function Tacho() {
         </div>
       </div>
       <p className={s.copy}>
-        Scroll speed is throttle. Ride it harder and the needle follows. <em>124.7cc, and it still goes all the way.</em>
+        Scroll speed is throttle. <em>Ride it harder and the needle follows.</em>
       </p>
     </div>
   )

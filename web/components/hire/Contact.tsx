@@ -6,7 +6,7 @@ export function Contact() {
     <section className={s.close} aria-label="Contact">
       <a className={s.big} href={`mailto:${EMAIL}`}>Email me</a>
       <div className={s.row}>
-        <span className={s.addr}>{EMAIL}</span>
+        <a className={s.addr} href={`mailto:${EMAIL}`}>{EMAIL}</a>
         <a href="https://github.com/ReaperOAK" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/in/owaistech" rel="noopener">LinkedIn</a>
       </div>

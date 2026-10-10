@@ -1,7 +1,0 @@
-.band { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: clamp(56px, 9vh, 96px) var(--pad); gap: 0; }
-.fig { padding: 0 clamp(16px, 2.4vw, 36px); border-left: 1px solid var(--u-line); display: grid; gap: 10px; align-content: start; }
-.fig:first-child { border-left: 0; padding-left: 0; }
-.value { margin: 0; font-family: var(--u-display); font-weight: 600; letter-spacing: -0.04em; line-height: 1;
-  font-size: clamp(40px, 5vw, 76px); font-variant-numeric: tabular-nums; color: var(--u-fg); }
-.label { margin: 0; font-size: 15px; line-height: 1.45; color: var(--u-dim); max-width: 22ch; }
-@media (max-width: 900px) { .band { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; } .fig:nth-child(3) { border-left: 0; padding-left: 0; } }

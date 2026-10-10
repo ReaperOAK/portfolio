@@ -12,7 +12,7 @@
   --morph: 900ms cubic-bezier(.65,.02,.24,1);
   --pad: clamp(16px, 4vw, 56px);
   --u-display: var(--font-blueprint-sans), ui-sans-serif, system-ui, sans-serif;
-  --u-body: var(--font-blueprint-sans), ui-sans-serif, system-ui, sans-serif;
+  --u-body: var(--font-blueprint-text), ui-sans-serif, system-ui, sans-serif;
   --u-mono: var(--font-blueprint-mono), ui-monospace, Menlo, monospace;
   --u-display-weight: 600;
   --u-tracking: -0.01em;

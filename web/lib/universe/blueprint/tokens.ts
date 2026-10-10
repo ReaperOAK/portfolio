@@ -6,7 +6,7 @@ export const tokens: TokenSet = {
   accent: '#4FD1C5', accent2: '#FF8A57', line: '#22303A',
   radius: '2px', tracking: '-0.02em',
   display: 'var(--font-blueprint-sans), ui-sans-serif, system-ui, sans-serif',
-  body: 'var(--font-blueprint-sans), ui-sans-serif, system-ui, sans-serif',
+  body: 'var(--font-blueprint-text), ui-sans-serif, system-ui, sans-serif',
   mono: 'var(--font-blueprint-mono), ui-monospace, Menlo, monospace',
   displayWeight: '600', displayStretch: 'normal',
 }
