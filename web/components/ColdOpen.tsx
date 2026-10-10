@@ -32,6 +32,7 @@ export function ColdOpen() {
         <Image src="/cold-open/helmet-desk.webp" alt="A riding helmet on a desk beside a monitor full of code, at night"
           fill preload fetchPriority="high" sizes="100vw" />
       </div>
+      <div className={s.veil} aria-hidden="true" />
       <div className={s.loader} aria-hidden="true">
         <div className={s.rule} />
         <div className={s.count} />

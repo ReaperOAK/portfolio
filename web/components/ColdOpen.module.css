@@ -9,7 +9,8 @@
 .photo::after { content: ''; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(5,6,8,.55) 0%, rgba(5,6,8,0) 30%, rgba(5,6,8,.15) 60%, rgba(5,6,8,.9) 100%); }
 
-.loader { position: absolute; left: 50%; top: 50%; width: min(320px, 60vw); transform: translate(-50%, -50%);
+.veil { position: absolute; inset: 0; z-index: 2; background: #050608; opacity: 0; pointer-events: none; }
+.loader { position: absolute; z-index: 3; left: 50%; top: 50%; width: min(320px, 60vw); transform: translate(-50%, -50%);
   font-family: var(--font-blueprint-mono), monospace; font-size: 11px; color: #8FA3A8; opacity: 0;
   display: grid; gap: 10px; pointer-events: none; }
 .rule { height: 1px; background: #2BD4C4; transform-origin: left; }
@@ -40,8 +41,10 @@
 .play .rule { animation: draw 1.1s cubic-bezier(.7,0,.3,1) .1s both; }
 .play .count { animation: count 1.1s cubic-bezier(.7,0,.3,1) .1s both; }
 .play .photo { animation: rack 3.2s cubic-bezier(.2,.7,.1,1) 1.2s both; }
-.play .eyebrow { animation: rise 1s ease 2.9s both; }
-.play .name { animation: rise 1.2s cubic-bezier(.2,.7,.1,1) 3.1s both; }
+/* The veil does the hiding, so photo and name paint on the first frame (LCP-eligible) and are revealed, not drawn late. */
+.play .veil { animation: veil 3.4s linear both; }
+.play .eyebrow { animation: slide 1s ease 2.3s both; }
+.play .name { animation: slide 1.3s cubic-bezier(.2,.7,.1,1) 2.4s both; }
 .play .door:nth-child(1) { animation: rise 1s cubic-bezier(.2,.7,.1,1) 4.3s both; }
 .play .door:nth-child(2) { animation: rise 1s cubic-bezier(.2,.7,.1,1) 4.6s both; }
 .play .hint { animation: fade 1s ease 5.6s both; }
@@ -49,7 +52,9 @@
 @keyframes fadeLoader { 0%, 70% { opacity: 1 } 100% { opacity: 0 } }
 @keyframes draw { from { transform: scaleX(0) } to { transform: scaleX(1) } }
 @keyframes count { from { --pct: 0 } to { --pct: 100 } }
-@keyframes rack { from { opacity: 0; transform: scale(1.08); filter: blur(10px) } to { opacity: 1; transform: none; filter: none } }
+@keyframes rack { from { transform: scale(1.08); filter: blur(10px) } to { transform: none; filter: none } }
+@keyframes veil { 0%, 36% { opacity: 1 } 100% { opacity: 0 } }
+@keyframes slide { from { transform: translateY(18px) } to { transform: none } }
 @keyframes rise { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
 @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
 
