@@ -36,3 +36,11 @@ body {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Film (components/Film.tsx). Global on purpose: as a CSS module it was assigned to one route's chunk and arrived
+   late on the others, so the poster rendered unpositioned and the hero re-laid out after hydration. */
+.film-wrap { position: absolute; inset: 0; overflow: hidden; z-index: -2; }
+.film-poster, .film-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: inherit; }
+.film-video { opacity: 0; transition: opacity 1.2s ease; }
+.film-video[data-playing='true'] { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .film-video { display: none; } }

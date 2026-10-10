@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { preload } from 'react-dom'
 import { loadPoems } from '@/lib/content/load'
 import { personas } from '@/content/personas'
 import { timeline } from '@/content/timeline'
@@ -19,13 +18,12 @@ export const metadata: Metadata = {
 }
 
 export default async function Soul() {
-  preload('/media/ride-poster.webp', { as: 'image', fetchPriority: 'high' })
   const poems = await loadPoems()
   return (
     <Entry lens="soul" universe={defaultUniverseFor('/soul')}>
       <main>
         <header className={s.hero}>
-          <Film className={s.film} src="/media/ride.mp4" poster="/media/ride-poster.webp" />
+          <Film className={s.film} src="/media/ride.mp4" poster="/media/ride-poster.webp" priority />
           <div className={s.heroCopy}>
             <h1 className={s.name}>Owais Ahmed Khan</h1>
             <p className={s.sub}>Rider, shayar, strategist. <em>Throttle open</em>, a notebook in the bag.</p>

@@ -6,7 +6,7 @@ export const EMAIL = 'oaak78692@gmail.com'
 export function Hero() {
   return (
     <header className={s.hero}>
-      <Film className={s.film} src="/media/desk.mp4" poster="/media/desk-poster.webp" />
+      <Film className={s.film} src="/media/desk.mp4" poster="/media/desk-poster.webp" priority />
       <div className={s.copy}>
         <h1 className={s.name}>Owais Ahmed Khan</h1>
         <p className={s.sub}>

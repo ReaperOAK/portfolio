@@ -30,7 +30,7 @@ export function ColdOpen() {
     <section className={`${s.scene} ${playing ? s.play : ''}`} data-testid="cold-open" data-playing={playing}>
       <div className={s.photo}>
         <Image src="/cold-open/helmet-desk.webp" alt="A riding helmet on a desk beside a monitor full of code, at night"
-          fill priority sizes="100vw" />
+          fill preload fetchPriority="high" sizes="100vw" />
       </div>
       <div className={s.loader} aria-hidden="true">
         <div className={s.rule} />

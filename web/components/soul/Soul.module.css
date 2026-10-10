@@ -1,6 +1,6 @@
 /* Nightride scenes. Every value comes from the universe tokens, so the same page still renders in Blueprint. */
 .hero { position: relative; min-height: 100svh; display: grid; align-items: end; isolation: isolate; overflow: hidden; }
-.film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.film { object-position: 50% 50%; }
 .hero::before { content: ''; position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(0deg, var(--u-bg) 2%, color-mix(in srgb, var(--u-bg) 55%, transparent) 42%, color-mix(in srgb, var(--u-bg) 15%, transparent) 100%); }
 .heroCopy { padding: 0 var(--pad) clamp(96px, 15vh, 160px); display: grid; gap: 22px; }
@@ -45,7 +45,7 @@
     .big img, .small img { animation: zoom linear both; animation-timeline: view(); }
   }
 }
-@keyframes rise { from { opacity: 0; transform: translateY(28px); } }
+@keyframes rise { from { transform: translateY(28px); } }
 @keyframes slide { from { opacity: 0; transform: translateX(-12vw); } }
 @keyframes zoom { from { transform: scale(1.12); } to { transform: scale(1); } }
 @media (max-width: 860px) {
