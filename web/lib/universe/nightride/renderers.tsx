@@ -33,7 +33,7 @@ export const renderers: Universe['renderers'] = {
   ),
   timelineEntry: ({ records }) => (
     <div className={s.board}>
-      {records.map(e => <Row key={e.year + e.title} idx={e.year.slice(2)} title={e.title} sub={e.body} metric={e.year} />)}
+      {records.map(e => <Row key={e.year + e.title} idx={`’${e.year.slice(2)}`} title={e.title} sub={e.body} />)}
     </div>
   ),
   persona: ({ records }) => (

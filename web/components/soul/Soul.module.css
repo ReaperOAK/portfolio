@@ -1,0 +1,54 @@
+/* Nightride scenes. Every value comes from the universe tokens, so the same page still renders in Blueprint. */
+.hero { position: relative; min-height: 100svh; display: grid; align-items: end; isolation: isolate; overflow: hidden; }
+.film { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.hero::before { content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(0deg, var(--u-bg) 2%, color-mix(in srgb, var(--u-bg) 55%, transparent) 42%, color-mix(in srgb, var(--u-bg) 15%, transparent) 100%); }
+.heroCopy { padding: 0 var(--pad) clamp(96px, 15vh, 160px); display: grid; gap: 22px; }
+.name { margin: 0; font-family: var(--u-display); font-weight: var(--u-display-weight); text-transform: uppercase;
+  font-size: clamp(64px, 13vw, 220px); line-height: .84; letter-spacing: -0.01em; }
+.sub { margin: 0; font-size: clamp(18px, 1.7vw, 23px); color: var(--u-fg); max-width: 40ch; line-height: 1.45; }
+.sub em { color: var(--u-accent); font-style: italic; }
+
+.interlude { position: relative; min-height: 72svh; display: grid; align-items: center; isolation: isolate; overflow: hidden; }
+.interlude .film { filter: saturate(.85) contrast(1.05); }
+.interlude::before { content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--u-bg) 88%, transparent) 0%, color-mix(in srgb, var(--u-bg) 30%, transparent) 70%),
+              linear-gradient(0deg, var(--u-bg), transparent 25%, transparent 75%, var(--u-bg)); }
+.quote { margin: 0; padding: 0 var(--pad); max-width: 14ch; font-family: var(--u-display); font-weight: var(--u-display-weight);
+  text-transform: uppercase; font-size: clamp(48px, 7.5vw, 128px); line-height: .9; }
+.quote span { color: var(--u-accent); }
+
+.section { padding: clamp(80px, 13vh, 150px) var(--pad); display: grid; gap: 28px; }
+.title { margin: 0; font-family: var(--u-display); font-weight: var(--u-display-weight); text-transform: uppercase;
+  font-size: clamp(44px, 6vw, 104px); line-height: .9; }
+
+.discipline { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-rows: auto auto;
+  gap: clamp(16px, 2vw, 28px); padding: clamp(80px, 13vh, 150px) var(--pad); align-items: end; }
+.big, .small { position: relative; overflow: hidden; }
+.big { grid-row: 1 / 3; aspect-ratio: 4 / 3; }
+.small { aspect-ratio: 4 / 3; }
+.big img, .small img { object-fit: cover; }
+.disciplineCopy { display: grid; gap: 16px; align-self: start; }
+.disciplineCopy p { margin: 0; font-size: 18px; color: var(--u-dim); max-width: 36ch; line-height: 1.55; }
+
+.close { padding: clamp(80px, 14vh, 160px) var(--pad) 150px; }
+.back { font-family: var(--u-display); font-weight: var(--u-display-weight); text-transform: uppercase; text-decoration: none;
+  color: var(--u-fg); font-size: clamp(56px, 10vw, 180px); line-height: .85; transition: color .35s; }
+.back:hover, .back:focus-visible { color: var(--u-accent); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .name, .sub { animation: rise 1s cubic-bezier(.16,1,.3,1) both; } .sub { animation-delay: .15s; }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .quote { animation: slide linear both; animation-timeline: view(); animation-range: entry 0% cover 50%; }
+    .big img, .small img { animation: zoom linear both; animation-timeline: view(); }
+  }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(28px); } }
+@keyframes slide { from { opacity: 0; transform: translateX(-12vw); } }
+@keyframes zoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+@media (max-width: 860px) {
+  .discipline { grid-template-columns: 1fr; }
+  .big { grid-row: auto; }
+}

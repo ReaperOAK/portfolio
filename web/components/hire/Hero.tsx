@@ -1,4 +1,4 @@
-import { Film } from './Film'
+import { Film } from '@/components/Film'
 import s from './Hero.module.css'
 
 export const EMAIL = 'oaak78692@gmail.com'
