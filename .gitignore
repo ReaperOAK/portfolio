@@ -34,4 +34,7 @@ yarn-error.log*
 /.playwright-mcp
 /client/public/logo
 
-.vercel.gstack/
+.vercel
+.gstack/
+# impeccable working files: decision sketches and review captures
+.impeccable/
