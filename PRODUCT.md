@@ -69,6 +69,8 @@ universes are his.
 - Films v1–v3 (desk, ride, throttle) were supplied by Owais and approved by him as world imagery. The bikes in v1/v2
   are not his 125R; he has said he will replace footage gradually and does not want this re-argued. Do not pair
   bike footage with claims that it is his bike.
+  The person in the desk film (v3) has not been confirmed by Owais as himself. Until he does, it is world imagery:
+  never caption it as him or use it as proof of identity. His confirmed likeness is the b1/b2 portraits.
 - Live screenshots of his own deployed projects: `web/public/shots/` (provenance embedded).
 - Absent and not to be fabricated: shayari (pending his dump), gym logs, testimonials, client logos.
 
