@@ -1,0 +1,47 @@
+---
+slug: autosolve-ai
+title: Autosolve AI
+tagline: Desktop AI assistant to automate problem-solving workflows.
+stack:
+  - Electron
+  - React
+  - Node.js
+  - Python
+  - OpenAI API
+  - Tailwind
+role: Solo
+period: Completed
+metrics: []
+decisions:
+  - >-
+    Chose Electron to create a cross-platform desktop application with web
+    technologies.
+  - 'Integrated React for a modern, component-based user interface.'
+  - >-
+    Utilized a Python backend for powerful scripting and interaction with the
+    OpenAI API.
+  - >-
+    Implemented a terminal-like UI to provide a familiar and efficient
+    experience for developers.
+  - >-
+    Used Electron's IPC (Inter-Process Communication) to bridge the gap between
+    the Node.js frontend process and the Python backend script.
+devlogs:
+  - Set up the Electron Forge project with a React and Tailwind CSS template.
+  - >-
+    Developed the main process logic in `index.js` and the renderer process in
+    `renderer.js`.
+  - >-
+    Built the Python backend script to handle the core problem-solving logic
+    with the OpenAI API.
+  - >-
+    Implemented the communication bridge between the Electron frontend and the
+    Python script.
+  - >-
+    Designed and styled the UI components, including the interactive terminal,
+    using React and Tailwind CSS.
+links:
+  github: 'https://github.com/ReaperOAK/autosolveai'
+nda: false
+---
+A cross-platform desktop application built with Electron and React that leverages the OpenAI API to automate problem-solving. Users can input a problem, and the application uses a Python backend to execute code, run tests, and provide solutions in a terminal-style interface, streamlining development and debugging workflows.

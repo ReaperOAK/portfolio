@@ -1,0 +1,46 @@
+/* Colour tokens are registered so a universe change interpolates instead of snapping.
+   Initial values are Blueprint's, so first paint matches the default universe. */
+@property --u-bg      { syntax: '<color>'; inherits: true; initial-value: #0A0E10 }
+@property --u-bg2     { syntax: '<color>'; inherits: true; initial-value: #12191C }
+@property --u-fg      { syntax: '<color>'; inherits: true; initial-value: #E9EFEC }
+@property --u-dim     { syntax: '<color>'; inherits: true; initial-value: #8FA1A6 }
+@property --u-accent  { syntax: '<color>'; inherits: true; initial-value: #4FD1C5 }
+@property --u-accent2 { syntax: '<color>'; inherits: true; initial-value: #FF8A57 }
+@property --u-line    { syntax: '<color>'; inherits: true; initial-value: #22303A }
+
+:root {
+  --morph: 900ms cubic-bezier(.65,.02,.24,1);
+  --pad: clamp(16px, 4vw, 56px);
+  --u-display: var(--font-blueprint-sans), ui-sans-serif, system-ui, sans-serif;
+  --u-body: var(--font-blueprint-text), ui-sans-serif, system-ui, sans-serif;
+  --u-mono: var(--font-blueprint-mono), ui-monospace, Menlo, monospace;
+  --u-display-weight: 600;
+  --u-tracking: -0.01em;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--u-bg);
+  color: var(--u-fg);
+  font-family: var(--u-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--morph), color var(--morph);
+}
+
+:focus-visible { outline: 2px solid var(--u-accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* Film (components/Film.tsx). Global on purpose: as a CSS module it was assigned to one route's chunk and arrived
+   late on the others, so the poster rendered unpositioned and the hero re-laid out after hydration. */
+.film-wrap { position: absolute; inset: 0; overflow: hidden; z-index: -2; }
+.film-poster, .film-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: inherit; }
+.film-video { opacity: 0; transition: opacity 1.2s ease; }
+.film-video[data-playing='true'] { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .film-video { display: none; } }

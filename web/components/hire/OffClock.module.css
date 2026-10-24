@@ -1,0 +1,18 @@
+.scene { position: relative; min-height: 88svh; display: grid; align-items: center; isolation: isolate; overflow: hidden; }
+.bg { position: absolute; inset: -10% 0; z-index: -2; }
+.bg img { object-fit: cover; }
+.scene::before { content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, var(--u-bg) 0%, rgba(10,14,16,.45) 30%, rgba(10,14,16,.55) 70%, var(--u-bg) 100%); }
+.copy { padding: 0 var(--pad); display: grid; gap: 28px; max-width: 980px; }
+.line { margin: 0; font-family: var(--u-display); font-weight: 600; letter-spacing: -0.04em; line-height: 1;
+  font-size: clamp(36px, 5.2vw, 84px); text-wrap: balance; }
+.line em { font-style: normal; color: var(--u-accent2); }
+.link { justify-self: start; color: var(--u-fg); font-size: 17px; text-decoration: none; padding-bottom: 4px;
+  border-bottom: 1px solid color-mix(in srgb, var(--u-fg) 40%, transparent); transition: border-color .3s; }
+.link:hover { border-bottom-color: var(--u-accent2); }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .bg { animation: drift linear both; animation-timeline: view(); }
+  }
+}
+@keyframes drift { from { transform: translateY(-8%) scale(1.05); } to { transform: translateY(8%) scale(1.05); } }

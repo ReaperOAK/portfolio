@@ -1,0 +1,33 @@
+---
+slug: real-time-sign-language-translator
+title: Real-time Sign Language Translator
+tagline: A real-time Indian Sign Language (ISL) translator using computer vision.
+stack:
+  - Python
+  - Flask
+  - OpenCV
+  - TensorFlow
+  - Keras
+role: Solo
+period: Completed
+metrics: []
+decisions:
+  - Used Flask to create a lightweight web server for real-time video streaming.
+  - Leveraged OpenCV for efficient webcam access and real-time image processing.
+  - >-
+    Integrated a pre-trained TensorFlow/Keras model for sign language gesture
+    recognition.
+  - >-
+    Designed a simple HTML frontend to display the video feed and classification
+    results without the overhead of a complex JavaScript framework.
+devlogs:
+  - Set up the Flask application to handle video streaming.
+  - Integrated OpenCV to capture and process webcam frames.
+  - Loaded the pre-trained Keras model (.h5) for predictions.
+  - Developed the logic to preprocess the ROI and feed it to the model.
+  - Designed the simple HTML interface to display the results.
+links:
+  github: 'https://github.com/ReaperOAK/isl_prototype_test'
+nda: false
+---
+A prototype application that uses a webcam to capture hand gestures in real-time and translates them into text. The system is built with Python, Flask, and OpenCV, and it leverages a pre-trained TensorFlow/Keras model to recognize and interpret Indian Sign Language (ISL) gestures.

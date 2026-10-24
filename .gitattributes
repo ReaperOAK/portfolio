@@ -1,0 +1,4 @@
+# New binary source assets go to LFS. client/public/** is deliberately excluded:
+# it is already in pushed history, so converting it would rewrite shared commits
+# for no benefit. That tree is deleted in sub-project B anyway.
+assets/** filter=lfs diff=lfs merge=lfs -text

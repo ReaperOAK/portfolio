@@ -1,0 +1,46 @@
+---
+slug: bulk-certificate-generator
+title: Bulk Certificate Generator
+tagline: A Python utility to generate personalized certificates from a CSV file.
+stack:
+  - Python
+  - Pillow
+  - pandas
+role: Solo
+period: Completed
+metrics: []
+decisions:
+  - >-
+    Chose Python for its powerful scripting capabilities and rich ecosystem of
+    libraries.
+  - >-
+    Utilized the Pillow (PIL) library for robust and precise image manipulation
+    and text rendering.
+  - >-
+    Used pandas to efficiently parse and handle participant data from a CSV
+    file.
+  - >-
+    Decoupled the data (CSV) and design (template image) from the core logic,
+    allowing for easy customization without code changes.
+  - >-
+    Included an interactive `certificate_designer.py` tool to improve the user
+    experience of placing text elements.
+devlogs:
+  - Set up the main script to load the certificate template and participant CSV.
+  - >-
+    Implemented the core logic for rendering text onto the template using
+    Pillow.
+  - >-
+    Developed the interactive certificate designer to assist with coordinate
+    selection.
+  - >-
+    Structured the project to clearly separate the main generator, the designer
+    tool, and the input data.
+  - >-
+    Finalized the script with a `requirements.txt` for straightforward
+    dependency management.
+links:
+  github: 'https://github.com/ReaperOAK/bulk-certificate-generator'
+nda: false
+---
+A Python script designed to automate the creation of personalized certificates. It reads participant data from a CSV file, uses a template image, and leverages the Pillow library to programmatically place text, generating individual certificates for each participant. The project also includes an interactive designer tool to help users find the precise coordinates for text placement.

@@ -1,0 +1,15 @@
+.page { padding: 0 var(--pad) 120px; max-width: 1240px; margin: 0 auto; }
+.hero { padding: clamp(64px, 14vh, 160px) 0 clamp(40px, 8vh, 96px); }
+.eyebrow { font-family: var(--u-mono); font-size: 11px; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--u-accent); margin: 0 0 24px; }
+.name { font-family: var(--u-display); font-weight: var(--u-display-weight); letter-spacing: -0.035em;
+  font-size: clamp(48px, 9vw, 128px); line-height: .92; margin: 0 0 28px; text-wrap: balance; }
+.line { font-size: clamp(17px, 2vw, 22px); color: var(--u-dim); max-width: 46ch; margin: 0 0 32px; }
+.line strong { color: var(--u-fg); font-weight: 500; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.chips li { font-family: var(--u-mono); font-size: 11px; padding: 5px 10px; border: 1px solid var(--u-line); color: var(--u-dim); }
+.section { padding: 48px 0; display: grid; gap: 24px; }
+.head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.title { font-family: var(--u-display); font-weight: var(--u-display-weight); font-size: clamp(22px, 3vw, 34px);
+  letter-spacing: -0.02em; margin: 0; }
+.count { font-family: var(--u-mono); font-size: 11px; color: var(--u-dim); letter-spacing: .04em; text-transform: uppercase; }

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Blocks pushes that add employer product names or the wrong title (employment NDA).
+# Enable once per clone: git config core.hooksPath .githooks
+set -euo pipefail
+# The term list is deliberately NOT in the repo (a committed list would itself publish the protected words).
+terms_file="${NDA_TERMS_FILE:-$HOME/.config/nda-guard/terms}"
+[ -r "$terms_file" ] || { echo "pre-push: no protected-term list at $terms_file (set NDA_TERMS_FILE); refusing to push unchecked" >&2; exit 1; }
+pattern=$(cat "$terms_file")
+zero=0000000000000000000000000000000000000000
+while read -r _ local_sha _ remote_sha; do
+  [ "$local_sha" = "$zero" ] && continue
+  range=$([ "$remote_sha" = "$zero" ] && echo "$local_sha" || echo "$remote_sha..$local_sha")
+  if hits=$(git log -p --no-color "$range" -- . ':!*.lock' ':!*lock.yaml' ':!.githooks' | grep -E '^\+' | grep -inE "$pattern"); then
+    echo "pre-push: NDA-protected term in outgoing commits:" >&2
+    echo "$hits" | head -20 >&2
+    exit 1
+  fi
+done
