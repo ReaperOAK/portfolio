@@ -39,3 +39,6 @@ yarn-error.log*
 # impeccable working files: decision sketches and review captures
 .impeccable/
 .env*
+
+.vercel
+.env*
