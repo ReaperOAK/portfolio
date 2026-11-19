@@ -1,7 +1,20 @@
 .back { font-family: var(--u-mono); font-size: 11px; color: var(--u-dim); text-decoration: none; text-transform: uppercase; }
 .back:hover { color: var(--u-accent); }
-.body { max-width: 68ch; font-size: 17px; color: var(--u-fg); margin: 0; }
+.body { max-width: 70ch; font-size: 16px; line-height: 1.7; color: var(--u-fg); margin: 0; }
 .list { margin: 0; padding-left: 1.2em; max-width: 72ch; display: grid; gap: 10px; color: var(--u-dim); }
-.links { display: flex; gap: 16px; flex-wrap: wrap; }
-.links a { font-family: var(--u-mono); font-size: 12px; color: var(--u-accent); }
+.links { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; }
+.links a { font-family: var(--u-mono); font-size: 12px; color: var(--u-accent); text-decoration: none; border: 1px solid var(--u-line); padding: 6px 14px; border-radius: 6px; transition: border-color .2s; }
+.links a:hover { border-color: var(--u-accent); }
 .nda { font-family: var(--u-mono); font-size: 12px; color: var(--u-dim); border: 1px dashed var(--u-line); padding: 12px 14px; margin: 0; max-width: 68ch; }
+
+/* Rich Markdown & Case Study formatting */
+.markdownWrap { max-width: 72ch; }
+.h3 { font-family: var(--u-display); font-size: 22px; font-weight: 600; color: var(--u-fg); margin: 36px 0 14px; letter-spacing: -0.02em; border-bottom: 1px solid var(--u-line); padding-bottom: 8px; }
+.h4 { font-family: var(--u-display); font-size: 17px; font-weight: 600; color: var(--u-fg); margin: 24px 0 10px; letter-spacing: -0.01em; }
+.paragraph { font-size: 16px; line-height: 1.75; color: var(--u-fg); margin: 0 0 18px; }
+.bodyList { margin: 0 0 20px; padding-left: 1.2em; display: grid; gap: 8px; color: var(--u-dim); }
+.bodyListItem { font-size: 15px; line-height: 1.6; }
+.strong { color: var(--u-fg); font-weight: 600; }
+.inlineCode { font-family: var(--u-mono); font-size: 13px; color: var(--u-accent); background: var(--u-bg2); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--u-line); }
+.pre { background: var(--u-bg2); border: 1px solid var(--u-line); border-radius: 8px; padding: 16px; overflow-x: auto; font-family: var(--u-mono); font-size: 13px; color: var(--u-dim); margin: 18px 0; }
+
