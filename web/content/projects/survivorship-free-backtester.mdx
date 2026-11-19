@@ -1,0 +1,86 @@
+---
+slug: survivorship-free-backtester
+title: Survivorship-Free Backtester
+tagline: Honest, survivorship-bias-corrected backtesting and paper trading engine
+  for Indian equities.
+stack:
+- Python
+- DuckDB
+- NSE Bhavcopy
+- yfinance
+- Internet Archive
+- Vectorized Math
+role: Creator & Quantitative Developer
+period: 2026 · Shipped
+metrics:
+- value: 2,800+
+  label: stocks indexed
+- value: 26 years
+  label: NSE history
+- value: 1.0 vs 1.5
+  label: honest vs biased Sharpe
+- value: ~18% vs 38%
+  label: halved max drawdown
+decisions:
+- Reconstructed point-in-time Nifty 100/200/500 membership from Internet Archive snapshots
+  to eradicate invisible survivorship bias.
+- Built bulk NSE bhavcopy daily ingestion engine (single daily request for the entire
+  market) backed by DuckDB for zero-repeat queries and instant vectorized backtests.
+- Built an after-tax simulator calculating lot-level FIFO with real Indian capital
+  gains tax (20% STCG / 12.5% LTCG) to expose the true drag on active strategies.
+- Engineered an ensemble strategy with a 200-day trend regime-cash filter, effectively
+  cutting max drawdown from -38% to -18%.
+devlogs:
+- Created DuckDB bulk bhavcopy ingest pipeline and yfinance historical seed scripts.
+- Recovered historical delisted-loser prices and integrated Wayback point-in-time
+  index membership.
+- Ran tournament across 15+ quantitative strategies and verified the momentum inflation
+  anomaly (+0.4 to +0.9 Sharpe).
+- Deployed idempotent, cron-driven live paper accounts with real fund NAV tracking
+  via mfapi.in.
+links:
+  github: https://github.com/ReaperOAK/survivorship-free-backtester
+nda: false
+---
+Most retail backtests quietly lie: they test the past using today's winning stocks (survivorship bias), assume fractional shares that do not exist, and ignore tax friction. This engine was built to deliver the honest version using free data sources.
+
+### System Architecture
+
+```mermaid
+flowchart LR
+    subgraph RawData["Free Ingestion Layer"]
+        Bhavcopy["NSE Bhavcopy (1 req/day)"]
+        Wayback["Internet Archive (Nifty 100/200/500 PIT)"]
+        YFin["Yahoo Finance (Deep History)"]
+    end
+
+    subgraph Storage["High-Performance Store"]
+        DuckDB[("DuckDB In-Memory / Vectorized Store")]
+    end
+
+    subgraph Engine["Strategy & Simulator"]
+        Survivorship["Survivorship Bias Correction (PIT)"]
+        Tournament["Strategy Tournament (15+ models)"]
+        Regime["Ensemble + 200d Regime Cash Filter"]
+        TaxSim["After-Tax FIFO Simulator (STCG / LTCG)"]
+    end
+
+    subgraph Output["Execution"]
+        PaperLedger["Live Paper Account / Ledger"]
+        Signals["Signal Engine (Honest Stats)"]
+    end
+
+    RawData --> DuckDB
+    DuckDB --> Survivorship
+    Survivorship --> Tournament
+    Tournament --> Regime
+    Regime --> TaxSim
+    TaxSim --> PaperLedger
+    TaxSim --> Signals
+```
+
+### Core Empirical Findings
+
+- **Survivorship Bias Impact:** Testing against surviving stocks artificially inflates momentum strategies by +0.4 to +0.9 Sharpe ratio.
+- **Factor Exposure:** Intraday dip-buying strategies failed completely once real market microstructure and taxes were incorporated.
+- **The True Winner:** An ensemble strategy switching to cash when the index falls below the 200-day moving average offered the best risk-adjusted profile.

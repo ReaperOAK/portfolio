@@ -8,7 +8,15 @@ import { Contact } from './Contact'
 import s from './Body.module.css'
 
 // The order a hiring manager should meet the work in. Everything else lands in the archive.
-const FEATURED = ['today-egg-rates', 'chesscodex', 'linearecta', 'cse-farewell-2025']
+const FEATURED = [
+  'forgeos',
+  'survivorship-free-backtester',
+  'today-egg-rates',
+  'id-card-maker',
+  'chesscodex',
+  'linearecta',
+  'cse-farewell-2025',
+]
 
 // Kept as /work pages, left out of the archive: tutorial-level builds undercut a senior pitch.
 const UNLISTED = ['simple-responsive-navigation-bar', 'react-weather-app', 'vanillajs-weather-app', 'spotify-ui-clone', 'simon-says-game', 'university-python-scripts-sem-3', 'portfolio-website']

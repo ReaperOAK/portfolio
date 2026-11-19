@@ -1,0 +1,52 @@
+---
+slug: id-card-maker
+title: ID Card Maker
+tagline: Desktop preflight, layout, and print-imposition engine built with Tauri,
+  Rust, and TypeScript.
+stack:
+- Tauri
+- Rust
+- TypeScript
+- React
+- Vite
+- Vitest
+role: Sole Architect & Developer
+period: 2026 · Shipped
+metrics:
+- value: 100%
+  label: client-side processing
+- value: Sub-second
+  label: PDF imposition
+- value: '14'
+  label: test suites passing
+decisions:
+- Adopted Tauri (Rust + TypeScript) to achieve low-footprint desktop execution with
+  native file access and instant PDF rendering.
+- Separated core layout mathematics (units, text-fitting, trim boxes, rasterization)
+  into pure TypeScript libraries covered by comprehensive Vitest test suites.
+- Implemented automated preflight checks to validate photo aspect ratios, DPI bounds,
+  and missing Excel records before print execution.
+devlogs:
+- Architected desktop editor and render-core specifications in docs/superpowers.
+- 'Implemented core layout engine: grid imposition, trim marks, and units converter.'
+- Built photo aspect ratio normalization and preflight validation pipeline.
+- Added Tauri native bridge and reactive state management for desktop preview.
+links:
+  github: https://github.com/ReaperOAK/id-card-maker
+nda: false
+---
+A high-precision desktop layout and print-imposition tool engineered for generating batches of institutional ID cards. Designed to handle noisy inputs, misaligned templates, and variable-length text without manual graphic design adjustments.
+
+### System Architecture
+
+```mermaid
+flowchart TD
+    User["Client / Consumer"] --> App["id-card-maker Core Service"]
+    App --> Components["Business Logic & Components"]
+    Components --> Storage[("Data Store / Manifests")]
+```
+
+### Engineering Challenges Solved
+
+- **Deterministic Preflight:** Automatically flags undersized photos, missing student identifiers, and template drift before triggering expensive print runs.
+- **Dynamic Text Fitting:** Computes bounding boxes mathematically to ensure multi-line names and designations fit strict badge boundaries without clipping.
