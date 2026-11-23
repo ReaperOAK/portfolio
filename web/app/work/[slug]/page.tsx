@@ -67,6 +67,29 @@ const mdxComponents = {
     }
     return <pre className={s.pre} {...props}>{children}</pre>
   },
+  LaunchVideo: ({ src, poster, title }: { src: string; poster?: string; title?: string }) => (
+    <div style={{ margin: '2rem 0', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.12)', background: '#0a0a0d', boxShadow: '0 20px 45px rgba(0,0,0,0.55)' }}>
+      {title && (
+        <div style={{ padding: '10px 18px', background: 'rgba(255, 255, 255, 0.04)', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', fontFamily: 'var(--font-mono, monospace)', color: '#94a3b8' }}>
+          <span>🎬 {title}</span>
+          <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#10b981' }}>Launch Video · 1080p</span>
+        </div>
+      )}
+      <video
+        src={src}
+        poster={poster}
+        controls
+        playsInline
+        preload="metadata"
+        style={{ width: '100%', display: 'block', maxHeight: '540px' }}
+      />
+    </div>
+  ),
+  video: (props: React.VideoHTMLAttributes<HTMLVideoElement>) => (
+    <div style={{ margin: '2rem 0', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.12)', background: '#0a0a0d' }}>
+      <video controls playsInline preload="metadata" style={{ width: '100%', display: 'block' }} {...props} />
+    </div>
+  ),
 }
 
 // ponytail: one neutral layout styled only through tokens. Universe-specific case studies are sub-project B.
