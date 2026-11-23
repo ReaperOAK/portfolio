@@ -1,0 +1,57 @@
+---
+slug: kaggle-gemma-agent
+title: Gemma 4 Developer Agent
+tagline: Autonomous SWE agent with vLLM TP=4 on 4× L4 GPUs, ranked top 2% globally in Kaggle benchmark.
+stack:
+  - Python
+  - PyTorch
+  - vLLM
+  - Google ADK
+  - swegemma
+  - NVIDIA L4 GPUs
+role: Lead Agent Architect
+period: 2026 · Shipped
+metrics:
+  - value: Rank 130
+    label: of 6,110 global teams (Top 2%)
+  - value: 0.22 LB
+    label: public score (13/58 solved)
+  - value: 33.55 tok/s
+    label: vLLM decode throughput (TP=4)
+  - value: 52.1%
+    label: resolution on early edit (<= 12 calls)
+decisions:
+  - Deployed 4× NVIDIA L4 GPUs with tensor parallelism (TP=4) for gemma-4-31b-it-qat-w4a16-ct, achieving deterministic low-latency token generation under container limits.
+  - Reduced tool space to 6 lean deterministic primitives (strictly bounded read_file, atomic anchor edit_file, 60s timeout pytest, zero-cost budget status).
+  - Formulated a 2-pace clock donor policy with 36-call/7.3-minute limits per task to guarantee a 100+ minute container timeout safety margin.
+devlogs:
+  - Benchmarked QAT model quantization and vLLM multi-GPU tensor parallelism throughput.
+  - Designed automated background supervisor daemon for Kaggle API dev run scheduling.
+  - Conducted failure mode taxonomy across 58 blind public evaluation tasks.
+links:
+  github: https://github.com/ReaperOAK/kaggle-gemma-agent
+nda: false
+---
+
+<LaunchVideo src="/media/brags/kaggle-gemma-agent.mp4" poster="/media/brags/kaggle-gemma-agent.jpg" title="Google Gemma 4 Developer Agent: Autonomous Multi-GPU SWE Harness" />
+
+An autonomous software engineering agent engineered for the [Google Gemma 4 Developer Agent Kaggle Competition](https://www.kaggle.com/competitions/gemma-4-developer-agent). Competing as Team DHAKKANS (`reaperoak`, `inmostcalmness`), the system achieved **Rank 130 out of 6,110 competing teams globally** (Silver Medal band, Public Score 0.22, resolving 13/58 blind public tasks).
+
+### Multi-GPU Inference & Tool Execution Architecture
+
+```mermaid
+flowchart TD
+    Kaggle["Kaggle 12-Hour Evaluation Container"] --> Clock["2-Pace Dynamic Clock Manager"]
+    Clock --> Agent["Google ADK + swegemma Core"]
+    Agent <-->|vLLM TP=4 (33.55 tok/s)| GPUs["4× NVIDIA L4 GPUs (Gemma-4 31B QAT)"]
+    Agent --> ToolHarness["Deterministic 6-Tool Sandbox"]
+    ToolHarness --> T1["run_command (60s timeout pytest)"]
+    ToolHarness --> T2["read_file (40-90 lines bounded)"]
+    ToolHarness --> T3["edit_file (Exact string replacement)"]
+    ToolHarness --> T4["get_status (Zero-token budget query)"]
+    ToolHarness --> T5["submit_patch (Git diff termination)"]
+```
+
+### Empirical Engineering Findings
+- **The Early-Edit Invariant:** Trace forensics showed that runs attempting edits within $\le 12$ tool calls resolved **52.1%** of tasks. Runs spending $> 14$ calls reading without modifying files degraded to a **4.7%** resolution rate due to context clutter.
+- **Clock Quota Donation:** Fast-exit passes on unambiguous tasks donated runtime to complex, multi-file repos, protecting the run against container cutoffs with a 100+ minute safety margin.

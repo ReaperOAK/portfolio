@@ -1,0 +1,56 @@
+---
+slug: ofc-redesign
+title: Overseas Food Consultants Redesign
+tagline: Zero-JS static islands, fluid kinetics, and 100/100 Lighthouse across all categories.
+stack:
+  - Astro 7
+  - React 19
+  - Tailwind CSS v4
+  - Motion
+  - Lenis
+role: Frontend & Performance Architect
+period: 2026 · Shipped
+metrics:
+  - value: 100/100
+    label: Accessibility score
+  - value: 100/100
+    label: Agentic browsing readiness
+  - value: "0.00"
+    label: Cumulative Layout Shift (CLS)
+  - value: 100/100
+    label: SEO & Best Practices
+decisions:
+  - Selected Astro 7 static island architecture to deliver zero runtime JavaScript for reading surfaces while isolating interactive React components.
+  - Implemented tokenized WCAG AAA color palette and automated headless audit scripts (audit.sh) to prevent contrast regressions.
+  - Coupled Lenis smooth scrolling with Motion choreography with strict hardware-accelerated transforms to eliminate layout shifts.
+devlogs:
+  - Deconstructed legacy site accessibility defects (heading order, color contrast, landmark hierarchy).
+  - Engineered responsive responsive fluid typography and grid tokens using Tailwind v4.
+  - Benchmarked production build performance and Lighthouse metrics against production preview servers.
+links:
+  github: https://github.com/ReaperOAK/ofc.org.in
+nda: false
+---
+
+<LaunchVideo src="/media/brags/ofc-redesign.mp4" poster="/media/brags/ofc-redesign.jpg" title="Overseas Food Consultants: High-Performance B2B Redesign" />
+
+An architectural and visual concept redesign of Overseas Food Consultants ([ofc.org.in](https://www.ofc.org.in/)). Traditional B2B enterprise websites often suffer from broken contrast, disoriented heading orders, and poor machine readability. This rebuild proves that rich kinetic interactions, modern aesthetics, and audit-grade accessibility can coexist seamlessly.
+
+### System Architecture
+
+```mermaid
+flowchart TD
+    Build["Astro 7 SSG Build Pipeline"] --> Static["Zero-JS HTML / CSS Baseline"]
+    Static --> Island["Selective Client Islands (React 19)"]
+    Island --> Kinetics["Motion & Lenis Physics (0.00 CLS)"]
+    Build --> A11y["Accessibility & Machine Tree Guard"]
+    A11y --> Audit["Headless Contrast & DOM Audits"]
+    Audit --> Lighthouse["100/100 Across All Categories"]
+```
+
+### Measured Production Results
+Audited against production previews on mobile viewport:
+- **Accessibility:** 100 / 100 (Fixed color-contrast, heading hierarchy, and ARIA roles)
+- **Agentic Browsing:** 100 / 100 (Structured semantic landmarks and machine-parsable microdata)
+- **Cumulative Layout Shift:** 0.00 (Zero layout drift during fonts/assets load)
+- **Best Practices & SEO:** 100 / 100

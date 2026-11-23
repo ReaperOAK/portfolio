@@ -1,0 +1,55 @@
+---
+slug: sih-2026
+title: SIH 2026 Forensic Watermarking
+tagline: Zero-plaintext cryptographic forensic watermarking & Tardos collusion defense.
+stack:
+  - Python
+  - Scipy
+  - 2D-DCT
+  - NumPy
+  - Cryptography
+  - Tardos Codebooks
+role: Lead Cryptographic Architect
+period: 2026 · Shipped
+metrics:
+  - value: 0 Bytes
+    label: plaintext exposure
+  - value: "100"
+    label: tracked recipients
+  - value: Q=50
+    label: JPEG attack resilience
+  - value: c = 3
+    label: collusion bound
+decisions:
+  - Eliminated client-side memory leakage by adopting variant-tile encryption; the decrypted document IS the marked document.
+  - Modulated signal energy into 2D-DCT mid-frequency bands (3 <= u+v <= 6) to ensure transparency while resisting recompression attacks.
+  - Implemented symmetric Tardos fingerprinting codebooks with asymmetric penalization to defeat multi-recipient averaging collusion.
+devlogs:
+  - Formulated orthogonal 2D-DCT block transformation pipeline and mid-frequency spectral mask.
+  - Implemented dual-variant tile generator and simulated recipient codeword key releases.
+  - Executed benchmark attacks evaluating survival under aggressive JPEG compression (Q=50) and crop transformations.
+links:
+  github: https://github.com/ReaperOAK/SIH_2k26
+nda: false
+---
+
+<LaunchVideo src="/media/brags/sih-2026.mp4" poster="/media/brags/sih-2026.jpg" title="SIH 2026: Zero-Plaintext Forensic Watermarking & Cryptographic Provenance" />
+
+A high-assurance digital provenance and forensic document tracking system engineered for Smart India Hackathon (SIH 2026). Traditional watermarking leaves clean, unwatermarked plaintext buffers in client memory prior to rasterization. This engine eliminates that vulnerability by pre-encrypting dual-variant document tiles, guaranteeing that client decryption yields only watermarked outputs.
+
+### Cryptographic Architecture
+
+```mermaid
+flowchart TD
+    Doc["Original Document"] --> DCT["2D-DCT Frequency Decomposition"]
+    DCT --> Variants["Dual-Variant Tile Generation (Bit 0 / Bit 1)"]
+    Variants --> Encrypt["Independent AES Key Encryption"]
+    Encrypt --> Client["Client Hardware"]
+    Client --> KeyRelease["Codeword Key Sequence Release"]
+    KeyRelease --> Decrypt["Decrypted Document IS Marked Document"]
+```
+
+### Forensic Defense Capabilities
+
+- **Zero-Plaintext Guarantee:** Decryption occurs per-tile according to the recipient's assigned codeword. Clean plaintext never touches client RAM or framebuffers.
+- **Collusion Resistance:** Even if multiple recipients merge or average documents to wash out watermark bits, the Tardos score detector reliably isolates each conspirator's identity.

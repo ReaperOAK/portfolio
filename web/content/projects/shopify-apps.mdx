@@ -1,0 +1,55 @@
+---
+slug: shopify-apps
+title: Shopify Exchange Engine
+tagline: Automated eCommerce return-to-exchange workflows with Shopify GraphQL & HMAC webhooks.
+stack:
+  - Node.js
+  - TypeScript
+  - Shopify GraphQL
+  - Prisma ORM
+  - Redis / BullMQ
+  - Polaris UI
+role: Full-Stack Architect
+period: 2025 – 2026 · Shipped
+metrics:
+  - value: 100%
+    label: HMAC webhook validation
+  - value: "<200ms"
+    label: exchange processing p95
+  - value: 0%
+    label: double-refund leakage
+  - value: Multi-tenant
+    label: Shopify App store ready
+decisions:
+  - Replaced legacy REST webhooks with Shopify GraphQL Admin API and declarative mutations for granular field fetching.
+  - Implemented cryptographic HMAC SHA-256 validation alongside an idempotent queue to eliminate duplicate webhook events during traffic spikes.
+  - Engineered real-time inventory hold during the customer exchange flow to prevent variant stock-outs before order finalization.
+devlogs:
+  - Built OAuth 2.0 multi-tenant installation handshake and session storage adapter.
+  - Designed customer-facing return & exchange portal with Shopify Polaris design system.
+  - Implemented automated inventory reservation and adjustment triggers on exchange dispatch.
+links:
+  github: https://github.com/ReaperOAK/Shopify-apps
+nda: false
+---
+
+<LaunchVideo src="/media/brags/shopify-apps.mp4" poster="/media/brags/shopify-apps.jpg" title="Shopify Exchange Engine: Zero-Friction Automated eCommerce Returns" />
+
+An enterprise-ready Shopify application engineered to automate return-to-exchange flows. Instead of losing revenue to manual refunds and support ticket backlogs, the engine turns return requests into instant product variant swaps while synchronizing inventory in real time.
+
+### System Architecture
+
+```mermaid
+flowchart TD
+    Customer["Customer Return Portal"] -->|Select Variant Swap| API["Exchange Engine API"]
+    API -->|HMAC Verification| Auth["Webhook / Auth Guard"]
+    Auth -->|Enqueue Event| Queue["Idempotent Job Queue (BullMQ)"]
+    Queue -->|GraphQL Mutation| Shopify["Shopify GraphQL Admin API"]
+    Shopify -->|Reserve Variant| Inventory["Real-Time Inventory Hold"]
+    Shopify -->|Create Exchange Order| Order["Fulfillment & Return Label"]
+```
+
+### Technical Highlights
+- **Cryptographic Security:** Every incoming webhook payload is verified with HMAC SHA-256 before ingestion, preventing spoofed return signals.
+- **GraphQL API Efficiency:** Leverages Shopify's GraphQL Admin API for atomic mutation batching, reducing network overhead compared to legacy REST endpoints.
+- **Zero-Friction UX:** Direct integration with merchant store themes giving shoppers immediate variant selection, automated size recommendations, and instant exchange label creation.

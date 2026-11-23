@@ -1,0 +1,55 @@
+---
+slug: job-hunt
+title: Autonomous Career Pipeline Engine
+tagline: Playwright stealth automation, dynamic ATS resume tailoring, and multi-portal ingestion.
+stack:
+  - Python
+  - Playwright Stealth
+  - BeautifulSoup4
+  - IMAP / SMTP
+  - ReportLab
+  - Pandas
+role: Systems & Automation Architect
+period: 2026 · Shipped
+metrics:
+  - value: 6+
+    label: ATS portals automated
+  - value: 100%
+    label: bot detection evasion
+  - value: "<30s"
+    label: tailored PDF generation
+  - value: Real-Time
+    label: IMAP response triage
+decisions:
+  - Utilized Playwright with randomized user-agent profiles and evasive human bezier cursor dynamics to automate forms without triggering Cloudflare challenges.
+  - Built an automated keyword-tuning pipeline that compiles tailored, single-page PDF resumes per job opportunity using ReportLab.
+  - Engineered bidirectional IMAP/SMTP listener to automatically parse application acknowledgments and flag interview screening requests in real time.
+devlogs:
+  - Automated Ashby, Greenhouse, Lever, and Naukri application form handlers.
+  - Implemented Upwork proposal dispatch and real-time RSS/API job radar.
+  - Built daily and hourly bash cron orchestration daemons for continuous execution.
+links:
+  github: https://github.com/ReaperOAK/job-hunt
+nda: false
+---
+
+<LaunchVideo src="/media/brags/job-hunt.mp4" poster="/media/brags/job-hunt.jpg" title="Autonomous Career Pipeline Engine: Multi-Portal Stealth Job Automation" />
+
+An autonomous job application and sourcing engine engineered to eliminate repetitive application overhead across modern applicant tracking systems (ATS). The system combines headless stealth automation, contextual resume tailoring, and automated email pipeline intelligence.
+
+### Automation Flow Architecture
+
+```mermaid
+flowchart TD
+    Scraper["Job Radar (HN, Ashby, Wellfound, Naukri)"] --> Matcher["ATS Keyword & Spec Matcher"]
+    Matcher --> Tailor["Dynamic Resume PDF Compiler"]
+    Tailor --> Bot["Playwright Stealth Browser Worker"]
+    Bot -->|Human-like Input & Evasion| Portals["ATS Form Submission (Ashby/Greenhouse)"]
+    Portals --> Email["IMAP Email Telemetry Listener"]
+    Email --> Dashboard["Interview Screening Triage Pipeline"]
+```
+
+### Core Features
+- **Stealth Evasion:** Configured with randomized TLS fingerprints, realistic interaction pauses, and headless evasion plugins to reliably navigate ATS portals.
+- **Dynamic PDF Compilation:** Matches job descriptions against verified project experiences, generating tailored single-page resumes on demand.
+- **Telemetry Radar:** Continuously parses inbound recruiter emails, sorting confirmations, interview invites, and rejections into an actionable triage database.

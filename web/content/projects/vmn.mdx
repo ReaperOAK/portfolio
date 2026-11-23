@@ -1,0 +1,58 @@
+---
+slug: vmn
+title: Verified Manufacturing Network (VMN)
+tagline: SaaS manufacturing trust infrastructure with NestJS 10, Meilisearch & BullMQ.
+stack:
+  - NestJS 10
+  - TypeScript
+  - PostgreSQL
+  - TypeORM
+  - Meilisearch
+  - BullMQ
+  - MinIO
+  - Turborepo
+role: Founding Systems Architect
+period: 2025 – 2026 · Shipped
+metrics:
+  - value: "<50ms"
+    label: Meilisearch spec query p95
+  - value: 100%
+    label: EXIF & geotag validation
+  - value: Multi-tenant
+    label: PostgreSQL schema partitioning
+  - value: Audit-grade
+    label: institutional underwriting trust
+decisions:
+  - Structured codebase as a high-velocity Turborepo monorepo sharing contracts between NestJS API, worker processors, and mobile client packages.
+  - Offloaded complex faceted machine capacity searches from PostgreSQL to Meilisearch, reducing lookup times from 420ms to under 45ms.
+  - Implemented automated asset auditing pipelines extracting EXIF metadata and running imgproxy resizing to verify authentic factory machinery photos.
+devlogs:
+  - Implemented RBAC access controls, JWT authentication, and Swagger OpenAPI schemas.
+  - Configured BullMQ asynchronous job queues for heavy background PDF verification and image processing.
+  - Dockerized full local development stack with PostgreSQL, Redis, Meilisearch, MinIO, and imgproxy.
+links:
+  github: https://github.com/ReaperOAK/VMN
+nda: false
+---
+
+<LaunchVideo src="/media/brags/vmn.mp4" poster="/media/brags/vmn.jpg" title="Verified Manufacturing Network: SaaS Trust Infrastructure for Indian Industry" />
+
+A SaaS-enabled manufacturing trust infrastructure engineered for Indian industry. VMN acts as a programmatic "Bureau of Standards", validating supplier identity, physical plant machinery, and verified production capacity so global procurement teams can underwrite manufacturers with audit-grade confidence.
+
+### Monorepo & Service Architecture
+
+```mermaid
+flowchart TD
+    Client["Buyer & Supplier Web / Mobile Apps"] --> API["NestJS 10 Gateway API"]
+    API <--> Auth["JWT / RBAC Security Guard"]
+    API <--> DB[(PostgreSQL + TypeORM)]
+    API <--> Search["Meilisearch (Sub-50ms Spec Engine)"]
+    API --> Queue["BullMQ Asynchronous Job Queues"]
+    Queue --> Worker["Audit & Verification Worker"]
+    Worker <--> Storage["MinIO S3 + imgproxy EXIF Pipeline"]
+```
+
+### Core Innovations
+- **Audit-Grade Verification:** Moves beyond paper self-declarations by cross-referencing GST filings, geotagged machinery photographs, and empirical power consumption logs.
+- **Sub-50ms Search Latency:** Meilisearch cluster indexing machine parameters (bed size, spindle RPM, CNC axis limits) enabling instant matching for RFQs.
+- **Multi-Tenant Monorepo:** Clean architectural separation across `@vmn/api`, `@vmn/mobile`, and shared UI packages managed with Turborepo and strict TypeScript contracts.
