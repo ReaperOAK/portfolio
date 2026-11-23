@@ -1,0 +1,64 @@
+---
+slug: influencer
+title: Autonomous Synthetic Media Pipeline
+tagline: End-to-end virtual AI creator engine combining mobile ADB discovery, LoRA training, and ComfyUI workflow automation.
+stack:
+  - Python
+  - ComfyUI
+  - PyTorch
+  - ADB
+  - LoRA
+  - Computer Vision
+role: AI Systems Architect & Creator
+period: 2026 · Shipped
+metrics:
+  - value: ">0.88"
+    label: "Face Vector Likeness"
+  - value: "100%"
+    label: "Automated Batch Generation"
+  - value: "11 Niches"
+    label: "Empirical Viral Patterns"
+decisions:
+  - "Decoupled model weights and heavyweight runtimes from version control, managing pipeline orchestration via clean async Python wrappers."
+  - "Automated mobile feed pattern mining via Android Debug Bridge (ADB) to extract high-retention video hooks without API rate limits."
+  - "Enforced cosine similarity gates over facial feature vectors to eliminate identity drift across multi-angle generation batches."
+devlogs:
+  - "2026-10-06: Developed ADB automated feed exploration logging engagement metrics across 44 trending Reels."
+  - "2026-10-08: Authored empirical viral playbook codifying 8 repeatable retention and hook mechanics."
+  - "2026-11-02: Built headless ComfyUI async queue integration with automated face swapping and inpainting."
+links:
+  github: "https://github.com/ReaperOAK/influencer"
+nda: false
+---
+
+### System Architecture
+
+The synthetic creator engine pairs automated mobile trend mining with a consistency-verified ComfyUI generation pipeline:
+
+```mermaid
+graph TD
+  A[Android Device via ADB] -->|Warmup & Top Reels Scraping| B[Viral Playbook & Hook Analyzer]
+  B -->|Winning Narrative Patterns| C[Prompt Synthesizer & Scene Builder]
+  
+  subgraph Generation["Synthetic Media Generation Core"]
+    C --> D[ComfyUI Headless API]
+    D --> E[LoRA Checkpoint + Flux / SDXL Base]
+    E --> F[Face Swap & Inpainting Post-Processing]
+  end
+  
+  F --> G{Face Likeness Evaluator}
+  G -->|Cosine Similarity >= Threshold| H[Approved Launch Kit]
+  G -->|Divergent Likeness| I[Discard & Mutate Seed]
+  
+  H --> J[Multi-Platform Publisher / Mobile Scheduler]
+```
+
+### Architectural Decisions
+
+* **Automated Mobile Scraping via ADB:** Platform web APIs frequently ban scrapers or throttle public hashtag endpoints. By driving a physical Android device via ADB (`adb/ui.py`), the system replicates genuine human browsing, collects authentic hook frames, and measures engagement metrics without account flags.
+* **Identity Preservation via Embedding Similarity:** Generative diffusion models frequently suffer identity drift across varying lighting and camera angles. Every generated image is evaluated by `face_score.py` using facial recognition embeddings. Only outputs meeting strict cosine similarity thresholds pass into the final launch kit.
+* **Headless ComfyUI Node Automation:** Rather than manually tweaking GUI sliders, the Python pipeline exposes JSON-configured graph templates directly to ComfyUI's WebSocket/REST API, queueing batch generation runs across local and cloud GPU clusters.
+
+### Engineering War Stories
+
+Early diffusion batches produced photorealistic results that nonetheless failed recognition tests: subtle shifts in jawline geometry and eye spacing broke character continuity across consecutive Reels. Introducing an automated two-stage pipeline—base LoRA synthesis followed by a localized identity inpainting pass evaluated against a canonical feature vector—raised cross-batch likeness consistency from 61% to over 88%.

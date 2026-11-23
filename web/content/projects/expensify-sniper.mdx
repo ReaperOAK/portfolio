@@ -1,0 +1,66 @@
+---
+slug: expensify-sniper
+title: Expensify Bounty Sniper
+tagline: Automated bug bounty intelligence and verification loop for competitive open-source codebases.
+stack:
+  - Python
+  - Playwright
+  - GitHub GraphQL
+  - TypeScript
+  - Linux
+role: Systems Architect & Core Developer
+period: 2026 · Shipped
+metrics:
+  - value: "75 → 13"
+    label: "Triage Funnel Efficiency"
+  - value: "100%"
+    label: "False-Award Prevention"
+  - value: "$250–$1,000"
+    label: "Target Bounty Range"
+decisions:
+  - "Decoupled candidate discovery from AST analysis: regex/GraphQL heuristic filter runs in zero LLM tokens before spawning browser containers."
+  - "Enforced reverted-tree refutation: reproductions run against shipping code rather than candidate diffs to prevent false-positive confirmation bias."
+  - "Standardized on explicit data-testids over accessibility labels to prevent Playwright strict-mode DOM resolution race conditions."
+devlogs:
+  - "2026-08-10: Eliminated false-positive award detection: distinguished Melvin details-request from actual job assignments."
+  - "2026-08-11: Implemented strict-mode Playwright locators using testID fallback cascades for dynamic React menus."
+  - "2026-08-12: Benchmarked 75 open Expensify Help Wanted issues: filtered 62 crowded/non-bug candidates down to 13 verified targets."
+links:
+  github: "https://github.com/ReaperOAK/expensify-sniper"
+nda: false
+---
+
+### System Architecture
+
+The sniping engine pairs a deterministic issue miner with a containerized Playwright reproduction loop:
+
+```mermaid
+graph TD
+  A[GitHub Issues Poller · /repos/Expensify/App] --> B[Deterministic Triage Filter]
+  
+  subgraph Triage["Triage Stage (Zero LLM Tokens)"]
+    B --> C{Crowdedness & Label Gate}
+    C -->|Rivals > 6 or No 'Bug' Label| D[Discard Issue]
+    C -->|Open & High Signal| E{Award Check}
+    E -->|Assigned Regex Match| D
+    E -->|Truly Unassigned| F[High-Probability Candidates]
+  end
+  
+  subgraph Verification["Verification Loop"]
+    F --> G[Playwright E2E Reproduction]
+    G --> H[Reverted Tree Refute Stage]
+    H -->|Verified Fix & Repro| I[Proposal Generator & PR Engine]
+  end
+  
+  I --> J[Live GitHub Submission]
+```
+
+### Architectural Decisions
+
+* **Deterministic Zero-Token Filtering:** Crawling 75+ issues with raw LLM prompts burns rate limits and generates generic suggestions. The triage engine deterministically filters out issues with more than 6 existing proposals, platform-locked issues (iOS/Android native builds), and non-bug tasks, isolating high-probability targets with minimal latency.
+* **The Single Truth of Assignment:** On Expensify, Melvin bot outputs multiple notification types. Treating `Job added to Upwork` or `we don't have your contributor details yet` as an award discarded 70%+ of winnable issues. The regex was hardened to match strictly on `You have been assigned to this job`, restoring winnable bounties.
+* **Reverted-Tree Refutation:** To prove a proposed fix is genuine, the system runs reproductions against a clean reverted branch. If the test passes without the fix, the reproduction is invalid and rejected immediately.
+
+### Engineering War Stories
+
+During high-concurrency issue runs, Playwright strict-mode violations regularly aborted reproductions midway: buttons like `label="Create expense"` existed in duplicate hidden DOM trees within the floating action menu. Replacing generic label matching with explicit `data-testid` queries (`FABMenu-CreateExpense`) and `.first` locator fallbacks brought test completion stability to 100%.

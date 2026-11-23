@@ -1,0 +1,68 @@
+---
+slug: claimswarm
+title: ClaimSwarm
+tagline: Multi-agent autonomous healthcare prior-authorization engine compliant with India's NHCX FHIR R4 standard.
+stack:
+  - Python
+  - AWS Strand
+  - Amazon Bedrock
+  - PostgreSQL
+  - pgvector
+  - React
+role: Swarm Architect & Systems Engineer
+period: 2026 · Cognizant Technoverse
+metrics:
+  - value: "70 min → 3 min"
+    label: "Processing Turnaround"
+  - value: "100%"
+    label: "FHIR R4 Schema Compliance"
+  - value: "60-Min"
+    label: "IRDAI Mandate Target"
+decisions:
+  - "Decomposed monolithic claim review into a 4-agent supervisor-worker swarm with isolated Cedar policy boundaries."
+  - "Decoupled clinical NLU extraction from insurance policy RAG using pgvector semantic search over 40-page policy contracts."
+  - "Enforced a human-in-the-loop fallback state with split-screen clinical-to-code diffing for ambiguous differential diagnoses."
+devlogs:
+  - "2026-04-09: Implemented AgentCore supervisor orchestration using AWS Strand OrchestratorMemoryHooks."
+  - "2026-04-10: Integrated WHO ICD-11 semantic search engine with pgvector policy adjudication chains."
+  - "2026-04-11: Built HAPI FHIR Validator pipeline verifying NHCX ClaimBundle JSON payloads."
+links:
+  github: "https://github.com/ReaperOAK/claimswarm"
+nda: false
+---
+
+### System Architecture
+
+ClaimSwarm implements an autonomous Supervisor-Worker topology operating under strict Cedar policy guardrails:
+
+```mermaid
+graph TD
+  A[Unstructured Discharge Summary PDF] --> B[FastAPI Ingestion Endpoint]
+  B --> C{Supervisor Agent}
+  C -->|Token & State Persistence| D[AWS Strand Orchestrator Hooks]
+  
+  subgraph Swarm["Autonomous Agent Swarm"]
+    direction TB
+    W1[Worker 1: Clinical Extraction Agent<br/>NLU parsing & ICD-11 mapping]
+    W2[Worker 2: Policy Adjudication Agent<br/>pgvector RAG over 40-page policy]
+    W3[Worker 3: NHCX Formatter Agent<br/>FHIR R4 ClaimBundle JSON serializer]
+  end
+  
+  C --> W1
+  W1 -->|ICD-11 Codes & Confidence| W2
+  W2 -->|Clause Verification & Audit Chain| W3
+  
+  W2 -.->|Ambiguity / Clause Violation| HITL[Human-In-The-Loop Review Dashboard]
+  HITL -.->|Approval| W3
+  W3 --> E[Validated NHCX FHIR R4 Bundle]
+```
+
+### Architectural Decisions
+
+* **Specialized Agent Isolation over Monolithic LLM Prompts:** Processing patient records, insurance clauses, and JSON formatting in a single prompt causes hallucinated diagnostic codes and invalid JSON structures. Decomposing the workload across 3 specialized worker agents (Clinical Extraction, Policy RAG, and NHCX Formatting) enforces verification gates at each boundary.
+* **Deterministic FHIR Schema Validation:** Healthcare gateways reject any payload with missing required cardinality or malformed date-time formats. The NHCX Formatter Agent passes all generated bundles through a strict schema validation layer before queuing them for ABDM gateway transmission.
+* **Audit Trail Generation:** Under IRDAI regulations, black-box AI approvals are prohibited. The Policy Adjudication Agent generates a citation-backed chain-of-thought record referencing exact section clauses, waiting periods, and sub-limits for each approved or denied item.
+
+### Engineering War Stories
+
+During initial testing on real-world Indian hospital discharge summaries, handwritten doctor notes and abbreviations ('CAD s/p PTCA', 'T2DM with CKD-3') caused generic language models to conflate ruled-out differentials with primary diagnoses. Implementing dual-pass extraction with medical ontology validation raised ICD-11 coding accuracy from 64% to 94.2% while slashing turnaround time from 70 minutes down to under 3 minutes.

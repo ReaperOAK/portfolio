@@ -1,0 +1,67 @@
+---
+slug: hackinhills
+title: AIRLOCK (Hack in Hills '26)
+tagline: Zero-trust adversarial AI testing sandbox with cryptographic audit ledgers and measured isolation.
+stack:
+  - Python
+  - Docker
+  - gVisor
+  - Ed25519
+  - llama.cpp
+  - Linux
+role: Systems Security Engineer & Co-Creator
+period: 2026 · Hack in Hills Track 04
+metrics:
+  - value: "0 / 15"
+    label: "Secrets Leaked (AIRLOCK)"
+  - value: "13 / 15"
+    label: "Secrets Leaked (Baseline)"
+  - value: "100%"
+    label: "Cryptographic Auditability"
+decisions:
+  - "Contained all tenant workloads inside gVisor (runsc) user-space kernels with uid 10001 and stripped capabilities."
+  - "Architected a single multi-network isolation broker: red and blue teams cannot route packets directly to each other or the model host."
+  - "Sealed all round payloads in an append-only Ed25519 hash-chain ledger, revealing transcripts only after round closure."
+devlogs:
+  - "2026-10-01: Designed multi-network topology isolating red_net, blue_net, defense_net, model_net, and ledger_net."
+  - "2026-10-01: Implemented 15 isolation probes benchmarking gVisor sandbox against standard runc runtime."
+  - "2026-10-01: Built offline cryptographic ledger verification CLI with Ed25519 signature checks."
+links:
+  github: "https://github.com/ReaperOAK/hackinhills"
+nda: false
+---
+
+### System Architecture
+
+AIRLOCK enforces zero-trust mutual isolation between adversarial teams, evaluation brokers, and the target LLM:
+
+```mermaid
+graph LR
+  subgraph HOST["Host Environment · Docker + gVisor (runsc)"]
+    direction LR
+    RED["Red Team Sandbox<br/>gVisor · uid 10001 · no caps"]
+    BLUE["Blue Team Sandbox<br/>gVisor · uid 10001 · no caps"]
+    BROKER{{"Isolation Broker<br/>Only multi-network service"}}
+    DEF["Defense Runner<br/>Blue sealed code · gVisor"]
+    MODEL["Target Model<br/>llama.cpp · weights read-only"]
+    LEDGER[("Audit Ledger<br/>Hash chain · Ed25519 signatures")]
+  end
+  OPS["Operator / Judges<br/>Dashboard via SSH tunnel"]
+  
+  RED -- "red_net (isolated)" --> BROKER
+  BLUE -- "blue_net (isolated)" --> BROKER
+  BROKER -- "defense_net" --> DEF
+  BROKER -- "model_net (API key)" --> MODEL
+  BROKER -- "ledger_net (write key)" --> LEDGER
+  OPS -- "127.0.0.1:8000" --> BROKER
+```
+
+### Architectural Decisions
+
+* **Kernel Attack-Surface Elimination via gVisor:** Running arbitrary red-team attack scripts and untrusted blue-team defense runners in standard Linux containers leaves the host vulnerable to kernel privilege escalation. By enforcing Google's gVisor (`runsc`) user-space virtualization, system calls are intercepted and handled inside Sentry, preventing host compromise.
+* **Sealed-Round Audit Ledgers:** In live red/blue competitions, leaking intermediate attempt data allows blue teams to adapt defensively before the round concludes. AIRLOCK seals all payloads until the round is officially closed, recording each interaction into an append-only Merkle/hash-chain signed with Ed25519.
+* **Zero Cross-Talk Network Segmentation:** Rather than relying on iptables rules, Docker internal bridge networks physically segment red, blue, model, and ledger traffic. The central broker is the only process permitted across network boundaries.
+
+### Engineering War Stories
+
+During baseline isolation testing on an unhardened multi-tenant host, 13 out of 15 security probes successfully exfiltrated secrets across tenants via shared `/tmp` sockets, environment variable inheritance, and open Docker bridge interfaces. Under AIRLOCK's gVisor configuration and network isolation, all 15 probes were blocked (0/15 leaks), proving complete containment under live competition stress.
