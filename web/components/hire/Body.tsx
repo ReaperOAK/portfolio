@@ -1,10 +1,10 @@
 import type { Project } from '@/lib/content/types'
-import { Stage } from '@/components/Stage'
 import { Reel } from './Reel'
 import { Principles } from './Principles'
 import { Career } from './Career'
 import { OffClock } from './OffClock'
 import { Contact } from './Contact'
+import { ProjectArchive } from './ProjectArchive'
 import s from './Body.module.css'
 
 // The order a hiring manager should meet the work in. Everything else lands in the archive.
@@ -33,7 +33,7 @@ export function Body({ projects }: { projects: Project[] }) {
       <section className={s.archive} aria-labelledby="archive-title">
         <h2 id="archive-title" className={s.title}>Everything else</h2>
         <p className={s.lede}>{rest.length} more, from weekend builds to tools I made for myself.</p>
-        <Stage kind="project" records={rest} />
+        <ProjectArchive projects={rest} />
       </section>
       <OffClock />
       <Contact />

@@ -1,0 +1,251 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--u-bg2);
+  border: 1px solid var(--u-line);
+  border-radius: var(--u-radius);
+  padding: 16px 20px;
+}
+
+@media (min-width: 900px) {
+  .controls {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-family: var(--u-body);
+  font-weight: 500;
+  color: var(--u-dim);
+  background: transparent;
+  border: 1px solid var(--u-line);
+  border-radius: var(--u-radius);
+  cursor: pointer;
+  transition: color 150ms ease-out, background-color 150ms ease-out, border-color 150ms ease-out;
+}
+
+.tab:hover {
+  color: var(--u-fg);
+  border-color: var(--u-dim);
+}
+
+.tab:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--u-accent);
+}
+
+.tabActive {
+  color: var(--u-bg);
+  background: var(--u-accent);
+  border-color: var(--u-accent);
+  font-weight: 600;
+}
+
+.tabActive:hover {
+  color: var(--u-bg);
+  background: var(--u-accent);
+  border-color: var(--u-accent);
+}
+
+.tabCount {
+  display: inline-block;
+  font-size: 11px;
+  font-family: var(--u-mono);
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+}
+
+.searchBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 280px;
+  max-width: 100%;
+}
+
+@media (min-width: 900px) {
+  .searchBox {
+    min-width: 320px;
+    max-width: 400px;
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  color: var(--u-dim);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 8px 34px 8px 36px;
+  font-size: 13px;
+  font-family: var(--u-body);
+  color: var(--u-fg);
+  background: var(--u-bg);
+  border: 1px solid var(--u-line);
+  border-radius: var(--u-radius);
+  transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
+}
+
+.searchInput::placeholder {
+  color: var(--u-dim);
+  opacity: 0.7;
+}
+
+.searchInput:focus-visible {
+  outline: none;
+  border-color: var(--u-accent);
+  box-shadow: 0 0 0 2px rgba(255, 138, 61, 0.2);
+}
+
+.clearBtn {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--u-dim);
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 150ms ease-out;
+}
+
+.clearBtn:hover {
+  color: var(--u-fg);
+}
+
+.statsBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.statsText {
+  font-size: 13px;
+  font-family: var(--u-mono);
+  color: var(--u-dim);
+}
+
+.statsNum {
+  color: var(--u-fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.resetLink {
+  font-size: 12px;
+  font-family: var(--u-mono);
+  color: var(--u-accent);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0;
+}
+
+.resetLink:hover {
+  opacity: 0.85;
+}
+
+.resetLink:focus-visible {
+  outline: 2px solid var(--u-accent);
+  border-radius: 2px;
+}
+
+/* Empty State (4-State Law) */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 64px 24px;
+  background: var(--u-bg2);
+  border: 1px dashed var(--u-line);
+  border-radius: var(--u-radius);
+  gap: 16px;
+}
+
+.emptyIcon {
+  color: var(--u-dim);
+  opacity: 0.6;
+}
+
+.emptyTitle {
+  margin: 0;
+  font-size: 18px;
+  font-family: var(--u-display);
+  color: var(--u-fg);
+}
+
+.emptyDesc {
+  margin: 0;
+  font-size: 14px;
+  color: var(--u-dim);
+  max-width: 40ch;
+  line-height: 1.5;
+}
+
+.emptyBtn {
+  margin-top: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-family: var(--u-body);
+  font-weight: 500;
+  color: var(--u-bg);
+  background: var(--u-accent);
+  border: 1px solid var(--u-accent);
+  border-radius: var(--u-radius);
+  cursor: pointer;
+  transition: opacity 150ms ease-out;
+}
+
+.emptyBtn:hover {
+  opacity: 0.9;
+}
+
+.emptyBtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--u-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tab,
+  .searchInput,
+  .clearBtn,
+  .emptyBtn {
+    transition: none !important;
+  }
+}
