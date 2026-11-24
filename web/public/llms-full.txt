@@ -1,0 +1,325 @@
+# Owais Ahmed Khan — Comprehensive Technical Dossier & Systems Directory
+
+> Complete engineering breakdown of all 44 systems, distributed architectures, and autonomous AI agents engineered by Owais Ahmed Khan (@ReaperOAK).
+
+## Identity & Professional Profile
+- Name: Owais Ahmed Khan (known online as ReaperOAK, oaak78692, Owais Khan)
+- Primary Roles: Senior Software Engineer, Systems Architect, AI Infrastructure Engineer
+- Contact: oaak78692@gmail.com
+- GitHub Profile: https://github.com/ReaperOAK
+- LinkedIn: https://linkedin.com/in/owaistech
+- Canonical Portfolio: https://portfolio.owaiskhan.website
+- Alma Mater: St. Thomas' College of Engineering and Technology (STCET), Kolkata, India
+
+---
+
+## Detailed Systems Architecture Directory (44 Case Studies)
+
+### 1. Auction Player Assigner
+- Route: https://portfolio.owaiskhan.website/work/auction-player-assigner
+- Role: Solo (Completed)
+- Architecture Tagline: Dynamic dashboard for managing live player auctions.
+- Technology Stack: React, Vite, Tailwind, jsPDF
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/auction-player-assigner.mp4
+
+### 2. Autosolve AI
+- Route: https://portfolio.owaiskhan.website/work/autosolve-ai
+- Role: Solo (Completed)
+- Architecture Tagline: Desktop AI assistant to automate problem-solving workflows.
+- Technology Stack: Electron, React, Node.js, Python, OpenAI API, Tailwind
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/autosolve-ai.mp4
+
+### 3. Bulk Certificate Generator
+- Route: https://portfolio.owaiskhan.website/work/bulk-certificate-generator
+- Role: Solo (Completed)
+- Architecture Tagline: A Python utility to generate personalized certificates from a CSV file.
+- Technology Stack: Python, Pillow, pandas
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/bulk-certificate-generator.mp4
+
+### 4. Chess Academy Dashboard
+- Route: https://portfolio.owaiskhan.website/work/chess-academy-dashboard
+- Role: Team (Deployed)
+- Architecture Tagline: A full-stack ERP for chess academies with role-based dashboards.
+- Technology Stack: React, PHP, MySQL, Tailwind, Chart.js
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/chess-academy-dashboard.mp4
+
+### 5. ChessCodex
+- Route: https://portfolio.owaiskhan.website/work/chesscodex
+- Role: Solo (Deployed)
+- Architecture Tagline: A multi-tenant online platform for chess academies.
+- Technology Stack: React, Node.js, SQL, Tailwind
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/chesscodex.mp4
+
+### 6. ClaimSwarm
+- Route: https://portfolio.owaiskhan.website/work/claimswarm
+- Role: Swarm Architect & Systems Engineer (2026 · Cognizant Technoverse)
+- Architecture Tagline: Multi-agent autonomous healthcare prior-authorization engine compliant with India's NHCX FHIR R4 standard.
+- Technology Stack: Python, AWS Strand, Amazon Bedrock, PostgreSQL, pgvector, React
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/claimswarm.mp4
+
+### 7. Codebaserag
+- Route: https://portfolio.owaiskhan.website/work/codebaserag
+- Role: Lead Systems Architect & Developer (2026 · Shipped)
+- Architecture Tagline: Local RAG over any repository via an MCP server for instant codebase querying.
+- Technology Stack: Full-Stack
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/codebaserag.mp4
+
+### 8. CRUD Chat Application
+- Route: https://portfolio.owaiskhan.website/work/crud-chat-application
+- Role: Solo (Completed)
+- Architecture Tagline: >-
+- Technology Stack: Node.js, Express, MongoDB, EJS, MongoDB
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/crud-chat-application.mp4
+
+### 9. CSE Farewell 2025
+- Route: https://portfolio.owaiskhan.website/work/cse-farewell-2025
+- Role: Team (Deployed)
+- Architecture Tagline: Interactive digital invitation platform for a university farewell event.
+- Technology Stack: React, TypeScript, Firebase, Framer Motion, Three.js, Tailwind
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/cse-farewell-2025.mp4
+
+### 10. DATUM Industrial Tech Pack Platform
+- Route: https://portfolio.owaiskhan.website/work/datum-bag-manufacturer
+- Role: Design Systems & Frontend Architect (2026 · Shipped)
+- Architecture Tagline: B2B factory marketing site engineered literally as an architectural manufacturing tech pack.
+- Technology Stack: HTML5, CSS Grid / Subgrid, SVG, Vanilla JS, Vercel
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/datum-bag-manufacturer.mp4
+
+### 11. Eventure
+- Route: https://portfolio.owaiskhan.website/work/eventure
+- Role: Team (Completed)
+- Architecture Tagline: A real-time, gamified event management platform using QR codes.
+- Technology Stack: React, Vite, Firebase, Zustand, Tailwind
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/eventure.mp4
+
+### 12. Expensify Bounty Sniper
+- Route: https://portfolio.owaiskhan.website/work/expensify-sniper
+- Role: Systems Architect & Core Developer (2026 · Shipped)
+- Architecture Tagline: Automated bug bounty intelligence and verification loop for competitive open-source codebases.
+- Technology Stack: Python, Playwright, GitHub GraphQL, TypeScript, Linux
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/expensify-sniper.mp4
+
+### 13. Faceless AI Content Pipeline
+- Route: https://portfolio.owaiskhan.website/work/faceless-ai-content-pipeline
+- Role: Solo (Under development)
+- Architecture Tagline: An automated content pipeline for 'faceless' Instagram accounts.
+- Technology Stack: Python, Flask, SQLAlchemy, OpenAI API, Celery
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/faceless-ai-content-pipeline.mp4
+
+### 14. Festify
+- Route: https://portfolio.owaiskhan.website/work/festify
+- Role: Team (Under development)
+- Architecture Tagline: A real-time, full-stack platform for managing college festivals.
+- Technology Stack: React, Node.js, MongoDB, Socket.IO, Firebase, Tailwind
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/festify.mp4
+
+### 15. ForgeOS
+- Route: https://portfolio.owaiskhan.website/work/forgeos
+- Role: System Architect & Lead Developer (2026 · Active Engine)
+- Architecture Tagline: Autonomous SDLC orchestration engine simulating a governed engineering organization.
+- Technology Stack: Full-Stack
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/forgeos.mp4
+
+### 16. Full-Stack Airbnb Clone
+- Route: https://portfolio.owaiskhan.website/work/full-stack-airbnb-clone
+- Role: Solo (Completed)
+- Architecture Tagline: A full-featured clone of Airbnb with listings, reviews, and interactive maps.
+- Technology Stack: Node.js, Express, MongoDB, EJS, Passport.js, Cloudinary, Mapbox
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/full-stack-airbnb-clone.mp4
+
+### 17. AIRLOCK (Hack in Hills '26)
+- Route: https://portfolio.owaiskhan.website/work/hackinhills
+- Role: Systems Security Engineer & Co-Creator (2026 · Hack in Hills Track 04)
+- Architecture Tagline: Zero-trust adversarial AI testing sandbox with cryptographic audit ledgers and measured isolation.
+- Technology Stack: Python, Docker, gVisor, Ed25519, llama.cpp, Linux
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/hackinhills.mp4
+
+### 18. ID Card Maker
+- Route: https://portfolio.owaiskhan.website/work/id-card-maker
+- Role: Sole Architect & Developer (2026 · Shipped)
+- Architecture Tagline: Desktop preflight, layout, and print-imposition engine built with Tauri,
+- Technology Stack: Full-Stack
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/id-card-maker.mp4
+
+### 19. Autonomous Synthetic Media Pipeline
+- Route: https://portfolio.owaiskhan.website/work/influencer
+- Role: AI Systems Architect & Creator (2026 · Shipped)
+- Architecture Tagline: End-to-end virtual AI creator engine combining mobile ADB discovery, LoRA training, and ComfyUI workflow automation.
+- Technology Stack: Python, ComfyUI, PyTorch, ADB, LoRA, Computer Vision
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/influencer.mp4
+
+### 20. Autonomous Career Pipeline Engine
+- Route: https://portfolio.owaiskhan.website/work/job-hunt
+- Role: Systems & Automation Architect (2026 · Shipped)
+- Architecture Tagline: Playwright stealth automation, dynamic ATS resume tailoring, and multi-portal ingestion.
+- Technology Stack: Python, Playwright Stealth, BeautifulSoup4, IMAP / SMTP, ReportLab, Pandas
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/job-hunt.mp4
+
+### 21. Gemma 4 Developer Agent
+- Route: https://portfolio.owaiskhan.website/work/kaggle-gemma-agent
+- Role: Lead Agent Architect (2026 · Shipped)
+- Architecture Tagline: Autonomous SWE agent with vLLM TP=4 on 4× L4 GPUs, ranked top 2% globally in Kaggle benchmark.
+- Technology Stack: Python, PyTorch, vLLM, Google ADK, swegemma, NVIDIA L4 GPUs
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/kaggle-gemma-agent.mp4
+
+### 22. LineaRecta
+- Route: https://portfolio.owaiskhan.website/work/linearecta
+- Role: Solo (Deployed)
+- Architecture Tagline: >-
+- Technology Stack: HTML, CSS, JavaScript, Canvas API
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/linearecta.mp4
+
+### 23. Overseas Food Consultants Redesign
+- Route: https://portfolio.owaiskhan.website/work/ofc-redesign
+- Role: Frontend & Performance Architect (2026 · Shipped)
+- Architecture Tagline: Zero-JS static islands, fluid kinetics, and 100/100 Lighthouse across all categories.
+- Technology Stack: Astro 7, React 19, Tailwind CSS v4, Motion, Lenis
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/ofc-redesign.mp4
+
+### 24. P2P Rental Marketplace
+- Route: https://portfolio.owaiskhan.website/work/p2p-rental-marketplace
+- Role: Team (Completed)
+- Architecture Tagline: A full-stack, Airbnb-like P2P rental marketplace with integrated payments.
+- Technology Stack: React, Node.js, MongoDB, Stripe, Docker, Tailwind
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/p2p-rental-marketplace.mp4
+
+### 25. PalBro
+- Route: https://portfolio.owaiskhan.website/work/palbro
+- Role: Solo (Completed)
+- Architecture Tagline: A web-based Palworld companion app for tracking and managing Pals.
+- Technology Stack: Node.js, Express, EJS
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/palbro.mp4
+
+### 26. Portfolio Website
+- Route: https://portfolio.owaiskhan.website/work/portfolio-website
+- Role: Solo (Deployed)
+- Architecture Tagline: An interactive, visitor-adaptive portfolio experience.
+- Technology Stack: React, Vite, Tailwind, Three.js, Framer Motion, Zustand
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/portfolio-website.mp4
+
+### 27. React Weather App
+- Route: https://portfolio.owaiskhan.website/work/react-weather-app
+- Role: Solo (Completed)
+- Architecture Tagline: A simple and clean weather application built with React and Material UI.
+- Technology Stack: React, Material UI, API
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/react-weather-app.mp4
+
+### 28. Real-Time Player Auction
+- Route: https://portfolio.owaiskhan.website/work/real-time-player-auction
+- Role: Solo (Deployed)
+- Architecture Tagline: A real-time, multi-user platform for live player auctions.
+- Technology Stack: React, Node.js, MySQL, Socket.IO, Tailwind
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/real-time-player-auction.mp4
+
+### 29. Real-time Sign Language Translator
+- Route: https://portfolio.owaiskhan.website/work/real-time-sign-language-translator
+- Role: Solo (Completed)
+- Architecture Tagline: A real-time Indian Sign Language (ISL) translator using computer vision.
+- Technology Stack: Python, Flask, OpenCV, TensorFlow, Keras
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/real-time-sign-language-translator.mp4
+
+### 30. Reddit Content Scheduler
+- Route: https://portfolio.owaiskhan.website/work/reddit-content-scheduler
+- Role: Solo (Completed)
+- Architecture Tagline: Automated Python script for scheduling and posting content to Reddit.
+- Technology Stack: Python, PRAW, schedule
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/reddit-content-scheduler.mp4
+
+### 31. Shopify Exchange Engine
+- Route: https://portfolio.owaiskhan.website/work/shopify-apps
+- Role: Full-Stack Architect (2025 – 2026 · Shipped)
+- Architecture Tagline: Automated eCommerce return-to-exchange workflows with Shopify GraphQL & HMAC webhooks.
+- Technology Stack: Node.js, TypeScript, Shopify GraphQL, Prisma ORM, Redis / BullMQ, Polaris UI
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/shopify-apps.mp4
+
+### 32. SIH 2026 Forensic Watermarking
+- Route: https://portfolio.owaiskhan.website/work/sih-2026
+- Role: Lead Cryptographic Architect (2026 · Shipped)
+- Architecture Tagline: Zero-plaintext cryptographic forensic watermarking & Tardos collusion defense.
+- Technology Stack: Python, Scipy, 2D-DCT, NumPy, Cryptography, Tardos Codebooks
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/sih-2026.mp4
+
+### 33. Simon Says Game
+- Route: https://portfolio.owaiskhan.website/work/simon-says-game
+- Role: Solo (Completed)
+- Architecture Tagline: A classic memory game built with vanilla JavaScript.
+- Technology Stack: HTML, CSS, JavaScript
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/simon-says-game.mp4
+
+### 34. Simple Responsive Navigation Bar
+- Route: https://portfolio.owaiskhan.website/work/simple-responsive-navigation-bar
+- Role: Solo (Completed)
+- Architecture Tagline: A clean, responsive navigation bar built with pure HTML and CSS.
+- Technology Stack: HTML, CSS
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/simple-responsive-navigation-bar.mp4
+
+### 35. Skill Swap Platform
+- Route: https://portfolio.owaiskhan.website/work/skill-swap-platform
+- Role: Team (Completed)
+- Architecture Tagline: A P2P platform for users to trade skills and knowledge directly.
+- Technology Stack: React, Node.js, MongoDB, Socket.IO, Tailwind
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/skill-swap-platform.mp4
+
+### 36. Social OS
+- Route: https://portfolio.owaiskhan.website/work/social-os
+- Role: Solo (Under development)
+- Architecture Tagline: A personal operating system for managing relationships and social strategy.
+- Technology Stack: Markdown, GitHub, Knowledge Management
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/social-os.mp4
+
+### 37. Spotify UI Clone
+- Route: https://portfolio.owaiskhan.website/work/spotify-ui-clone
+- Role: Solo (Completed)
+- Architecture Tagline: A static, pixel-perfect clone of the Spotify web player''s UI.
+- Technology Stack: HTML, CSS
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/spotify-ui-clone.mp4
+
+### 38. Survivorship-Free Backtester
+- Route: https://portfolio.owaiskhan.website/work/survivorship-free-backtester
+- Role: Creator & Quantitative Developer (2026 · Shipped)
+- Architecture Tagline: Honest, survivorship-bias-corrected backtesting and paper trading engine
+- Technology Stack: Full-Stack
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/survivorship-free-backtester.mp4
+
+### 39. Today Egg Rates
+- Route: https://portfolio.owaiskhan.website/work/today-egg-rates
+- Role: Solo (Deployed)
+- Architecture Tagline: SEO-driven platform for tracking daily egg prices in India.
+- Technology Stack: React, PHP, SQL, Tailwind, Chart.js
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/today-egg-rates.mp4
+
+### 40. TradingView API Integration
+- Route: https://portfolio.owaiskhan.website/work/tradingview-api-integration
+- Role: Solo (Completed)
+- Architecture Tagline: A real-time cryptocurrency charting tool using the TradingView API.
+- Technology Stack: HTML, CSS, JavaScript, API, TradingView
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/tradingview-api-integration.mp4
+
+### 41. University Python Scripts (Sem 3)
+- Route: https://portfolio.owaiskhan.website/work/university-python-scripts-sem-3
+- Role: Solo (Completed)
+- Architecture Tagline: A collection of Python scripts from my 3rd semester university coursework.
+- Technology Stack: Python, Tkinter, Algorithms, Data Structures
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/university-python-scripts-sem-3.mp4
+
+### 42. VanillaJS Weather App
+- Route: https://portfolio.owaiskhan.website/work/vanillajs-weather-app
+- Role: Solo (Completed)
+- Architecture Tagline: A simple weather app using the OpenWeatherMap API and vanilla JavaScript.
+- Technology Stack: HTML, CSS, JavaScript, API
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/vanillajs-weather-app.mp4
+
+### 43. Vibecoding
+- Route: https://portfolio.owaiskhan.website/work/vibecoding
+- Role: Lead Systems Architect & Developer (2026 · Shipped)
+- Architecture Tagline: Modular engineering system developed by ReaperOAK.
+- Technology Stack: Full-Stack
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/vibecoding.mp4
+
+### 44. Verified Manufacturing Network (VMN)
+- Route: https://portfolio.owaiskhan.website/work/vmn
+- Role: Founding Systems Architect (2025 – 2026 · Shipped)
+- Architecture Tagline: SaaS manufacturing trust infrastructure with NestJS 10, Meilisearch & BullMQ.
+- Technology Stack: NestJS 10, TypeScript, PostgreSQL, TypeORM, Meilisearch, BullMQ, MinIO, Turborepo
+- Dedicated 1080p Launch Video: https://portfolio.owaiskhan.website/media/brags/vmn.mp4
+
