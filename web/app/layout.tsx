@@ -32,6 +32,13 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Owais Ahmed Khan', url: 'https://portfolio.owaiskhan.website' }],
   creator: 'Owais Ahmed Khan',
+  manifest: '/manifest.webmanifest',
+  alternates: {
+    canonical: 'https://portfolio.owaiskhan.website',
+    types: {
+      'application/rss+xml': 'https://portfolio.owaiskhan.website/feed.xml',
+    },
+  },
   openGraph: {
     type: 'profile',
     firstName: 'Owais',

@@ -1,0 +1,113 @@
+.container {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  text-align: center;
+  position: relative;
+}
+
+.chassis {
+  max-width: 600px;
+  width: 100%;
+  background: var(--u-surface, #11131c);
+  border: 1px solid var(--u-border, rgba(255, 255, 255, 0.1));
+  border-radius: 16px;
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: rgba(255, 77, 77, 0.12);
+  border: 1px solid rgba(255, 77, 77, 0.3);
+  color: #ff6b6b;
+  font-family: var(--u-font-mono, monospace);
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.code {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-family: var(--u-font-mono, monospace);
+  color: var(--u-fg, #ffffff);
+  background: linear-gradient(180deg, var(--u-fg, #ffffff) 0%, rgba(255, 255, 255, 0.3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--u-fg, #ffffff);
+  margin: 0;
+}
+
+.description {
+  font-size: 0.9375rem;
+  color: var(--u-fg-muted, #8b94a5);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 440px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 8px;
+  background: var(--u-accent, #00e5ff);
+  color: #050608;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.primaryBtn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--u-fg, #ffffff);
+  border: 1px solid var(--u-border, rgba(255, 255, 255, 0.2));
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.secondaryBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--u-fg, #ffffff);
+}
