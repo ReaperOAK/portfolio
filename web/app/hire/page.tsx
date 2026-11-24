@@ -6,8 +6,9 @@ import { Hero } from '@/components/hire/Hero'
 import { Body } from '@/components/hire/Body'
 
 export const metadata: Metadata = {
-  title: 'Owais Ahmed Khan, Senior Developer',
-  description: 'Senior Developer. Backends and the infrastructure under them. 29 shipped projects.',
+  title: 'Owais Ahmed Khan | Senior Developer & Systems Architect',
+  description:
+    'Senior Developer & Systems Architect. High-throughput distributed backends, autonomous agent swarms, and adversarial zero-trust sandboxes. 44 shipped production projects.',
   openGraph: { images: ['/media/desk-poster.webp'] },
 }
 
