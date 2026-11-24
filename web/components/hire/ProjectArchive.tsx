@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import type { Project } from '@/lib/content/types'
 import { Stage } from '@/components/Stage'
 import s from './ProjectArchive.module.css'
@@ -77,6 +77,25 @@ interface ProjectArchiveProps {
 export function ProjectArchive({ projects }: ProjectArchiveProps) {
   const [activeCategory, setActiveCategory] = useState<DomainCategory>('ALL')
   const [query, setQuery] = useState('')
+  const searchInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.key === '/' &&
+        document.activeElement?.tagName !== 'INPUT' &&
+        document.activeElement?.tagName !== 'TEXTAREA'
+      ) {
+        e.preventDefault()
+        searchInputRef.current?.focus()
+      } else if (e.key === 'Escape' && document.activeElement === searchInputRef.current) {
+        setQuery('')
+        searchInputRef.current?.blur()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   const categoryCounts = useMemo(() => {
     const counts: Record<DomainCategory, number> = {
@@ -155,15 +174,16 @@ export function ProjectArchive({ projects }: ProjectArchiveProps) {
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
           <input
+            ref={searchInputRef}
             type="text"
             className={s.searchInput}
-            placeholder="Filter by keyword or stack (e.g. Next.js, Docker, Python)..."
+            placeholder="Search projects by keyword or tech stack..."
             value={query}
             onChange={e => setQuery(e.target.value)}
             aria-label="Filter projects by technology or capability"
             spellCheck={false}
           />
-          {query && (
+          {query ? (
             <button
               type="button"
               className={s.clearBtn}
@@ -172,6 +192,10 @@ export function ProjectArchive({ projects }: ProjectArchiveProps) {
             >
               ×
             </button>
+          ) : (
+            <span className={s.keyHint} title="Press / to search" aria-hidden="true">
+              /
+            </span>
           )}
         </div>
       </div>

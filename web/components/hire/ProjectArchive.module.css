@@ -145,6 +145,22 @@
   color: var(--u-fg);
 }
 
+.keyHint {
+  position: absolute;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--u-mono);
+  font-size: 11px;
+  color: var(--u-dim);
+  background: var(--u-bg2);
+  border: 1px solid var(--u-line);
+  padding: 2px 6px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
 .statsBar {
   display: flex;
   align-items: center;
